@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "0.1.0",
+  "testId": "prototype-10-cases",
+  "titleFr": "Prototype des dix cas représentatifs",
+  "publicationStatus": "development-only",
+  "instances": [
+    { "instanceId": "prototype-q01", "itemId": "prototype-autism-core-001", "position": 1 },
+    { "instanceId": "prototype-q02", "itemId": "prototype-adhd-executive-001", "position": 2 },
+    { "instanceId": "prototype-q03", "itemId": "prototype-autism-development-001", "position": 3 },
+    { "instanceId": "prototype-q04", "itemId": "prototype-adhd-impairment-001", "position": 4 },
+    { "instanceId": "prototype-q05", "itemId": "prototype-adhd-compensation-001", "position": 5 },
+    { "instanceId": "prototype-q06", "itemId": "prototype-adhd-differential-001", "position": 6 },
+    { "instanceId": "prototype-q07", "itemId": "prototype-adhd-sleep-001", "position": 7 },
+    { "instanceId": "prototype-q08", "itemId": "prototype-adhd-evidence-001", "position": 8 },
+    { "instanceId": "prototype-q09", "itemId": "external-asrs-v1.1-6q-item-1", "position": 9 },
+    { "instanceId": "prototype-q10", "itemId": "external-wfirs-s-item-1", "position": 10 }
+  ]
+}
+

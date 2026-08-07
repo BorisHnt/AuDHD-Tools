@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "0.1.0",
+  "concepts": [
+    {
+      "id": "autism.social.reciprocity.turn_timing",
+      "dimensionId": "autism.social.reciprocity",
+      "labelFr": "Repérage du moment où prendre la parole"
+    },
+    {
+      "id": "adhd.executive.initiation.intent_action_gap",
+      "dimensionId": "adhd.executive.initiation",
+      "labelFr": "Décalage entre l'intention et le passage à l'action"
+    },
+    {
+      "id": "autism.trajectory.childhood.solitary_play",
+      "dimensionId": "autism.trajectory.childhood",
+      "labelFr": "Préférence ancienne pour le jeu solitaire"
+    },
+    {
+      "id": "adhd.impact.functional.work_or_studies",
+      "dimensionId": "adhd.impact.functional",
+      "labelFr": "Retentissement sur les études ou le travail"
+    },
+    {
+      "id": "adhd.associated.compensation.conscious_organization_cost",
+      "dimensionId": "adhd.associated.compensation",
+      "labelFr": "Coût conscient de l'organisation apparente"
+    },
+    {
+      "id": "adhd.validation.differentials.elevated_energy_reduced_sleep",
+      "dimensionId": "adhd.validation.differentials",
+      "labelFr": "Épisodes d'énergie élevée avec besoin de sommeil réduit"
+    },
+    {
+      "id": "adhd.associated.sleep.sleep_disorder_context",
+      "dimensionId": "adhd.associated.sleep",
+      "labelFr": "Sommeil perturbé ou non réparateur"
+    },
+    {
+      "id": "adhd.validation.evidence_quality.source_concordance",
+      "dimensionId": "adhd.validation.evidence_quality",
+      "labelFr": "Concordance entre vécu, proches et documents"
+    },
+    {
+      "id": "instrument.asrs-v1.1-6q.item-1",
+      "dimensionId": "adhd.core.inattention",
+      "labelFr": "Item officiel ASRS v1.1 6Q — contenu externe"
+    },
+    {
+      "id": "instrument.wfirs-s.family.item-1",
+      "dimensionId": "adhd.impact.functional",
+      "labelFr": "Item officiel WFIRS-S — contenu soumis à autorisation"
+    }
+  ]
+}

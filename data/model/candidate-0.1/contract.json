@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "0.1.0",
+  "responseKinds": ["value", "unknown", "not-applicable", "skipped"],
+  "scoringTypes": ["direct", "reverse", "flag", "none", "instrument"],
+  "aggregationModes": ["primary", "contextual"],
+  "periods": ["current", "past-month", "past-six-months", "childhood", "lifetime"],
+  "roles": [
+    "core",
+    "associated",
+    "developmental",
+    "impairment",
+    "differential",
+    "medical-context",
+    "evidence",
+    "instrument"
+  ],
+  "invariants": {
+    "maximumPrimaryContributionsPerItem": 1,
+    "missingValuesBecomeZero": false,
+    "contextualContributionsAreAggregated": false,
+    "flagsAddDiagnosticPoints": false,
+    "arbitraryNumericWeightsAllowed": false,
+    "officialAndDescriptiveResultsAreMerged": false
+  }
+}

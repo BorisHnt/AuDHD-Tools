@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "0.1.0",
+  "items": [
+    {
+      "itemId": "prototype-autism-core-001",
+      "case": "core",
+      "conceptId": "autism.social.reciprocity.turn_timing",
+      "text": { "fr": "Avez-vous du mal à savoir spontanément quand prendre la parole dans une conversation ?" },
+      "period": "current",
+      "role": "core",
+      "clinicalCore": true,
+      "responseScale": "frequency-0-4",
+      "scoring": { "type": "direct", "minimum": 0, "maximum": 4 },
+      "contributions": [
+        { "dimensionId": "autism.social.reciprocity", "aggregation": "primary" }
+      ],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TSA 100, question 1", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "prototype-adhd-executive-001",
+      "case": "executive",
+      "conceptId": "adhd.executive.initiation.intent_action_gap",
+      "text": { "fr": "Même sans pression extérieure, parvenez-vous facilement à commencer une tâche que vous avez décidé de faire ?" },
+      "period": "current",
+      "role": "associated",
+      "clinicalCore": false,
+      "responseScale": "frequency-0-4",
+      "scoring": { "type": "reverse", "minimum": 0, "maximum": 4 },
+      "contributions": [
+        { "dimensionId": "adhd.executive.initiation", "aggregation": "primary" },
+        { "dimensionId": "adhd.executive.activation_motivation", "aggregation": "contextual" }
+      ],
+      "source": { "type": "prototype-only", "instrument": null, "licenseStatus": "not-applicable", "includedInMegaTest": false, "purpose": "exercise-reverse-scoring" }
+    },
+    {
+      "itemId": "prototype-autism-development-001",
+      "case": "development",
+      "conceptId": "autism.trajectory.childhood.solitary_play",
+      "text": { "fr": "Préféreriez-vous souvent jouer seul ou avec très peu d'enfants ?" },
+      "period": "childhood",
+      "role": "developmental",
+      "clinicalCore": false,
+      "responseScale": "yes-no",
+      "scoring": { "type": "direct", "minimum": 0, "maximum": 1 },
+      "contributions": [
+        { "dimensionId": "autism.trajectory.childhood", "aggregation": "primary" }
+      ],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TSA 100, question 70", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "prototype-adhd-impairment-001",
+      "case": "impairment",
+      "conceptId": "adhd.impact.functional.work_or_studies",
+      "text": { "fr": "Ces difficultés nuisent-elles à vos études ou à votre travail ?" },
+      "period": "current",
+      "role": "impairment",
+      "clinicalCore": false,
+      "responseScale": "frequency-0-4",
+      "scoring": { "type": "direct", "minimum": 0, "maximum": 4 },
+      "contributions": [
+        { "dimensionId": "adhd.impact.functional", "aggregation": "primary" }
+      ],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TDAH 100, question 85", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "prototype-adhd-compensation-001",
+      "case": "compensation",
+      "conceptId": "adhd.associated.compensation.conscious_organization_cost",
+      "text": { "fr": "Votre apparente organisation nécessite-t-elle beaucoup d'effort conscient ?" },
+      "period": "current",
+      "role": "associated",
+      "clinicalCore": false,
+      "responseScale": "frequency-0-4",
+      "scoring": { "type": "direct", "minimum": 0, "maximum": 4 },
+      "contributions": [
+        { "dimensionId": "adhd.associated.compensation", "aggregation": "primary" }
+      ],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TDAH 100, question 81", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "prototype-adhd-differential-001",
+      "case": "differential",
+      "conceptId": "adhd.validation.differentials.elevated_energy_reduced_sleep",
+      "text": { "fr": "Avez-vous des périodes de plusieurs jours avec une énergie inhabituellement élevée et un besoin de sommeil nettement diminué ?" },
+      "period": "lifetime",
+      "role": "differential",
+      "clinicalCore": false,
+      "responseScale": "yes-no",
+      "scoring": {
+        "type": "flag",
+        "flagId": "elevated-energy-reduced-sleep-to-explore",
+        "whenOptionId": "yes",
+        "reportSection": "points-to-discuss"
+      },
+      "contributions": [],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TDAH 100, question 96", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "prototype-adhd-sleep-001",
+      "case": "sleep",
+      "conceptId": "adhd.associated.sleep.sleep_disorder_context",
+      "text": { "fr": "Présentez-vous un sommeil très décalé, des insomnies importantes, des apnées suspectées ou un sommeil non réparateur ?" },
+      "period": "current",
+      "role": "medical-context",
+      "clinicalCore": false,
+      "responseScale": "yes-no",
+      "scoring": {
+        "type": "flag",
+        "flagId": "sleep-context-to-explore",
+        "whenOptionId": "yes",
+        "reportSection": "points-to-discuss"
+      },
+      "contributions": [],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TDAH 100, question 98", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "prototype-adhd-evidence-001",
+      "case": "evidence",
+      "conceptId": "adhd.validation.evidence_quality.source_concordance",
+      "text": { "fr": "Les informations provenant de vos souvenirs, de proches et de documents disponibles racontent-elles globalement la même histoire ?" },
+      "period": "lifetime",
+      "role": "evidence",
+      "clinicalCore": false,
+      "responseScale": "agreement-0-4",
+      "scoring": { "type": "direct", "minimum": 0, "maximum": 4 },
+      "contributions": [
+        { "dimensionId": "adhd.validation.evidence_quality", "aggregation": "primary" }
+      ],
+      "source": { "type": "original", "instrument": null, "licenseStatus": "not-applicable", "canonicalSourceId": "mega-tests-original-oss-v2", "sourceQuestion": "TDAH 250, question 250", "publicationStatus": "requires-clinical-review" }
+    },
+    {
+      "itemId": "external-asrs-v1.1-6q-item-1",
+      "case": "asrs",
+      "conceptId": "instrument.asrs-v1.1-6q.item-1",
+      "text": { "fr": null },
+      "contentReference": "https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_French_final.pdf",
+      "contentStatus": "external-until-verbatim-integration-review",
+      "period": "past-six-months",
+      "role": "instrument",
+      "clinicalCore": false,
+      "responseScale": "frequency-0-4",
+      "scoring": { "type": "instrument", "instrumentId": "asrs-v1.1-6q", "itemPosition": 1 },
+      "contributions": [],
+      "source": { "type": "official-instrument", "instrumentId": "asrs-v1.1-6q" }
+    },
+    {
+      "itemId": "external-wfirs-s-item-1",
+      "case": "wfirs",
+      "conceptId": "instrument.wfirs-s.family.item-1",
+      "text": { "fr": null },
+      "contentReference": "https://eprovide.mapi-trust.org/instruments/weiss-functional-impairment-rating-scale-self-report",
+      "contentStatus": "blocked-pending-written-permission",
+      "period": "past-month",
+      "role": "instrument",
+      "clinicalCore": false,
+      "responseScale": "wfirs-0-3-reference-only",
+      "scoring": { "type": "instrument", "instrumentId": "wfirs-s", "domainId": "family", "itemPosition": 1 },
+      "contributions": [],
+      "source": { "type": "official-instrument", "instrumentId": "wfirs-s" }
+    }
+  ]
+}

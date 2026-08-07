@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "0.1.0",
+  "testId": "prototype-10-cases",
+  "responses": [
+    { "instanceId": "prototype-q01", "response": { "kind": "value", "optionId": "often", "rawValue": 3 } },
+    { "instanceId": "prototype-q02", "response": { "kind": "value", "optionId": "rarely", "rawValue": 1 } },
+    { "instanceId": "prototype-q03", "response": { "kind": "value", "optionId": "yes", "rawValue": 1 } },
+    { "instanceId": "prototype-q04", "response": { "kind": "not-applicable" } },
+    { "instanceId": "prototype-q05", "response": { "kind": "unknown" } },
+    { "instanceId": "prototype-q06", "response": { "kind": "value", "optionId": "yes", "rawValue": 1 } },
+    { "instanceId": "prototype-q07", "response": { "kind": "skipped" } },
+    { "instanceId": "prototype-q08", "response": { "kind": "value", "optionId": "partly", "rawValue": 2 } },
+    { "instanceId": "prototype-q09", "response": { "kind": "value", "optionId": "often", "rawValue": 3 } },
+    { "instanceId": "prototype-q10", "response": { "kind": "not-applicable" } }
+  ]
+}
+

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "0.1.0",
+  "sourceId": "mega-tests-original-oss-v2",
+  "fileName": "mega_tests_TDAH_TSA_original_OSS_v2.txt",
+  "location": "external-source-provided-by-project-owner",
+  "sha256": "bbbc7d6eb8148eb080f31d5a404910b89ab344ec0ad72c421785ebf1a787ae30",
+  "verifiedAt": "2026-08-07",
+  "status": "canonical",
+  "questionOccurrences": {
+    "total": 700,
+    "tests": {
+      "adhd-100": 100,
+      "adhd-250": 250,
+      "autism-100": 100,
+      "autism-250": 250
+    }
+  },
+  "instrumentContent": {
+    "asrsIncluded": false,
+    "wfirsIncluded": false,
+    "officialInstrumentScoringApplies": false
+  },
+  "sharedBlocks": [
+    {
+      "tests": ["adhd-100", "adhd-250"],
+      "positions": { "start": 1, "end": 18 },
+      "identityCheck": "exact-text-match",
+      "deduplicationRule": "same-itemId-and-conceptId-different-instanceId"
+    }
+  ],
+  "supersedes": {
+    "fileName": "mega_tests_TDAH_TSA.txt",
+    "status": "historical-do-not-import"
+  }
+}

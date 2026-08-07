@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "0.1.0",
+  "responseScales": [
+    {
+      "id": "frequency-0-4",
+      "type": "ordinal",
+      "options": [
+        { "id": "never", "labelFr": "Jamais", "rawValue": 0 },
+        { "id": "rarely", "labelFr": "Rarement", "rawValue": 1 },
+        { "id": "sometimes", "labelFr": "Parfois", "rawValue": 2 },
+        { "id": "often", "labelFr": "Souvent", "rawValue": 3 },
+        { "id": "very-often", "labelFr": "Très souvent", "rawValue": 4 }
+      ],
+      "specialResponses": ["unknown", "not-applicable"]
+    },
+    {
+      "id": "agreement-0-4",
+      "type": "ordinal",
+      "options": [
+        { "id": "not-at-all", "labelFr": "Pas du tout", "rawValue": 0 },
+        { "id": "slightly", "labelFr": "Un peu", "rawValue": 1 },
+        { "id": "partly", "labelFr": "Partiellement", "rawValue": 2 },
+        { "id": "mostly", "labelFr": "En grande partie", "rawValue": 3 },
+        { "id": "completely", "labelFr": "Tout à fait", "rawValue": 4 }
+      ],
+      "specialResponses": ["unknown", "not-applicable"]
+    },
+    {
+      "id": "yes-no",
+      "type": "binary",
+      "options": [
+        { "id": "no", "labelFr": "Non", "rawValue": 0 },
+        { "id": "yes", "labelFr": "Oui", "rawValue": 1 }
+      ],
+      "specialResponses": ["unknown", "not-applicable"]
+    },
+    {
+      "id": "wfirs-0-3-reference-only",
+      "type": "instrument",
+      "instrumentId": "wfirs-s",
+      "contentStatus": "reference-only-pending-permission"
+    }
+  ]
+}
+

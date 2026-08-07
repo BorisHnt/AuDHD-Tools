@@ -1,0 +1,21 @@
+{
+  "name": "audhd-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node node_modules/vite/bin/vite.js",
+    "build": "node node_modules/typescript/bin/tsc --noEmit && node node_modules/vite/bin/vite.js build",
+    "preview": "node node_modules/vite/bin/vite.js preview",
+    "generate:content": "node scripts/generate-content.mjs",
+    "validate:content": "node scripts/validate-generated-content.mjs",
+    "validate:model": "node scripts/validate-prototype.mjs"
+  },
+  "dependencies": {
+    "jspdf": "^3.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "vite": "^7.1.1"
+  }
+}

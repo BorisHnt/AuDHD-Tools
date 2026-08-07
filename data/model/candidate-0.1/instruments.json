@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "0.1.0",
+  "instruments": [
+    {
+      "id": "asrs-v1.1-6q",
+      "name": "Adult ADHD Self-Report Scale v1.1 — 6-Question Screener",
+      "owner": "New York University and Ronald C. Kessler, PhD",
+      "use": "screening-not-diagnosis",
+      "integrationStatus": "conditionally-permitted",
+      "contentIncludedInPrototype": false,
+      "conditions": [
+        "Use is free without formal permission for the 6-question screener.",
+        "The instrument, response options and official scoring must not be altered.",
+        "The required citation and copyright notice must be displayed.",
+        "The official site prefers a link to its maintained PDF when possible."
+      ],
+      "responseScale": {
+        "options": ["never", "rarely", "sometimes", "often", "very-often"],
+        "valuesFor2024AdditiveMethod": [0, 1, 2, 3, 4]
+      },
+      "officialScoringMethods": [
+        {
+          "id": "2024-additive-0-24",
+          "status": "documented-not-executed-by-prototype",
+          "requiresCompleteItemCount": 6,
+          "operation": "sum",
+          "range": [0, 24],
+          "screenPositiveCutpoint": 14,
+          "strata": [
+            { "minimum": 0, "maximum": 9, "id": "low-negative" },
+            { "minimum": 10, "maximum": 13, "id": "high-negative" },
+            { "minimum": 14, "maximum": 17, "id": "low-positive" },
+            { "minimum": 18, "maximum": 24, "id": "high-positive" }
+          ],
+          "source": "https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/ASRS_v1.1_screener%286Q%29_scoring_update.pdf"
+        },
+        {
+          "id": "original-dichotomous-shaded-cells",
+          "status": "requires-verbatim-layout-and-rule-encoding",
+          "requiresCompleteItemCount": 6,
+          "screenPositiveCutpoint": 4,
+          "source": "https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/6Q_French_final.pdf"
+        }
+      ],
+      "sources": [
+        "https://www.hcp.med.harvard.edu/ncs/asrs.php",
+        "https://www.hcp.med.harvard.edu/ncs/ftpdir/adhd/background_memo_rev_2023_edit.pdf"
+      ]
+    },
+    {
+      "id": "asrs-v1.1-18q",
+      "name": "Adult ADHD Self-Report Scale v1.1 — 18-question Symptoms Checklist",
+      "use": "symptom-checklist-not-diagnosis",
+      "integrationStatus": "blocked-pending-permission",
+      "contentIncludedInPrototype": false,
+      "conditions": [
+        "The official ASRS site requires a permission request for the 18-question checklist.",
+        "Do not publish the 18 items from the working file as an official ASRS before permission is documented."
+      ],
+      "sources": ["https://www.hcp.med.harvard.edu/ncs/asrs.php"]
+    },
+    {
+      "id": "wfirs-s",
+      "name": "Weiss Functional Impairment Rating Scale — Self Report",
+      "owner": "Margaret D. Weiss",
+      "distributor": "Mapi Research Trust",
+      "use": "functional-impairment-not-diagnosis",
+      "integrationStatus": "blocked-pending-written-permission",
+      "contentIncludedInPrototype": false,
+      "knownStructureForReferenceOnly": {
+        "itemCount": 69,
+        "domainCount": 7,
+        "responseRange": [0, 3],
+        "allowsNotApplicable": true,
+        "period": "past-month",
+        "domainAggregation": "mean-excluding-not-applicable"
+      },
+      "conditions": [
+        "Mapi Research Trust states that review copies may not be modified, retyped, copied or distributed without prior written permission.",
+        "A French translation exists, but its use and electronic integration must be requested.",
+        "The website implementation must not include item text until permission and the authorized version are obtained."
+      ],
+      "sources": [
+        "https://eprovide.mapi-trust.org/instruments/weiss-functional-impairment-rating-scale-self-report",
+        "https://www.caddra.ca/etoolkit/eToolkit-CADDRA-etrousse/assets/wfirs-instructions--digital-march-25-.pdf",
+        "https://pubmed.ncbi.nlm.nih.gov/30191748/"
+      ]
+    }
+  ]
+}
+

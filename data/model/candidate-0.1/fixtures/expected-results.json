@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "0.1.0",
+  "testId": "prototype-10-cases",
+  "completion": {
+    "totalItems": 10,
+    "treatedItems": 9,
+    "answeredItems": 6,
+    "unknownItems": 1,
+    "notApplicableItems": 2,
+    "skippedItems": 1
+  },
+  "informationalCoverage": {
+    "applicableItems": 8,
+    "informativeAnsweredItems": 6,
+    "ratio": 0.75
+  },
+  "descriptiveConcepts": [
+    {
+      "conceptId": "autism.social.reciprocity.turn_timing",
+      "normalized": 0.75,
+      "answeredItems": 1,
+      "applicableItems": 1
+    },
+    {
+      "conceptId": "adhd.executive.initiation.intent_action_gap",
+      "normalized": 0.75,
+      "answeredItems": 1,
+      "applicableItems": 1
+    },
+    {
+      "conceptId": "autism.trajectory.childhood.solitary_play",
+      "normalized": 1,
+      "answeredItems": 1,
+      "applicableItems": 1
+    },
+    {
+      "conceptId": "adhd.validation.evidence_quality.source_concordance",
+      "normalized": 0.5,
+      "answeredItems": 1,
+      "applicableItems": 1
+    }
+  ],
+  "descriptiveDimensions": [
+    {
+      "dimensionId": "autism.social.reciprocity",
+      "normalized": 0.75,
+      "displayValue": 3,
+      "displayScaleMaximum": 4,
+      "evaluatedConcepts": 1,
+      "applicableConcepts": 1
+    },
+    {
+      "dimensionId": "adhd.executive.initiation",
+      "normalized": 0.75,
+      "displayValue": 3,
+      "displayScaleMaximum": 4,
+      "evaluatedConcepts": 1,
+      "applicableConcepts": 1
+    },
+    {
+      "dimensionId": "autism.trajectory.childhood",
+      "normalized": 1,
+      "displayValue": 4,
+      "displayScaleMaximum": 4,
+      "evaluatedConcepts": 1,
+      "applicableConcepts": 1
+    },
+    {
+      "dimensionId": "adhd.validation.evidence_quality",
+      "normalized": 0.5,
+      "displayValue": 2,
+      "displayScaleMaximum": 4,
+      "evaluatedConcepts": 1,
+      "applicableConcepts": 1
+    }
+  ],
+  "activeFlags": [
+    {
+      "flagId": "elevated-energy-reduced-sleep-to-explore",
+      "sourceInstanceId": "prototype-q06",
+      "addsDiagnosticPoints": false
+    }
+  ],
+  "unevaluatedFlags": [
+    {
+      "flagId": "sleep-context-to-explore",
+      "sourceInstanceId": "prototype-q07",
+      "reason": "skipped"
+    }
+  ],
+  "officialInstrumentResults": [
+    {
+      "instrumentId": "asrs-v1.1-6q",
+      "status": "incomplete",
+      "answeredRequiredItems": 1,
+      "requiredItems": 6,
+      "result": null
+    },
+    {
+      "instrumentId": "wfirs-s",
+      "status": "blocked-pending-written-permission",
+      "result": null
+    }
+  ]
+}
