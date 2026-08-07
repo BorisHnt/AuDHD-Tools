@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import assert from "node:assert/strict";
 
 const root = resolve(import.meta.dirname, "..");
-const readJson = async (file) => JSON.parse(await readFile(resolve(root, "public/data", file), "utf8"));
+const readJson = async (file) => JSON.parse(await readFile(resolve(root, "site-data", file), "utf8"));
 const [tests, waves] = await Promise.all([readJson("tests.json"), readJson("waves.json")]);
 
 assert.equal(tests.source.occurrenceCount, 700, "Le MegaTest doit contenir 700 occurrences.");

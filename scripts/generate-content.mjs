@@ -23,8 +23,8 @@ const sources = {
   psychological: args.psychological || process.env.AUDHD_PSYCH_WAVES_SOURCE || defaults.psychological
 };
 
-const output = resolve(root, "public/data");
-const documentsOutput = resolve(root, "public/documents");
+const output = resolve(root, "site-data");
+const documentsOutput = resolve(root, "documents");
 await mkdir(output, { recursive: true });
 await mkdir(documentsOutput, { recursive: true });
 
