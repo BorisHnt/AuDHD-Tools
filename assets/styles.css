@@ -249,6 +249,7 @@ p { max-width: 75ch; }
 .document-icon { display: grid; place-items: center; width: 58px; height: 58px; color: var(--teal); background: var(--teal-soft); border-radius: 12px; font-weight: 850; }
 .document-section { margin-top: 2.5rem; }
 .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: .55rem; border-bottom: 2px solid var(--border); }
+.document-section > .section-heading + .document-list { margin-top: 1rem; }
 .section-heading h2 { margin: 0; }
 .section-heading > span { display: grid; place-items: center; min-width: 34px; min-height: 34px; padding: .2rem .55rem; color: var(--primary-dark); background: var(--surface-soft); border-radius: 99px; font-weight: 850; }
 .document-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
@@ -258,7 +259,10 @@ p { max-width: 75ch; }
 .document-privacy { margin-top: 2rem; }
 .settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .settings-card { padding: 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.settings-card > h2 { margin-top: 0; }
 .settings-card > label:not(.check-option), #password-fields label { display: grid; gap: .3rem; margin: .8rem 0; font-weight: 700; }
+.settings-card > .check-option { margin: 1rem 0; }
+.settings-card > .button-row { margin-top: 1rem; }
 .danger-zone { border-color: var(--coral); }
 .file-button { position: relative; overflow: hidden; cursor: pointer; }
 .file-button input { position: absolute; width: 1px; height: 1px; opacity: 0; }
