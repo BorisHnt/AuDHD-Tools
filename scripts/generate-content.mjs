@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { basename, join, resolve } from "node:path";
 import { tmpdir } from "node:os";
@@ -28,9 +28,7 @@ const sources = {
 };
 
 const output = resolve(root, "site-data");
-const documentsOutput = resolve(root, "documents");
 await mkdir(output, { recursive: true });
-await mkdir(documentsOutput, { recursive: true });
 
 const hash = (value) => createHash("sha256").update(value).digest("hex");
 const slug = (value) => value
@@ -319,9 +317,7 @@ try {
 
   await Promise.all([
     writeFile(join(output, "tests.json"), JSON.stringify(testsData, null, 2) + "\n"),
-    writeFile(join(output, "waves.json"), JSON.stringify(wavesData, null, 2) + "\n"),
-    copyFile(sources.tdah, join(documentsOutput, "manuel-des-vagues-tdah.odt")),
-    copyFile(sources.psychological, join(documentsOutput, "manuel-navigation-vagues-psychologiques.odt"))
+    writeFile(join(output, "waves.json"), JSON.stringify(wavesData, null, 2) + "\n")
   ]);
 
   console.log(`Tests: ${testsData.tests.length}, occurrences: ${testsData.source.occurrenceCount}, items canoniques: ${testsData.items.length}`);

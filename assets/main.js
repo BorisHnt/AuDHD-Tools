@@ -15,9 +15,9 @@ const loadJson = async (path) => {
     return response.json();
 };
 const stateAtLoad = getState();
-const needsTests = ["tests", "test", "results"].includes(pageId)
+const needsTests = ["tests", "test", "results", "documents"].includes(pageId)
     || (pageId === "home" && stateAtLoad.testSessions.length > 0);
-const needsWaves = ["waves", "wave-module"].includes(pageId);
+const needsWaves = ["waves", "wave-module", "documents"].includes(pageId);
 let loadError = null;
 const [testsData, wavesData] = await Promise.all([
     needsTests ? loadJson("site-data/tests.json") : null,
@@ -61,7 +61,7 @@ const layout = (content) => `
     <nav aria-label="Navigation principale">
       <a href="${siteUrl("tests/")}">Tests</a>
       <a href="${siteUrl("fiches/")}">Fiches</a>
-      <a href="${siteUrl("documents/")}">Documents</a>
+      <a href="${siteUrl("documents/")}">Mes documents</a>
       <a href="${siteUrl("reglages/")}" aria-label="Réglages">Réglages</a>
     </nav>
   </header>
@@ -106,7 +106,7 @@ const homeView = () => {
     <section class="feature-grid" aria-label="Catégories principales">
       <a class="feature-card tests" href="${siteUrl("tests/")}"><span class="feature-icon">${icon("tests")}</span><h2>Tests</h2><p>Quatre questionnaires descriptifs de 100 ou 250 questions.</p><span class="text-link">Choisir un test →</span></a>
       <a class="feature-card waves" href="${siteUrl("fiches/")}"><span class="feature-icon">${icon("waves")}</span><h2>Fiches interactives</h2><p>30 modules et 150 fiches pour agir avant, pendant ou après une vague.</p><span class="text-link">Trouver une fiche →</span></a>
-      <a class="feature-card documents" href="${siteUrl("documents/")}"><span class="feature-icon">${icon("documents")}</span><h2>Documents</h2><p>Télécharger les manuels complets dans leur format d’origine.</p><span class="text-link">Voir les documents →</span></a>
+      <a class="feature-card documents" href="${siteUrl("documents/")}"><span class="feature-icon">${icon("documents")}</span><h2>Mes documents</h2><p>Retrouver les tests et fiches conservés sur cet appareil, puis générer leurs PDF.</p><span class="text-link">Voir mes documents →</span></a>
     </section>
     <section class="principles">
       <h2>Ce que le site fait — et ne fait pas</h2>
@@ -283,6 +283,9 @@ const findWave = (collectionId, moduleId) => {
     const collection = wavesData?.collections.find((candidate) => candidate.id === collectionId);
     return { collection, module: collection?.modules.find((candidate) => candidate.id === moduleId) };
 };
+const filledWavePageIds = (episode) => Object.entries(episode.answers)
+    .filter(([, fields]) => Object.values(fields).some((value) => value !== "" && value !== false))
+    .map(([id]) => id);
 const waveFieldId = (lineIndex, optionIndex, label) => `${lineIndex}-${optionIndex}:${label.slice(0, 42)}`;
 const renderWaveLine = (page, line, lineIndex, episode) => {
     const values = episode?.answers[page.id] || {};
@@ -354,7 +357,7 @@ const waveModuleView = (collectionId, moduleId, query) => {
         return notFoundView("Cette fiche est introuvable.");
     if (query.get("mode") === "crisis")
         return crisisModeView(collection, module, page, episode);
-    const filledPageIds = episode ? Object.entries(episode.answers).filter(([, fields]) => Object.values(fields).some((value) => value !== "" && value !== false)).map(([id]) => id) : [];
+    const filledPageIds = episode ? filledWavePageIds(episode) : [];
     const references = pageReferences(page, collection);
     return `
     <section class="page-heading module-heading">
@@ -389,13 +392,38 @@ const safetyView = () => `
     <p class="fine-print">Ces coordonnées concernent la France. Ailleurs, utilisez les services d’urgence de votre pays.</p>
   </section>
 `;
-const documentsView = () => `
-  <section class="page-heading"><p class="eyebrow">Ressources originales</p><h1>Documents à télécharger</h1><p class="lead">Les fichiers sont proposés dans leur format ODT original. Une copie remplie peut contenir des informations intimes.</p></section>
-  <section class="document-list">
-    <article><div class="document-icon">ODT</div><div><h2>Manuel des vagues TDAH</h2><p>69 pages · 10 modules · 50 fiches.</p></div><a class="button secondary" href="${base}documents/manuel-des-vagues-tdah.odt" download>Télécharger</a></article>
-    <article><div class="document-icon">ODT</div><div><h2>Manuel de navigation des vagues psychologiques</h2><p>119 pages · 20 modules · 100 fiches.</p></div><a class="button secondary" href="${base}documents/manuel-navigation-vagues-psychologiques.odt" download>Télécharger</a></article>
-  </section>
-`;
+const documentsView = () => {
+    const state = getState();
+    const byMostRecent = (left, right) => String(right.updatedAt || right.startedAt).localeCompare(String(left.updatedAt || left.startedAt));
+    const tests = [...state.testSessions].sort(byMostRecent).map((session) => {
+        const test = testsData?.tests.find((candidate) => candidate.id === session.testId);
+        const treated = Object.values(session.answers).filter((answer) => answer.kind !== "skipped").length;
+        return { session, test, treated };
+    });
+    const waves = [...state.waveEpisodes].sort(byMostRecent).flatMap((episode) => {
+        const { collection, module } = findWave(episode.collectionId, episode.moduleId);
+        const filledPageIds = filledWavePageIds(episode);
+        const firstFilledPage = module?.pages.find((page) => filledPageIds.includes(page.id));
+        return collection && module && filledPageIds.length ? [{ episode, collection, module, filledPageIds, firstFilledPage }] : [];
+    });
+    const empty = (message, href, label) => `<div class="document-empty"><p>${message}</p><a class="button secondary" href="${siteUrl(href)}">${label}</a></div>`;
+    return `
+      <section class="page-heading"><p class="eyebrow">Données de cet appareil</p><h1>Mes documents</h1><p class="lead">Retrouvez vos tests et vos fiches remplies, puis générez leur PDF à la demande.</p><div class="notice calm"><strong>Aucun PDF n’est stocké par le site.</strong> Le fichier est créé dans votre navigateur uniquement lorsque vous appuyez sur « Générer le PDF ».</div></section>
+      <section class="document-section" aria-labelledby="test-documents-title"><div class="section-heading"><h2 id="test-documents-title">Tests</h2><span>${tests.length}</span></div>
+        <div class="document-list">${tests.length ? tests.map(({ session, test, treated }) => `<article>
+          <div class="document-icon">PDF</div><div><h3>${escapeHtml(test?.titleFr || session.testId)}</h3><p>${treated}/${test?.size || "?"} questions traitées · commencé le ${escapeHtml(formatDate(session.startedAt))}</p><span class="document-status">${test && treated === test.size ? "Complet" : "En cours"}</span></div>
+          <div class="document-actions">${test ? `<button class="button primary" data-action="export-test-pdf" data-session-id="${session.id}" aria-label="Générer le PDF ${escapeHtml(test.titleFr)} du ${escapeHtml(formatDate(session.startedAt))}">Générer le PDF</button><a class="button ghost" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(session.id)}`)}">Ouvrir</a>` : `<span class="result-state">Questionnaire incompatible avec cette version</span>`}</div>
+        </article>`).join("") : empty("Aucun test n’a encore été commencé sur cet appareil.", "tests/", "Commencer un test")}</div>
+      </section>
+      <section class="document-section" aria-labelledby="wave-documents-title"><div class="section-heading"><h2 id="wave-documents-title">Fiches remplies</h2><span>${waves.length}</span></div>
+        <div class="document-list">${waves.length ? waves.map(({ episode, collection, module, filledPageIds, firstFilledPage }) => `<article>
+          <div class="document-icon">PDF</div><div><h3>${escapeHtml(module.titleFr)}</h3><p>${filledPageIds.length} fiche${filledPageIds.length > 1 ? "s" : ""} remplie${filledPageIds.length > 1 ? "s" : ""} · ${escapeHtml(collection.titleFr)} · ${escapeHtml(formatDate(episode.startedAt))}</p><span class="document-status">Épisode local</span></div>
+          <div class="document-actions"><button class="button primary" data-action="export-wave-document" data-episode-id="${episode.id}" aria-label="Générer le PDF ${escapeHtml(module.titleFr)} du ${escapeHtml(formatDate(episode.startedAt))}">Générer le PDF</button><a class="button ghost" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=${encodeURIComponent(firstFilledPage?.phase || "understand")}&episode=${encodeURIComponent(episode.id)}`)}">Ouvrir</a></div>
+        </article>`).join("") : empty("Aucune fiche remplie n’est disponible sur cet appareil.", "fiches/", "Choisir une fiche")}</div>
+      </section>
+      <p class="fine-print document-privacy">Les PDF peuvent contenir des informations intimes. Une fois téléchargés, ils ne sont plus contrôlés par le site.</p>
+    `;
+};
 const settingsView = () => {
     const preferences = getState().preferences;
     return `
@@ -508,6 +536,18 @@ document.addEventListener("click", async (event) => {
         const selected = [...document.querySelectorAll('input[name="wave-export-page"]:checked')].map((input) => input.value);
         if (!selected.length)
             return window.alert("Sélectionnez au moins une fiche.");
+        exportWavePdf(episode, collection, module, selected);
+    }
+    if (action === "export-wave-document") {
+        const episode = getWaveEpisode(target.dataset.episodeId || "");
+        if (!episode)
+            return;
+        const { collection, module } = findWave(episode.collectionId, episode.moduleId);
+        if (!collection || !module)
+            return;
+        const selected = filledWavePageIds(episode);
+        if (!selected.length)
+            return window.alert("Aucune fiche remplie à exporter.");
         exportWavePdf(episode, collection, module, selected);
     }
     if (action === "export-portable") {

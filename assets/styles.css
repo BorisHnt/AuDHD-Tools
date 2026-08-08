@@ -244,8 +244,18 @@ p { max-width: 75ch; }
 
 .document-list { display: grid; gap: .8rem; }
 .document-list article { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; padding: 1.1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
-.document-list h2, .document-list p { margin: .15rem 0; }
+.document-list h2, .document-list h3, .document-list p { margin: .15rem 0; }
+.document-list h3 { font-size: 1.1rem; }
 .document-icon { display: grid; place-items: center; width: 58px; height: 58px; color: var(--teal); background: var(--teal-soft); border-radius: 12px; font-weight: 850; }
+.document-section { margin-top: 2.5rem; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: .55rem; border-bottom: 2px solid var(--border); }
+.section-heading h2 { margin: 0; }
+.section-heading > span { display: grid; place-items: center; min-width: 34px; min-height: 34px; padding: .2rem .55rem; color: var(--primary-dark); background: var(--surface-soft); border-radius: 99px; font-weight: 850; }
+.document-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
+.document-status { display: inline-block; margin-top: .4rem; padding: .12rem .5rem; color: var(--teal); background: var(--teal-soft); border-radius: 99px; font-size: .75rem; font-weight: 800; }
+.document-empty { padding: 1.25rem; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
+.document-empty p { margin-top: 0; }
+.document-privacy { margin-top: 2rem; }
 .settings-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .settings-card { padding: 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 .settings-card > label:not(.check-option), #password-fields label { display: grid; gap: .3rem; margin: .8rem 0; font-weight: 700; }
@@ -281,7 +291,7 @@ p { max-width: 75ch; }
   .result-row { grid-template-columns: 1fr; gap: .7rem; }
   .check-grid { grid-template-columns: 1fr; }
   .document-list article { grid-template-columns: auto 1fr; }
-  .document-list .button { grid-column: 1 / -1; }
+  .document-actions { grid-column: 1 / -1; justify-content: flex-start; }
   .safety-steps li { grid-template-columns: 48px 1fr; }
   .safety-steps li span { grid-column: 2; }
 }

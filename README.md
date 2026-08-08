@@ -22,7 +22,7 @@ Les principales URL sont :
 - `/tests/resultats.html` : synthèse et PDF ;
 - `/fiches/` : sommaire des 30 modules ;
 - `/fiches/module.html` : cinq fiches d’un module ;
-- `/documents/` : documents téléchargeables ;
+- `/documents/` : tests et fiches locales exportables en PDF ;
 - `/reglages/` : accessibilité et fichiers `.AuDHD` ;
 - `/confidentialite/` et `/securite/`.
 
@@ -34,7 +34,7 @@ Les principales URL sont :
 - 30 modules de vagues et 150 fiches interactives ;
 - sauvegarde locale facultative, sans compte ni base de données ;
 - export/import `.AuDHD`, avec protection AES-256-GCM facultative ;
-- génération de PDF dans le navigateur ;
+- page « Mes documents » et génération de PDF dans le navigateur ;
 - interface responsive avec réglages de contraste, taille et densité ;
 - cache hors ligne des ressources publiques ;
 - publication directe depuis la branche `main` avec GitHub Pages.
@@ -73,7 +73,7 @@ Un clone neuf contient toutes les entrées nécessaires dans `sources/` :
 - `sources/manuel-vagues-tdah.odt` ;
 - `sources/manuel-vagues-psychologiques.odt`.
 
-Pour régénérer les JSON et les copies publiques des manuels :
+Pour régénérer les JSON publics :
 
 ```bash
 node scripts/generate-content.mjs
