@@ -59,6 +59,10 @@ export const scoreTest = (session, test, data) => {
             const applicableConcepts = conceptResults.filter((concept) => concept.applicable);
             const answeredConcepts = applicableConcepts.filter((concept) => concept.value !== null);
             const flagsOnly = entries.length > 0 && entries.every(({ item }) => item.scoring.type === "flag");
+            const contextEntries = entries.filter(({ item }) => item.scoring.type === "flag");
+            const contextApplicableItems = contextEntries.filter(({ answer }) => answer?.kind !== "not-applicable").length;
+            const contextAnsweredItems = contextEntries.filter(({ answer }) => answer?.kind === "value").length;
+            const triggeredItems = contextEntries.filter(({ item, answer }) => answer?.kind === "value" && (answer.value ?? 0) >= (item.scoring.triggerAt ?? 3)).length;
             const coverage = applicableConcepts.length ? answeredConcepts.length / applicableConcepts.length : null;
             const requiredConcepts = policy.minimumAnsweredConcepts;
             const sufficient = !flagsOnly
@@ -79,12 +83,18 @@ export const scoreTest = (session, test, data) => {
                 titleFr: dimension.labelFr,
                 group: dimension.group,
                 status,
+                insufficientReason: status === "insufficient" && applicableConcepts.length < requiredConcepts
+                    ? "concept-diversity"
+                    : status === "insufficient" ? "coverage" : null,
                 normalized: sufficient ? mean(answeredConcepts.map((concept) => concept.value)) / 4 : null,
                 answeredConcepts: answeredConcepts.length,
                 applicableConcepts: applicableConcepts.length,
                 totalConcepts: conceptResults.length,
                 answeredItems: conceptResults.reduce((sum, concept) => sum + concept.answeredItems, 0),
                 applicableItems: conceptResults.reduce((sum, concept) => sum + concept.applicableItems, 0),
+                contextAnsweredItems,
+                contextApplicableItems,
+                triggeredItems,
                 coverage,
                 concepts: conceptResults
             };

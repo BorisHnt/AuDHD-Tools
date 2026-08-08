@@ -46,6 +46,17 @@ assert.equal(
   false,
   "Un item du MegaTest mentionne encore un instrument retiré."
 );
+const completeSession = {
+  answers: Object.fromEntries(adhd100.instances.map((instance) => [instance.instanceId, { kind: "value", optionId: "often", value: 3 }]))
+};
+const completeResults = scoreTest(completeSession, adhd100, tests).results;
+const multipleContexts = completeResults.find((result) => result.dimensionId === "adhd.trajectory.multiple_contexts");
+assert.equal(multipleContexts.status, "insufficient", "La version courte ne doit pas calculer le multi-contextes sur un seul concept.");
+assert.equal(multipleContexts.insufficientReason, "concept-diversity", "La raison du résultat multi-contextes doit être explicite.");
+const sleepContext = completeResults.find((result) => result.dimensionId === "adhd.associated.sleep");
+assert.equal(sleepContext.status, "flags-only", "Le sommeil doit rester un module contextuel sans indice.");
+assert.ok(sleepContext.contextAnsweredItems > 0, "Les réponses contextuelles de sommeil doivent être comptabilisées.");
+assert.ok(sleepContext.triggeredItems > 0, "Les éléments contextuels déclenchés doivent être comptabilisés.");
 
 const oneAnswerSession = {
   answers: {

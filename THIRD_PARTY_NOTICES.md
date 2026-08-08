@@ -10,3 +10,13 @@ mentions de copyright sont conservés dans
 `assets/vendor/jspdf.LICENSE.txt`.
 
 Projet d’origine : <https://github.com/parallax/jsPDF>
+
+## Liberation Sans
+
+Les fichiers `assets/fonts/LiberationSans-Regular.ttf` et
+`assets/fonts/LiberationSans-Bold.ttf` sont embarqués dans les PDF afin de
+garantir un rendu lisible des caractères français.
+
+La police Liberation Sans est distribuée sous SIL Open Font License 1.1. Le
+texte complet de sa licence est conservé dans
+`assets/fonts/LiberationSans.LICENSE.txt`.

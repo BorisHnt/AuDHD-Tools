@@ -1,5 +1,6 @@
-import { exportTestPdf, exportWavePdf } from "./pdf.js";
+import { exportTestPdf, exportTestSummaryPdf, exportWaveCrisisCard, exportWaveEpisodeReport, exportWavePdf } from "./pdf.js";
 import { createPortableFile, downloadText, readPortableFile } from "./portable.js";
+import { dimensionDescription, groupGuidance, methodSummary, resultStateLabels } from "./result-guidance.js";
 import { scoreTest } from "./scoring.js";
 import { clearAllLocalData, createTestSession, createWaveEpisode, getState, getStorageConsent, getTestSession, getWaveEpisode, isPersistent, replaceState, setStorageConsent, updatePreferences, updateTestSession, updateWaveField } from "./store.js";
 const app = document.querySelector("#app");
@@ -186,24 +187,19 @@ const resultsView = (sessionId) => {
     if (!test)
         return notFoundView("Ce questionnaire est introuvable.");
     const { results, flags, counts, coveragePolicy } = scoreTest(session, test, testsData);
-    const groupDescriptions = {
-        index: "Indices issus des concepts explorés par vos réponses.",
-        impact: "Retentissement déclaré dans la vie quotidienne, présenté séparément des caractéristiques centrales.",
-        associated: "Caractéristiques associées : elles décrivent le contexte sans renforcer un indice central.",
-        context: "Éléments d’interprétation à mettre en regard du profil ; ils ne constituent pas une probabilité diagnostique."
-    };
     const renderDimensionResult = (result) => {
-        const coverage = result.applicableConcepts
-            ? `${result.answeredConcepts}/${result.applicableConcepts} concepts applicables`
-            : "Aucun concept applicable";
-        const state = {
-            "not-explored": "Non explorée dans cette version",
-            "flags-only": "Points à discuter uniquement — aucun indice",
-            "not-applicable": "Non applicable",
-            insufficient: "Données insuffisantes"
-        }[result.status];
+        const coverage = result.status === "flags-only"
+            ? `${result.contextAnsweredItems}/${result.contextApplicableItems} réponses analysées · ${result.triggeredItems} élément${result.triggeredItems > 1 ? "s" : ""} à discuter`
+            : result.applicableConcepts ? `${result.answeredConcepts}/${result.applicableConcepts} concepts applicables` : "Aucun concept applicable";
+        const state = result.status === "flags-only"
+            ? "Module contextuel — aucun score"
+            : result.insufficientReason === "concept-diversity"
+                ? `Non calculé dans ${test.titleFr} : moins de ${coveragePolicy.minimumAnsweredConcepts} concepts distincts`
+                : resultStateLabels[result.status];
+        const concepts = result.concepts.filter((concept) => concept.applicable);
         return `<article class="result-row result-${result.status}">
-          <div><h3>${escapeHtml(result.titleFr)}</h3><p>Couverture conceptuelle : ${coverage}</p></div>
+          <div class="result-information"><h3>${escapeHtml(result.titleFr)}</h3><p class="result-description">${escapeHtml(dimensionDescription(result.dimensionId))}</p><p>${result.status === "flags-only" ? "Traitement contextuel" : "Couverture conceptuelle"} : ${coverage}</p>
+          ${concepts.length && result.status !== "flags-only" ? `<details class="concept-details"><summary>Voir le détail des concepts (${concepts.length})</summary><ul>${concepts.map((concept) => `<li><span>${escapeHtml(concept.labelFr)}</span><strong>${concept.value === null ? "Non renseigné" : `${concept.value.toFixed(1)} / 4`}</strong><small>${concept.answeredItems}/${concept.applicableItems} formulation${concept.applicableItems > 1 ? "s" : ""}</small></li>`).join("")}</ul></details>` : ""}</div>
           ${result.status === "sufficient"
             ? `<div class="score" aria-label="Indice descriptif ${(result.normalized * 4).toFixed(1)} sur 4"><div class="score-track" aria-hidden="true"><span style="width:${result.normalized * 100}%"></span></div><strong>${(result.normalized * 4).toFixed(1)} / 4</strong></div>`
             : `<span class="result-state">${state}</span>`}
@@ -213,12 +209,25 @@ const resultsView = (sessionId) => {
         .map((group) => ({ ...group, results: results.filter((result) => result.group === group.id) }))
         .filter((group) => group.results.length)
         .sort((left, right) => left.order - right.order);
+    const presentationByGroup = new Map(groups.map((group) => [group.id, group.presentation]));
+    const highlights = results
+        .filter((result) => result.status === "sufficient" && ["index", "impact"].includes(presentationByGroup.get(result.group)))
+        .sort((left, right) => right.normalized - left.normalized)
+        .slice(0, 4);
+    const dimensionsById = new Map(testsData.dimensions.map((dimension) => [dimension.id, dimension]));
+    const flagGroups = flags.reduce((groups, flag) => {
+        const group = groups.get(flag.dimensionId) || [];
+        group.push(flag);
+        groups.set(flag.dimensionId, group);
+        return groups;
+    }, new Map());
+    const treated = counts.value + counts.unknown + counts["not-applicable"];
     return `
     <section class="page-heading">
       <p class="eyebrow">Synthèse descriptive</p>
       <h1>${escapeHtml(test.titleFr)}</h1>
       <p class="lead">Ces indices décrivent vos réponses. Ils ne mesurent ni une probabilité diagnostique, ni une certitude clinique.</p>
-      <div class="button-row"><button class="button primary" data-action="export-test-pdf" data-session-id="${session.id}">Télécharger le PDF</button><a class="button secondary" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(session.id)}`)}">Revoir mes réponses</a></div>
+      <div class="button-row"><button class="button primary" data-action="export-test-summary-pdf" data-session-id="${session.id}">PDF synthétique</button><button class="button secondary" data-action="export-test-pdf" data-session-id="${session.id}">PDF complet + réponses</button><a class="button ghost" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(session.id)}`)}">Revoir mes réponses</a></div>
     </section>
     <section class="summary-metrics">
       <div><strong>${counts.value}</strong><span>réponses calculables</span></div>
@@ -226,14 +235,17 @@ const resultsView = (sessionId) => {
       <div><strong>${counts["not-applicable"]}</strong><span>non applicables</span></div>
       <div><strong>${test.size - Object.keys(session.answers).length + counts.skipped}</strong><span>sans réponse</span></div>
     </section>
+    <section class="reading-guide" aria-labelledby="reading-guide-title"><div><p class="eyebrow">Comment lire ce profil</p><h2 id="reading-guide-title">Un indice décrit les réponses disponibles</h2><p>La valeur sur 4 est une moyenne descriptive, jamais un pourcentage de TDAH ou de TSA. Plus elle est élevée, plus les situations couvertes par la dimension ont été déclarées fréquentes ou présentes.</p></div><ul><li><strong>Couverture :</strong> nombre de concepts renseignés parmi ceux applicables.</li><li><strong>Données insuffisantes :</strong> aucun chiffre n’est affiché si la couverture est trop faible.</li><li><strong>Contexte et éléments associés :</strong> présentés séparément des caractéristiques centrales.</li><li><strong>Lecture clinique :</strong> trajectoire, retentissement, exemples concrets et autres explications restent indispensables.</li></ul></section>
+    <section class="profile-overview" aria-labelledby="overview-title"><p class="eyebrow">Vue d’ensemble</p><h2 id="overview-title">Observations descriptives principales</h2>${highlights.length ? `<p>Parmi les dimensions suffisamment couvertes, les indices les plus élevés sont :</p><ol>${highlights.map((result) => `<li><strong>${escapeHtml(result.titleFr)}</strong><span>${(result.normalized * 4).toFixed(1)} / 4 · ${result.answeredConcepts}/${result.applicableConcepts} concepts</span></li>`).join("")}</ol>` : `<p>Aucune dimension ne possède encore une couverture suffisante pour dégager des observations principales. Vous pouvez compléter le questionnaire puis revenir à cette synthèse.</p>`}<p class="fine-print">Cette sélection sert uniquement à orienter la lecture. Elle ne classe pas les dimensions selon une importance clinique.</p></section>
     <div class="notice calm coverage-notice"><strong>Affichage prudent :</strong> ${escapeHtml(coveragePolicy.descriptionFr)}</div>
     <div class="result-groups" aria-label="Profil descriptif par catégories">
       ${groups.map((group) => `<section class="result-group result-group-${group.presentation}" aria-labelledby="result-group-${group.id}">
-        <header><p class="result-group-kind">${group.presentation === "index" ? "Indice descriptif" : "Éclairage séparé"}</p><h2 id="result-group-${group.id}">${escapeHtml(group.labelFr)}</h2><p>${escapeHtml(groupDescriptions[group.presentation] || groupDescriptions.context)}</p></header>
+        <header><p class="result-group-kind">${group.presentation === "index" ? "Indice descriptif" : "Éclairage séparé"}</p><h2 id="result-group-${group.id}">${escapeHtml(group.labelFr)}</h2><p>${escapeHtml(groupGuidance[group.presentation] || groupGuidance.context)}</p></header>
         <div class="results-list">${group.results.map(renderDimensionResult).join("")}</div>
       </section>`).join("")}
     </div>
-    ${flags.length ? `<section class="flags"><h2>Points à explorer avec un professionnel</h2><p>Ces réponses ne produisent aucun point TDAH ou TSA.</p><ul>${flags.map((flag) => `<li>${escapeHtml(flag.textFr)} — <strong>${escapeHtml(flag.answer)}</strong></li>`).join("")}</ul></section>` : ""}
+    ${flags.length ? `<section class="flags"><h2>Points à explorer avec un professionnel</h2><p>Ces éléments ne renforcent ni ne diminuent automatiquement un indice. Ils préparent l’évaluation différentielle et contextuelle.</p>${[...flagGroups].map(([dimensionId, dimensionFlags]) => `<section class="flag-group"><h3>${escapeHtml(dimensionsById.get(dimensionId)?.labelFr || dimensionId)}</h3><ul>${dimensionFlags.map((flag) => `<li><span>${escapeHtml(flag.textFr)}</span><strong>Réponse : ${escapeHtml(flag.answer)}</strong></li>`).join("")}</ul></section>`).join("")}</section>` : ""}
+    <details class="method-panel"><summary>Méthode de calcul et informations à transmettre</summary><p>${escapeHtml(methodSummary)}</p><p><strong>Questionnaire :</strong> ${escapeHtml(test.titleFr)} · <strong>début :</strong> ${escapeHtml(formatDate(session.startedAt))} · <strong>traitées :</strong> ${treated}/${test.size}.</p><p>Pour une consultation, le PDF complet ajoute toutes les questions, les réponses brutes et les points à explorer. Il reste utile d’apporter des exemples précis, des éléments de l’enfance et, si possible, le regard d’un proche ou des documents anciens.</p></details>
   `;
 };
 const waveCategory = (title) => {
@@ -380,7 +392,7 @@ const waveModuleView = (collectionId, moduleId, query) => {
       ${references.length ? `<details class="source-panel"><summary>Sources publiques de cette fiche (${references.length})</summary><ul>${references.map((reference) => `<li><a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml(reference.id)}</strong> — ${escapeHtml(reference.descriptionFr)}</a></li>`).join("")}</ul></details>` : ""}
       ${episode ? `<label class="wave-field notes"><span>Notes personnelles pour cette fiche</span><textarea rows="4" data-wave-field data-episode-id="${episode.id}" data-page-id="${page.id}" data-field-id="notes">${escapeHtml(episode.answers[page.id]?.notes || "")}</textarea></label>` : ""}
     </section>
-    ${episode ? `<section class="export-panel"><div><h2>Exporter cet épisode</h2><p>Choisissez les fiches à inclure dans le PDF.</p></div><div class="export-pages">${module.pages.map((candidate) => `<label><input type="checkbox" name="wave-export-page" value="${candidate.id}" ${filledPageIds.includes(candidate.id) || candidate.id === page.id ? "checked" : ""}/> ${escapeHtml(candidate.phaseLabelFr)}</label>`).join("")}</div><button class="button primary" data-action="export-wave-pdf" data-episode-id="${episode.id}">Générer le PDF</button></section>` : ""}
+    ${episode ? `<section class="export-panel"><div><h2>Exporter cet épisode</h2><p>Trois documents pour trois usages différents.</p></div><div class="export-format-actions"><button class="button danger ghost" data-action="export-wave-crisis-card" data-episode-id="${episode.id}">Carte de crise · 1 page</button><button class="button primary" data-action="export-wave-report" data-episode-id="${episode.id}">Rapport de l’épisode</button></div><details class="printable-export"><summary>Fiches complètes imprimables</summary><p class="fine-print">Inclut les consignes et laisse des lignes pour les champs vides.</p><div class="export-pages">${module.pages.map((candidate) => `<label><input type="checkbox" name="wave-export-page" value="${candidate.id}" ${filledPageIds.includes(candidate.id) || candidate.id === page.id ? "checked" : ""}/> ${escapeHtml(candidate.phaseLabelFr)}</label>`).join("")}</div><button class="button secondary" data-action="export-wave-pdf" data-episode-id="${episode.id}">Générer les fiches sélectionnées</button></details></section>` : ""}
   `;
 };
 const safetyView = () => `
@@ -412,13 +424,13 @@ const documentsView = () => {
       <section class="document-section" aria-labelledby="test-documents-title"><div class="section-heading"><h2 id="test-documents-title">Tests</h2><span>${tests.length}</span></div>
         <div class="document-list">${tests.length ? tests.map(({ session, test, treated }) => `<article>
           <div class="document-icon">PDF</div><div><h3>${escapeHtml(test?.titleFr || session.testId)}</h3><p>${treated}/${test?.size || "?"} questions traitées · commencé le ${escapeHtml(formatDate(session.startedAt))}</p><span class="document-status">${test && treated === test.size ? "Complet" : "En cours"}</span></div>
-          <div class="document-actions">${test ? `<button class="button primary" data-action="export-test-pdf" data-session-id="${session.id}" aria-label="Générer le PDF ${escapeHtml(test.titleFr)} du ${escapeHtml(formatDate(session.startedAt))}">Générer le PDF</button><a class="button ghost" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(session.id)}`)}">Ouvrir</a>` : `<span class="result-state">Questionnaire incompatible avec cette version</span>`}</div>
+          <div class="document-actions">${test ? `<button class="button primary" data-action="export-test-summary-pdf" data-session-id="${session.id}" aria-label="Générer le rapport synthétique ${escapeHtml(test.titleFr)} du ${escapeHtml(formatDate(session.startedAt))}">Rapport synthétique</button><button class="button secondary" data-action="export-test-pdf" data-session-id="${session.id}" aria-label="Générer le rapport complet ${escapeHtml(test.titleFr)} du ${escapeHtml(formatDate(session.startedAt))}">Rapport complet</button><a class="button ghost" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(session.id)}`)}">Ouvrir</a>` : `<span class="result-state">Questionnaire incompatible avec cette version</span>`}</div>
         </article>`).join("") : empty("Aucun test n’a encore été commencé sur cet appareil.", "tests/", "Commencer un test")}</div>
       </section>
       <section class="document-section" aria-labelledby="wave-documents-title"><div class="section-heading"><h2 id="wave-documents-title">Fiches remplies</h2><span>${waves.length}</span></div>
         <div class="document-list">${waves.length ? waves.map(({ episode, collection, module, filledPageIds, firstFilledPage }) => `<article>
           <div class="document-icon">PDF</div><div><h3>${escapeHtml(module.titleFr)}</h3><p>${filledPageIds.length} fiche${filledPageIds.length > 1 ? "s" : ""} remplie${filledPageIds.length > 1 ? "s" : ""} · ${escapeHtml(collection.titleFr)} · ${escapeHtml(formatDate(episode.startedAt))}</p><span class="document-status">Épisode local</span></div>
-          <div class="document-actions"><button class="button primary" data-action="export-wave-document" data-episode-id="${episode.id}" aria-label="Générer le PDF ${escapeHtml(module.titleFr)} du ${escapeHtml(formatDate(episode.startedAt))}">Générer le PDF</button><a class="button ghost" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=${encodeURIComponent(firstFilledPage?.phase || "understand")}&episode=${encodeURIComponent(episode.id)}`)}">Ouvrir</a></div>
+          <div class="document-actions"><button class="button danger ghost" data-action="export-wave-crisis-card" data-episode-id="${episode.id}">Carte de crise</button><button class="button primary" data-action="export-wave-report" data-episode-id="${episode.id}">Rapport d’épisode</button><button class="button secondary" data-action="export-wave-document" data-episode-id="${episode.id}">Fiches imprimables</button><a class="button ghost" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=${encodeURIComponent(firstFilledPage?.phase || "understand")}&episode=${encodeURIComponent(episode.id)}`)}">Ouvrir</a></div>
         </article>`).join("") : empty("Aucune fiche remplie n’est disponible sur cet appareil.", "fiches/", "Choisir une fiche")}</div>
       </section>
       <p class="fine-print document-privacy">Les PDF peuvent contenir des informations intimes. Une fois téléchargés, ils ne sont plus contrôlés par le site.</p>
@@ -449,6 +461,23 @@ const privacyView = () => `
   <section class="prose-page"><p class="eyebrow">Transparence</p><h1>Confidentialité et limites</h1><h2>Aucune base de données</h2><p>Le site fonctionne entièrement dans votre navigateur. Il ne possède aucun compte utilisateur et n’envoie pas vos réponses à un serveur.</p><h2>Stockage local facultatif</h2><p>Si vous l’autorisez, les tests, fiches et préférences sont conservés dans le stockage local du navigateur. Sans cette autorisation, la progression utilise uniquement le stockage temporaire de l’onglet et disparaît à sa fermeture. Les données persistantes peuvent aussi disparaître lors d’un nettoyage, d’une navigation privée ou d’une désinstallation.</p><h2>Fichiers sensibles</h2><p>Les PDF et fichiers .AuDHD peuvent contenir des informations de santé ou de vie privée. Un export sans mot de passe reste lisible par toute personne ayant accès au fichier.</p><h2>Limites médicales</h2><p>Les questionnaires et fiches facilitent l’auto-observation et la préparation d’une consultation. Ils ne remplacent ni un diagnostic, ni un traitement, ni une aide urgente.</p><p><strong>Persistance actuelle :</strong> ${isPersistent() ? "sauvegarde locale autorisée" : "session temporaire limitée à cet onglet"}.</p></section>
 `;
 const notFoundView = (message = "Cette page n’existe pas.") => `<section class="empty-state"><h1>Page introuvable</h1><p>${escapeHtml(message)}</p><a class="button primary" href="${siteUrl()}">Revenir à l’accueil</a></section>`;
+const runPdfExport = async (control, exportJob) => {
+    const previousLabel = control.textContent;
+    control.disabled = true;
+    control.setAttribute("aria-busy", "true");
+    control.textContent = "Génération…";
+    try {
+        await exportJob();
+    }
+    catch (error) {
+        window.alert(error instanceof Error ? error.message : "Le PDF n’a pas pu être généré.");
+    }
+    finally {
+        control.disabled = false;
+        control.removeAttribute("aria-busy");
+        control.textContent = previousLabel;
+    }
+};
 const render = () => {
     applyPreferences();
     const query = new URLSearchParams(window.location.search);
@@ -518,7 +547,13 @@ document.addEventListener("click", async (event) => {
         const session = getTestSession(target.dataset.sessionId || "");
         const test = session && testsData?.tests.find((candidate) => candidate.id === session.testId);
         if (session && test)
-            exportTestPdf(session, test, testsData);
+            await runPdfExport(target, () => exportTestPdf(session, test, testsData));
+    }
+    if (action === "export-test-summary-pdf") {
+        const session = getTestSession(target.dataset.sessionId || "");
+        const test = session && testsData?.tests.find((candidate) => candidate.id === session.testId);
+        if (session && test)
+            await runPdfExport(target, () => exportTestSummaryPdf(session, test, testsData));
     }
     if (action === "new-wave-episode") {
         const collectionId = target.dataset.collectionId || "";
@@ -536,7 +571,18 @@ document.addEventListener("click", async (event) => {
         const selected = [...document.querySelectorAll('input[name="wave-export-page"]:checked')].map((input) => input.value);
         if (!selected.length)
             return window.alert("Sélectionnez au moins une fiche.");
-        exportWavePdf(episode, collection, module, selected);
+        await runPdfExport(target, () => exportWavePdf(episode, collection, module, selected));
+    }
+    if (action === "export-wave-crisis-card" || action === "export-wave-report") {
+        const episode = getWaveEpisode(target.dataset.episodeId || "");
+        if (!episode)
+            return;
+        const { collection, module } = findWave(episode.collectionId, episode.moduleId);
+        if (!collection || !module)
+            return;
+        await runPdfExport(target, () => action === "export-wave-crisis-card"
+            ? exportWaveCrisisCard(episode, collection, module)
+            : exportWaveEpisodeReport(episode, collection, module));
     }
     if (action === "export-wave-document") {
         const episode = getWaveEpisode(target.dataset.episodeId || "");
@@ -548,7 +594,7 @@ document.addEventListener("click", async (event) => {
         const selected = filledWavePageIds(episode);
         if (!selected.length)
             return window.alert("Aucune fiche remplie à exporter.");
-        exportWavePdf(episode, collection, module, selected);
+        await runPdfExport(target, () => exportWavePdf(episode, collection, module, selected));
     }
     if (action === "export-portable") {
         const protect = document.querySelector("#protect-export")?.checked;

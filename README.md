@@ -35,6 +35,9 @@ Les principales URL sont :
 - sauvegarde locale facultative, sans compte ni base de données ;
 - export/import `.AuDHD`, avec protection AES-256-GCM facultative ;
 - page « Mes documents » et génération de PDF dans le navigateur ;
+- rapports de test synthétiques ou complets avec réponses brutes ;
+- carte de crise, rapport d’épisode et fiches complètes imprimables ;
+- police Liberation Sans embarquée localement dans les PDF ;
 - interface responsive avec réglages de contraste, taille et densité ;
 - cache hors ligne des ressources publiques ;
 - publication directe depuis la branche `main` avec GitHub Pages.

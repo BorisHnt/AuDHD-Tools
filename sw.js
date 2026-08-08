@@ -1,4 +1,4 @@
-const CACHE_NAME = "audhd-tools-shell-v6";
+const CACHE_NAME = "audhd-tools-shell-v7";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -16,10 +16,13 @@ const APP_SHELL = [
   "./assets/styles.css",
   "./assets/main.js",
   "./assets/pdf.js",
+  "./assets/result-guidance.js",
   "./assets/portable.js",
   "./assets/scoring.js",
   "./assets/store.js",
   "./assets/vendor/jspdf.umd.min.js",
+  "./assets/fonts/LiberationSans-Regular.ttf",
+  "./assets/fonts/LiberationSans-Bold.ttf",
   "./site-data/tests.json",
   "./site-data/waves.json"
 ];
