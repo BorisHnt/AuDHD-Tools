@@ -28,9 +28,111 @@
       "titleFr": "Vagues TDAH",
       "descriptionFr": "Dix modules pratiques associés au TDAH.",
       "source": {
-        "fileName": "manuel_des_vagues_TDAH.odt",
+        "fileName": "manuel-vagues-tdah.odt",
         "sha256": "27d436f854cc26b76797e649da0e282e57eb340a8c16029cd04e089def00e677"
       },
+      "references": [
+        {
+          "id": "S01",
+          "descriptionFr": "National Institute of Mental Health (NIMH) - Attention-Deficit/Hyperactivity Disorder: What You Need to Know (page courante). Symptômes centraux, retentissement, diagnostic différentiel et traitements du TDAH.",
+          "url": "https://www.nimh.nih.gov/health/publications/attention-deficit-hyperactivity-disorder-what-you-need-to-know"
+        },
+        {
+          "id": "S02",
+          "descriptionFr": "Centers for Disease Control and Prevention (CDC) - ADHD in Adults (2026). Manifestations adultes, retentissement fonctionnel, évaluation et suivi.",
+          "url": "https://www.cdc.gov/adhd/about/adhd-in-adults.html"
+        },
+        {
+          "id": "S03",
+          "descriptionFr": "National Institute for Health and Care Excellence (NICE) - Attention deficit hyperactivity disorder: diagnosis and management (NG87) (2018, mise à jour courante). Évaluation, plan partagé, adaptations environnementales et traitements du TDAH.",
+          "url": "https://www.nice.org.uk/guidance/ng87/chapter/recommendations"
+        },
+        {
+          "id": "S04",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - Faire ce qui compte en période de stress : un guide illustré (2020). Ancrage, défusion, accueil des émotions, valeurs et actions brèves.",
+          "url": "https://www.who.int/fr/publications/b/53604"
+        },
+        {
+          "id": "S05",
+          "descriptionFr": "Shaw, P., Stringaris, A., Nigg, J. et Leibenluft, E. - Emotion dysregulation in attention deficit hyperactivity disorder (2014). Revue sur la fréquence, le retentissement et les mécanismes de la dysrégulation émotionnelle dans le TDAH.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4282137/"
+        },
+        {
+          "id": "S06",
+          "descriptionFr": "Soler-Gutiérrez, A. M. et coll. - Evidence of emotion dysregulation as a core symptom of adult ADHD: A systematic review (2023). Revue systématique sur la dysrégulation émotionnelle chez l’adulte avec TDAH.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9821724/"
+        },
+        {
+          "id": "S07",
+          "descriptionFr": "Nordby, E. S. et coll. - A Blended Intervention Targeting Emotion Dysregulation in Adults With ADHD (2024). Étude de faisabilité ; stratégies rapportées utiles et limites des données d’efficacité.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10831671/"
+        },
+        {
+          "id": "S08",
+          "descriptionFr": "Liu, C. I. et coll. - Effectiveness of cognitive behavioural-based interventions for adults with ADHD: a meta-analysis of randomized controlled trials (2023). Effets des interventions cognitivo-comportementales sur les symptômes centraux et émotionnels.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36794797/"
+        },
+        {
+          "id": "S09",
+          "descriptionFr": "Young, Z., Moghaddam, N. et Tickle, A. - The Efficacy of Cognitive Behavioral Therapy for Adults With ADHD (2020). Revue systématique et méta-analyse d’essais randomisés de TCC chez l’adulte.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27554190/"
+        },
+        {
+          "id": "S10",
+          "descriptionFr": "Lenzi, F. et coll. - Pharmacotherapy of emotional dysregulation in adults with ADHD (2018). Revue systématique et méta-analyse ; les effets émotionnels des traitements ne se déduisent pas des effets sur les symptômes centraux.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28837827/"
+        },
+        {
+          "id": "S11",
+          "descriptionFr": "Hupfeld, K. E., Abagis, T. R. et Shah, P. - Living « in the zone »: hyperfocus in adult ADHD (2019). Étude descriptive de l’hyperfocus ; notion associée mais non critère diagnostique autonome.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30267329/"
+        },
+        {
+          "id": "S12",
+          "descriptionFr": "Malkovsky, E. et coll. - Exploring the relationship between boredom and sustained attention (2012). Association entre propension à l’ennui, attention soutenue et symptômes adultes de TDAH.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22729457/"
+        },
+        {
+          "id": "S13",
+          "descriptionFr": "Mette, C. - Time Perception in Adult ADHD: Findings from a Decade - A Review (2023). État de la recherche sur la perception et l’organisation temporelles chez l’adulte.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9962130/"
+        },
+        {
+          "id": "S14",
+          "descriptionFr": "Canu, W. H. et Carlson, C. L. - Rejection sensitivity and social outcomes of young adult men with ADHD (2007). Étude sur sensibilité au rejet et résultats sociaux ; données limitées et non diagnostic de « RSD ».",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/17242422/"
+        },
+        {
+          "id": "S15",
+          "descriptionFr": "Niermann, H. C. M. et Scheres, A. - The relation between procrastination and symptoms of attention-deficit hyperactivity disorder in undergraduate students (2014). Association entre symptômes d’inattention et procrastination ; étude corrélationnelle.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6878228/"
+        },
+        {
+          "id": "S16",
+          "descriptionFr": "Halmøy, A. et coll. - Dialectical behavioral therapy-based group treatment versus treatment as usual for adults with ADHD (2022). Essai randomisé d’un entraînement structuré inspiré de la TCD chez des adultes avec TDAH.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36443712/"
+        },
+        {
+          "id": "S17",
+          "descriptionFr": "Fleming, A. P. et coll. - Pilot randomized controlled trial of dialectical behavior therapy group skills training for ADHD among college students (2015). Essai pilote d’entraînement aux compétences de régulation et d’organisation.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24874347/"
+        },
+        {
+          "id": "S18",
+          "descriptionFr": "National Health Service (NHS) - Breathing exercises for stress (page courante). Respiration lente et non forcée comme outil simple de réduction de l’activation.",
+          "url": "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/"
+        },
+        {
+          "id": "S19",
+          "descriptionFr": "Service-Public.fr - Urgence : qui appeler ? (page courante). Accès aux services d’urgence en France ; ailleurs, utiliser les services locaux.",
+          "url": "https://www.service-public.fr/particuliers/vosdroits/F33954"
+        },
+        {
+          "id": "S20",
+          "descriptionFr": "American Psychiatric Association - What is ADHD? (page courante). Repères diagnostiques, retentissement et distinction avec un comportement volontairement opposant.",
+          "url": "https://www.psychiatry.org/patients-families/adhd/what-is-adhd"
+        }
+      ],
       "modules": [
         {
           "id": "tdah-waves-module-00",
@@ -1969,9 +2071,126 @@
       "titleFr": "Vagues psychologiques",
       "descriptionFr": "Vingt modules transdiagnostiques d’auto-observation et de régulation.",
       "source": {
-        "fileName": "manuel_de_navigation_des_vagues_psychologiques.odt",
+        "fileName": "manuel-vagues-psychologiques.odt",
         "sha256": "c492787570edc4f17d2094ec37d9453f2b4b76a3bff99ef77935bd10b68fc9b9"
       },
+      "references": [
+        {
+          "id": "S01",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - Faire ce qui compte en période de stress : un guide illustré (2020). Ancrage, défusion, accueil des émotions, valeurs et bienveillance.",
+          "url": "https://www.who.int/fr/publications/b/53604"
+        },
+        {
+          "id": "S02",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - Troubles anxieux - principaux repères (2025). Repères généraux sur l’anxiété et les prises en charge.",
+          "url": "https://www.who.int/fr/news-room/fact-sheets/detail/anxiety-disorders"
+        },
+        {
+          "id": "S03",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - Dépression - principaux repères (2025). Signes, retentissement, auto-soins prudents et recours aux soins.",
+          "url": "https://www.who.int/fr/news-room/fact-sheets/detail/depression"
+        },
+        {
+          "id": "S04",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - Activité physique - principaux repères (2024). Bénéfices de l’activité physique pour la santé mentale et générale.",
+          "url": "https://www.who.int/fr/news-room/fact-sheets/detail/physical-activity"
+        },
+        {
+          "id": "S05",
+          "descriptionFr": "Haute Autorité de santé (HAS) - Trouble du spectre de l’autisme : interventions et parcours de vie de l’adulte (2017-2018). Particularités sensorielles, risques de surcharge et adaptations.",
+          "url": "https://www.has-sante.fr/jcms/c_2828266/fr/autisme-adulte-recommandations"
+        },
+        {
+          "id": "S06",
+          "descriptionFr": "National Institute for Health and Care Excellence (NICE) - Autism spectrum disorder in adults: diagnosis and management (CG142) (2012, mise à jour 2021). Adaptations environnementales, écrites, visuelles et comportementales.",
+          "url": "https://www.nice.org.uk/guidance/cg142/chapter/recommendations"
+        },
+        {
+          "id": "S07",
+          "descriptionFr": "National Institute for Health and Care Excellence (NICE) - Attention deficit hyperactivity disorder: diagnosis and management (NG87) (2018). Évaluation et prise en charge du TDAH chez l’adulte.",
+          "url": "https://www.nice.org.uk/guidance/ng87/chapter/recommendations"
+        },
+        {
+          "id": "S08",
+          "descriptionFr": "National Institute for Health and Care Excellence (NICE) - Obsessive-compulsive disorder and body dysmorphic disorder (CG31) (2005, surveillance 2019). TCC et exposition avec prévention de la réponse pour le TOC.",
+          "url": "https://www.nice.org.uk/guidance/cg31/chapter/Recommendations"
+        },
+        {
+          "id": "S09",
+          "descriptionFr": "National Institute of Mental Health (NIMH) - Obsessive-Compulsive Disorder: When Unwanted Thoughts Take Over (page courante). Différence entre pensées ordinaires, obsessions et compulsions.",
+          "url": "https://www.nimh.nih.gov/health/publications/obsessive-compulsive-disorder-when-unwanted-thoughts-or-repetitive-behaviors-take-over"
+        },
+        {
+          "id": "S10",
+          "descriptionFr": "National Institute for Health and Care Excellence (NICE) - Depression in adults: treatment and management (NG222) (2022). TCC, activation comportementale, choix et gradation des soins.",
+          "url": "https://www.nice.org.uk/guidance/ng222/chapter/recommendations"
+        },
+        {
+          "id": "S11",
+          "descriptionFr": "National Health Service (NHS) - Insomnia (page courante). Repères sur l’insomnie, habitudes de sommeil et consultation.",
+          "url": "https://www.nhs.uk/conditions/insomnia/"
+        },
+        {
+          "id": "S12",
+          "descriptionFr": "National Health Service (NHS) - Breathing exercises for stress (page courante). Respiration lente, douce et non forcée.",
+          "url": "https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/breathing-exercises-for-stress/"
+        },
+        {
+          "id": "S13",
+          "descriptionFr": "National Health Service (NHS) - Ways to help avoid self-harm (page courante). Délai, distraction sûre, expression et recherche d’aide.",
+          "url": "https://www.nhs.uk/mental-health/feelings-symptoms-behaviours/behaviours/self-harm/ways-help-avoid-self-harm/"
+        },
+        {
+          "id": "S14",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - Burn-out, an occupational phenomenon (ICD-11) (2019). Le burn-out est défini dans le contexte professionnel, pas comme diagnostic médical.",
+          "url": "https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases"
+        },
+        {
+          "id": "S15",
+          "descriptionFr": "3114 - Numéro national de prévention du suicide - Accueil et aide en cas de souffrance ou d’idées suicidaires (page courante). Service français gratuit, 24 h/24 et 7 j/7.",
+          "url": "https://3114.fr/"
+        },
+        {
+          "id": "S16",
+          "descriptionFr": "Service-Public.fr - Urgence : qui appeler ? (page courante). 15 pour l’urgence médicale, 112 numéro d’urgence européen, 114 accessible.",
+          "url": "https://www.service-public.fr/particuliers/vosdroits/F33954"
+        },
+        {
+          "id": "S17",
+          "descriptionFr": "American Psychiatric Association - Rumination: A Cycle of Negative Thinking (2020). La rumination comme pensée négative répétitive associée à la détresse.",
+          "url": "https://www.psychiatry.org/news-room/apa-blogs/rumination-a-cycle-of-negative-thinking"
+        },
+        {
+          "id": "S18",
+          "descriptionFr": "Evraire, L. E. et coll. - Attachment styles and excessive reassurance seeking in daily life (2022). Étude sur attachement et recherche excessive de réassurance.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8895702/"
+        },
+        {
+          "id": "S19",
+          "descriptionFr": "Simpson, J. A. et Rholes, W. S. - Adult Attachment, Stress, and Romantic Relationships (2017). Revue des réponses au stress selon les orientations d’attachement.",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4845754/"
+        },
+        {
+          "id": "S20",
+          "descriptionFr": "Bravata, D. M. et coll. - Prevalence, Predictors, and Treatment of Impostor Syndrome: A Systematic Review (2020). Phénomène de l’imposteur : mesures hétérogènes et données de traitement limitées.",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31848865/"
+        },
+        {
+          "id": "S21",
+          "descriptionFr": "Bradbury, P. et coll. - Limerence, Hidden Obsession, Fixation, and Rumination: A Scoping Review (2025). Revue exploratoire ; littérature encore limitée, sans diagnostic formel.",
+          "url": "https://link.springer.com/article/10.1007/s11896-024-09674-x"
+        },
+        {
+          "id": "S22",
+          "descriptionFr": "Organisation mondiale de la Santé (OMS) - La santé mentale au travail (2024). Risques psychosociaux et interventions sur l’organisation du travail.",
+          "url": "https://www.who.int/fr/news-room/fact-sheets/detail/mental-health-at-work"
+        },
+        {
+          "id": "S23",
+          "descriptionFr": "Assurance Maladie (ameli.fr) - Crise suicidaire : agir avant la tentative de suicide (2026). Repérage de l’escalade et recours urgent aux soins.",
+          "url": "https://www.ameli.fr/assure/sante/urgence/pathologies/crise-suicidaire-tentative-suicide"
+        }
+      ],
       "modules": [
         {
           "id": "psychological-waves-module-00",

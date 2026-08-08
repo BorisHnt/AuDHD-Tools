@@ -42,11 +42,26 @@ export const exportTestPdf = (session, test, data) => {
     const writer = createWriter(`${test.titleFr} — réponses et synthèse`);
     writer.write(`Commencé le ${new Date(session.startedAt).toLocaleString("fr-FR")}. Exporté le ${new Date().toLocaleString("fr-FR")}.`);
     writer.write("Outil d’auto-évaluation descriptif : ce document ne constitue pas un diagnostic médical et ne présente aucune probabilité diagnostique validée.", { bold: true, color: [166, 61, 54], gap: 5 });
-    const { results, flags } = scoreTest(session, test, data);
+    const { results, flags, coveragePolicy } = scoreTest(session, test, data);
     writer.write("Synthèse dimensionnelle", { size: 14, bold: true, gap: 4 });
+    writer.write(coveragePolicy.descriptionFr, { size: 9, color: [87, 101, 121], gap: 4 });
+    const stateLabels = {
+        "not-explored": "Non explorée dans cette version",
+        "flags-only": "Points à discuter uniquement — aucun indice",
+        "not-applicable": "Non applicable",
+        insufficient: "Données insuffisantes"
+    };
+    const groupMap = new Map(data.resultGroups.map((group) => [group.id, group]));
+    let lastGroup = "";
     for (const result of results) {
-        const value = result.normalized === null ? "Données insuffisantes" : `${(result.normalized * 4).toFixed(1)} / 4`;
-        writer.write(`${result.titleFr} — ${value} — couverture ${result.answered}/${result.applicable}`);
+        if (result.group !== lastGroup) {
+            writer.write(groupMap.get(result.group)?.labelFr || result.group, { size: 11, bold: true, color: [36, 107, 103], gap: 2 });
+            lastGroup = result.group;
+        }
+        const value = result.status === "sufficient"
+            ? `${(result.normalized * 4).toFixed(1)} / 4`
+            : stateLabels[result.status];
+        writer.write(`${result.titleFr} — ${value} — couverture conceptuelle ${result.answeredConcepts}/${result.applicableConcepts}`);
     }
     if (flags.length) {
         writer.write("Points à explorer avec un professionnel", { size: 14, bold: true, color: [166, 61, 54] });

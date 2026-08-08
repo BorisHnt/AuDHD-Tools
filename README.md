@@ -30,6 +30,7 @@ Les principales URL sont :
 
 - quatre questionnaires descriptifs issus de la source OSS V2 ;
 - 700 occurrences dédupliquées dans une banque de 680 items ;
+- agrégation prudente `réponse → item → concept → dimension → profil` ;
 - 30 modules de vagues et 150 fiches interactives ;
 - sauvegarde locale facultative, sans compte ni base de données ;
 - export/import `.AuDHD`, avec protection AES-256-GCM facultative ;
@@ -65,6 +66,21 @@ Le script Node standard `scripts/generate-content.mjs` reconstruit
 `site-data/tests.json` et `site-data/waves.json` depuis les sources canoniques.
 Node n’est utile que pour cette opération de maintenance, jamais pour servir le
 site.
+
+Un clone neuf contient toutes les entrées nécessaires dans `sources/` :
+
+- `sources/mega-tests-v2.txt` ;
+- `sources/manuel-vagues-tdah.odt` ;
+- `sources/manuel-vagues-psychologiques.odt`.
+
+Pour régénérer les JSON et les copies publiques des manuels :
+
+```bash
+node scripts/generate-content.mjs
+```
+
+La conversion des ODT demande LibreOffice en ligne de commande. Le site publié
+lui-même n’en dépend pas.
 
 Les chemins peuvent être remplacés avec :
 

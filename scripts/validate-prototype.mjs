@@ -50,7 +50,7 @@ assert.equal(canonicalSource.supersedes.status, "historical-do-not-import", "L'a
 
 let canonicalText = null;
 const canonicalPath = process.env.AUDHD_TESTS_SOURCE
-  || resolve(root, "../../Docs Psy/mega_tests_TDAH_TSA_original_OSS_v2.txt");
+  || resolve(root, "sources/mega-tests-v2.txt");
 try {
   canonicalText = await readFile(canonicalPath, "utf8");
 } catch (error) {

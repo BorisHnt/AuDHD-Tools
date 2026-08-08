@@ -1,4 +1,4 @@
-const CACHE_NAME = "audhd-tools-shell-v3";
+const CACHE_NAME = "audhd-tools-shell-v4";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -18,7 +18,10 @@ const APP_SHELL = [
   "./assets/pdf.js",
   "./assets/portable.js",
   "./assets/scoring.js",
-  "./assets/store.js"
+  "./assets/store.js",
+  "./assets/vendor/jspdf.umd.min.js",
+  "./site-data/tests.json",
+  "./site-data/waves.json"
 ];
 
 self.addEventListener("install", (event) => {

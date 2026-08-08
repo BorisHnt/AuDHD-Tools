@@ -27,7 +27,7 @@ uniquement leur propre moteur déclaré dans `instruments.json`.
 ## Source canonique du MegaTest
 
 La seule source textuelle autorisée pour la cartographie est
-`mega_tests_TDAH_TSA_original_OSS_v2.txt`. Son empreinte et ses décomptes sont
+`sources/mega-tests-v2.txt`. Son empreinte et ses décomptes sont
 enregistrés dans `canonical-source.json`.
 
 L'ancien fichier `mega_tests_TDAH_TSA.txt` est historique : il ne doit plus

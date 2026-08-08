@@ -1,0 +1,866 @@
+MEGA TESTS TDAH / TSA - VERSION OPEN SOURCE ORIGINALE V2
+========================================================
+
+Ces questionnaires sont des outils de dépistage et de description de profil. Ils ne constituent pas, seuls, un diagnostic médical.
+Les formulations de cette version sont propres au projet. Aucun bloc n'est présenté comme une reproduction de l'ASRS, du WFIRS-S ou d'un autre instrument propriétaire.
+
+
+######################################################################
+TEST TDAH 100
+######################################################################
+
+THEME 1 : ATTENTION ET REGULATION DE L'ACTIVITE AU QUOTIDIEN (18 questions)
+
+1. Votre esprit part-il régulièrement sur autre chose pendant une tâche pourtant simple que vous vouliez terminer ?
+2. Devez-vous relire plusieurs fois un passage peu stimulant pour en retenir réellement le contenu ?
+3. Un bruit, un mouvement ou une notification peut-il vous faire perdre complètement le fil de ce que vous faisiez ?
+4. Vous arrive-t-il d'abandonner momentanément une tâche parce qu'une nouvelle activité a capté votre attention ?
+5. Pendant une explication longue, constatez-vous parfois que vous avez cessé d'écouter sans l'avoir décidé ?
+6. Avez-vous besoin de rendre une tâche plus stimulante pour réussir à maintenir votre attention dessus ?
+7. Les tâches administratives ou répétitives s'accumulent-elles même lorsque vous savez qu'elles sont importantes ?
+8. Devez-vous externaliser de nombreuses obligations dans un agenda ou des rappels pour éviter qu'elles disparaissent de votre esprit ?
+9. Vous arrive-t-il d'ouvrir une application, un dossier ou d'entrer dans une pièce puis d'oublier ce que vous veniez y faire ?
+10. Découvrez-vous parfois après coup qu'une étape évidente a été omise alors que vous connaissiez parfaitement la procédure ?
+11. Après être resté assis un certain temps, ressentez-vous un besoin croissant de bouger ou de changer de position ?
+12. Manipuler un objet, remuer une jambe ou bouger vous aide-t-il à rester engagé dans une situation peu stimulante ?
+13. Les files d'attente, lenteurs ou délais imposés provoquent-ils chez vous une impatience difficile à contenir ?
+14. Une idée peut-elle sortir de votre bouche avant que vous ayez fini de décider si c'était le bon moment pour la dire ?
+15. Vous lancez-vous parfois dans une action avant d'avoir vérifié les détails ou conséquences pratiques ?
+16. Lorsque vous vous ennuyez, cherchez-vous rapidement une nouvelle source de stimulation même si vous devriez rester sur l'activité en cours ?
+17. Rester volontairement sans activité vous demande-t-il un effort inhabituel ?
+18. Avez-vous souvent l'impression que votre niveau d'activité mentale reste élevé alors que vous voudriez ralentir ?
+
+THEME 2 : ENFANCE (16 questions)
+
+19. Avant 12 ans, oubliiez-vous souvent vos affaires scolaires ou personnelles ?
+20. Avant 12 ans, perdiez-vous fréquemment des objets nécessaires à l'école ou à vos activités ?
+21. Aviez-vous besoin que l'on vous répète plusieurs fois les consignes ?
+22. Étiez-vous souvent décrit comme rêveur, dans la lune ou inattentif ?
+23. Aviez-vous du mal à terminer vos devoirs malgré une bonne compréhension de ce qu'il fallait faire ?
+24. Remettiez-vous vos devoirs ou tâches au dernier moment ?
+25. Votre cartable, bureau, chambre ou matériel étaient-ils régulièrement désorganisés ?
+26. Faisiez-vous des erreurs d'inattention dans des exercices que vous saviez pourtant faire ?
+27. Aviez-vous du mal à rester attentif pendant les cours, lectures ou activités longues ?
+28. Étiez-vous facilement détourné d'une tâche par les bruits, mouvements ou événements autour de vous ?
+29. Remuiez-vous beaucoup lorsque vous deviez rester assis ?
+30. Vous leviez-vous ou déplaciez-vous lorsqu'on attendait de vous que vous restiez assis ?
+31. Parliez-vous beaucoup ou interrompiez-vous fréquemment les autres ?
+32. Aviez-vous du mal à attendre votre tour dans les jeux, discussions ou activités collectives ?
+33. Ces difficultés existaient-elles dans au moins deux contextes parmi l'école, la maison, les loisirs et les relations sociales ?
+34. Ces comportements avaient-ils déjà des conséquences sur vos apprentissages, vos relations ou la vie familiale ?
+
+THEME 3 : PERSISTANCE ET PRESENCE MULTI-CONTEXTES (8 questions)
+
+35. Vos difficultés d'attention ou d'organisation ont-elles persisté de l'enfance à l'âge adulte, même si leur forme a changé ?
+36. Retrouvez-vous les mêmes difficultés dans plusieurs domaines de votre vie actuelle ?
+37. Vos difficultés restent-elles présentes lorsque votre humeur est bonne et votre niveau de stress faible ?
+38. Vos difficultés sont-elles anciennes plutôt qu'apparues brutalement à l'âge adulte ?
+39. Les périodes très structurées réduisent-elles vos difficultés sans les faire totalement disparaître ?
+40. Les périodes sans cadre extérieur rendent-elles vos difficultés nettement plus visibles ?
+41. Des personnes différentes vous ont-elles fait des remarques similaires à propos de votre attention, organisation ou impulsivité ?
+42. Les mêmes problèmes réapparaissent-ils malgré les changements d'école, d'emploi, de logement ou de mode de vie ?
+
+THEME 4 : FONCTIONS EXECUTIVES (14 questions)
+
+43. Savez-vous parfois exactement ce que vous devez faire tout en étant incapable de commencer ?
+44. Avez-vous du mal à découper spontanément une tâche complexe en étapes simples ?
+45. Commencez-vous plusieurs tâches avant d'en avoir terminé une seule ?
+46. Après une interruption, avez-vous du mal à retrouver le fil de ce que vous faisiez ?
+47. Oubliez-vous une information quelques secondes après l'avoir reçue si vous ne la notez pas ?
+48. Avez-vous du mal à garder plusieurs étapes d'une consigne en mémoire ?
+49. L'organisation de vos papiers, fichiers ou objets se dégrade-t-elle rapidement sans effort actif ?
+50. Avez-vous du mal à décider quelle tâche est réellement prioritaire ?
+51. Une tâche simple vous paraît-elle parfois énorme parce qu'elle comporte plusieurs étapes ?
+52. Avez-vous besoin d'un système extérieur de rappels, listes ou alarmes pour fonctionner correctement ?
+53. Avez-vous du mal à arrêter une activité en cours pour passer à une tâche plus importante ?
+54. Vos performances varient-elles fortement selon la structure imposée par l'environnement ?
+55. Avez-vous tendance à agir avant d'avoir vérifié toutes les informations nécessaires ?
+56. Remarquez-vous parfois vos erreurs seulement après qu'une autre personne vous les a signalées ?
+
+THEME 5 : TEMPS, ACTIVATION ET MOTIVATION (10 questions)
+
+57. Sous-estimez-vous régulièrement le temps nécessaire pour accomplir une tâche ?
+58. Vous rendez-vous parfois compte très tard du temps réellement écoulé ?
+59. Une échéance lointaine vous motive-t-elle difficilement tant qu'elle ne devient pas urgente ?
+60. Attendez-vous souvent le dernier moment avant de réussir à vous mettre réellement en action ?
+61. Une tâche importante mais ennuyeuse peut-elle rester bloquée alors qu'une activité intéressante démarre immédiatement ?
+62. L'urgence améliore-t-elle fortement votre capacité à vous concentrer ?
+63. La nouveauté augmente-t-elle fortement votre motivation avant que celle-ci ne retombe ?
+64. Avez-vous du mal à maintenir un effort lorsque la récompense est éloignée dans le temps ?
+65. Êtes-vous fréquemment en retard ou, pour compenser, beaucoup trop en avance ?
+66. Avez-vous du mal à prévoir ce que vous pourrez réellement accomplir pendant une journée ?
+
+THEME 6 : VARIABILITE ATTENTIONNELLE ET HYPERFOCUS (6 questions)
+
+67. Pouvez-vous rester concentré très longtemps sur une activité qui vous passionne tout en échouant à vous concentrer sur une tâche simple mais ennuyeuse ?
+68. Lorsque vous êtes absorbé par une activité, perdez-vous la notion du temps ?
+69. Oubliez-vous parfois de manger, boire, dormir ou répondre aux autres lorsque vous êtes très absorbé ?
+70. Est-il difficile de vous interrompre volontairement lorsqu'une activité capte totalement votre attention ?
+71. Votre capacité d'attention dépend-elle fortement de l'intérêt, de la nouveauté ou de l'urgence ?
+72. Passez-vous parfois rapidement d'une distraction extrême à une concentration extrêmement intense ?
+
+THEME 7 : REGULATION EMOTIONNELLE (6 questions)
+
+73. Vos émotions peuvent-elles monter très rapidement en intensité face à une frustration ?
+74. Avez-vous du mal à retrouver votre calme après avoir été contrarié ?
+75. Réagissez-vous parfois plus fortement que vous ne le souhaiteriez à une interruption ou un contretemps ?
+76. L'impatience influence-t-elle parfois vos paroles ou décisions ?
+77. Regrettez-vous certaines réactions prises sous le coup d'une émotion immédiate ?
+78. Votre tolérance à la frustration diminue-t-elle fortement lorsque vous êtes fatigué ou mentalement surchargé ?
+
+THEME 8 : COMPENSATION ET STRATEGIES (6 questions)
+
+79. Utilisez-vous de nombreuses alarmes, listes ou rappels pour éviter les oublis ?
+80. Vérifiez-vous plusieurs fois vos affaires par peur d'oublier quelque chose ?
+81. Votre apparente organisation nécessite-t-elle beaucoup d'effort conscient ?
+82. Dépendez-vous régulièrement d'une autre personne pour vous rappeler ou structurer certaines obligations ?
+83. Arrivez-vous parfois très en avance uniquement pour éviter le risque d'être en retard ?
+84. Sans vos systèmes de compensation habituels, votre fonctionnement se dégraderait-il rapidement ?
+
+THEME 9 : RETENTISSEMENT FONCTIONNEL CONDENSE (8 questions)
+
+85. Ces difficultés nuisent-elles à vos études ou à votre travail ?
+86. Ces difficultés compliquent-elles la gestion de votre logement et des tâches quotidiennes ?
+87. Ces difficultés ont-elles des conséquences sur vos finances ou vos démarches administratives ?
+88. Ces difficultés perturbent-elles vos relations familiales ou de couple ?
+89. Ces difficultés perturbent-elles vos amitiés ou votre vie sociale ?
+90. Ces difficultés vous empêchent-elles régulièrement d'atteindre ce que vous considérez comme votre potentiel ?
+91. Consacrez-vous beaucoup de temps ou d'énergie à réparer les conséquences d'oublis, retards ou erreurs ?
+92. Ces difficultés diminuent-elles votre estime de vous-même ou votre qualité de vie ?
+
+THEME 10 : SOMMEIL ET DIAGNOSTICS DIFFERENTIELS (8 questions)
+
+93. Vos problèmes d'attention sont-ils présents même après plusieurs nuits de sommeil satisfaisant ?
+94. Vos difficultés existaient-elles avant l'apparition éventuelle d'une dépression ou d'un trouble anxieux ?
+95. Vos difficultés sont-elles relativement constantes plutôt que limitées à des épisodes particuliers de votre humeur ?
+96. Avez-vous des périodes de plusieurs jours avec une énergie inhabituellement élevée et un besoin de sommeil nettement diminué ?
+97. Une consommation d'alcool, cannabis, autres substances ou certains médicaments modifie-t-elle fortement vos symptômes ?
+98. Présentez-vous un sommeil très décalé, des insomnies importantes, des apnées suspectées ou un sommeil non réparateur ?
+99. Vos difficultés de concentration apparaissent-elles principalement dans les situations provoquant une forte anxiété ?
+100. Existe-t-il une autre condition médicale, neurologique ou psychologique connue qui pourrait expliquer une part importante de vos difficultés ?
+
+
+######################################################################
+TEST TDAH 250
+######################################################################
+
+THEME 1 : ATTENTION ET REGULATION DE L'ACTIVITE AU QUOTIDIEN (18 questions)
+
+1. Votre esprit part-il régulièrement sur autre chose pendant une tâche pourtant simple que vous vouliez terminer ?
+2. Devez-vous relire plusieurs fois un passage peu stimulant pour en retenir réellement le contenu ?
+3. Un bruit, un mouvement ou une notification peut-il vous faire perdre complètement le fil de ce que vous faisiez ?
+4. Vous arrive-t-il d'abandonner momentanément une tâche parce qu'une nouvelle activité a capté votre attention ?
+5. Pendant une explication longue, constatez-vous parfois que vous avez cessé d'écouter sans l'avoir décidé ?
+6. Avez-vous besoin de rendre une tâche plus stimulante pour réussir à maintenir votre attention dessus ?
+7. Les tâches administratives ou répétitives s'accumulent-elles même lorsque vous savez qu'elles sont importantes ?
+8. Devez-vous externaliser de nombreuses obligations dans un agenda ou des rappels pour éviter qu'elles disparaissent de votre esprit ?
+9. Vous arrive-t-il d'ouvrir une application, un dossier ou d'entrer dans une pièce puis d'oublier ce que vous veniez y faire ?
+10. Découvrez-vous parfois après coup qu'une étape évidente a été omise alors que vous connaissiez parfaitement la procédure ?
+11. Après être resté assis un certain temps, ressentez-vous un besoin croissant de bouger ou de changer de position ?
+12. Manipuler un objet, remuer une jambe ou bouger vous aide-t-il à rester engagé dans une situation peu stimulante ?
+13. Les files d'attente, lenteurs ou délais imposés provoquent-ils chez vous une impatience difficile à contenir ?
+14. Une idée peut-elle sortir de votre bouche avant que vous ayez fini de décider si c'était le bon moment pour la dire ?
+15. Vous lancez-vous parfois dans une action avant d'avoir vérifié les détails ou conséquences pratiques ?
+16. Lorsque vous vous ennuyez, cherchez-vous rapidement une nouvelle source de stimulation même si vous devriez rester sur l'activité en cours ?
+17. Rester volontairement sans activité vous demande-t-il un effort inhabituel ?
+18. Avez-vous souvent l'impression que votre niveau d'activité mentale reste élevé alors que vous voudriez ralentir ?
+
+THEME 2 : IMPACT ET CONTRAINTES DU QUOTIDIEN (69 questions)
+
+19. Des échéances importantes vous échappent-elles malgré votre intention de les respecter ?
+20. Avez-vous déjà manqué une démarche parce que vous aviez perdu de vue sa date limite ?
+21. Des documents importants restent-ils parfois sans traitement jusqu'à devenir urgents ?
+22. Des courriers, courriels ou notifications nécessitant une action s'accumulent-ils régulièrement ?
+23. Avez-vous du mal à maintenir votre espace de vie dans un état qui vous convient ?
+24. Les petites réparations ou tâches d'entretien restent-elles souvent en attente très longtemps ?
+25. Le désordre finit-il parfois par vous faire perdre du temps ou des objets utiles ?
+26. L'organisation des courses et des repas vous demande-t-elle un effort disproportionné ?
+27. Sautez-vous parfois des repas ou mangez-vous à des horaires irréguliers parce que vous étiez absorbé ailleurs ?
+28. Certaines routines de soin personnel sont-elles oubliées lorsque votre journée est chargée ?
+29. Votre heure de coucher dérive-t-elle parce que vous repoussez le moment d'arrêter vos activités ?
+30. Des paiements sont-ils parfois effectués en retard alors que vous aviez les moyens de les régler ?
+31. Avez-vous déjà payé des frais supplémentaires simplement parce qu'une démarche avait été oubliée ou différée ?
+32. Des achats impulsifs perturbent-ils parfois le budget que vous aviez prévu ?
+33. Avez-vous du mal à suivre régulièrement l'état de vos comptes ou dépenses ?
+34. Au travail, avez-vous parfois besoin d'une urgence pour terminer ce qui était prévu depuis longtemps ?
+35. Des tâches professionnelles simples prennent-elles plus de temps que prévu à cause de distractions ou changements de priorité ?
+36. L'accumulation de petites tâches finit-elle parfois par créer une crise de dernière minute ?
+37. Faites-vous occasionnellement des erreurs professionnelles parce qu'une vérification finale a été omise ?
+38. Les réunions longues réduisent-elles fortement votre capacité à retenir les informations importantes ?
+39. Devez-vous prendre beaucoup plus de notes ou de rappels que vos collègues pour suivre les mêmes obligations ?
+40. Avez-vous du mal à maintenir une performance régulière lorsque votre travail devient monotone ?
+41. Vos capacités réelles vous paraissent-elles parfois mal reflétées par votre constance au travail ?
+42. Avez-vous déjà refusé ou évité une responsabilité professionnelle par peur de ne pas réussir à tout organiser ?
+43. Dans les études, avez-vous tendance à concentrer une grande partie du travail juste avant les échéances ?
+44. Les révisions régulières sont-elles difficiles à maintenir sans pression immédiate ?
+45. Oubliez-vous parfois des consignes scolaires ou de formation pourtant importantes ?
+46. Vos résultats peuvent-ils varier fortement d'un cours à l'autre selon votre intérêt plutôt que selon sa difficulté ?
+47. Avez-vous déjà rendu un travail en retard alors qu'une grande partie était techniquement à votre portée ?
+48. Une formation longue et peu interactive vous demande-t-elle un effort inhabituel pour rester mentalement présent ?
+49. Dans votre couple ou votre famille, oubliez-vous parfois des engagements dont vous aviez pourtant compris l'importance ?
+50. Vos proches interprètent-ils parfois vos oublis comme un manque d'intérêt ou d'attention envers eux ?
+51. Le partage des responsabilités quotidiennes provoque-t-il des tensions liées à des tâches non commencées ou non terminées ?
+52. Votre impatience crée-t-elle parfois des tensions pendant des discussions familiales ?
+53. Coupez-vous involontairement certaines conversations au point que cela agace vos proches ?
+54. Avez-vous besoin que vos proches vous rappellent régulièrement certaines obligations communes ?
+55. Oubliez-vous parfois de répondre à des messages de personnes auxquelles vous tenez ?
+56. Avez-vous du mal à maintenir un contact régulier avec des amis sans contexte extérieur qui vous rapproche ?
+57. Acceptez-vous parfois une invitation puis oubliez-vous de l'inscrire ou de vous organiser pour y aller ?
+58. Les conversations en groupe deviennent-elles difficiles à suivre lorsqu'elles comportent plusieurs interlocuteurs ?
+59. Votre tendance à parler spontanément vous a-t-elle déjà placé dans une situation sociale gênante ?
+60. Certaines amitiés se sont-elles affaiblies à cause d'oublis, retards ou réponses très tardives ?
+61. Commencez-vous des loisirs ou projets personnels qui restent ensuite longtemps inachevés ?
+62. Un loisir passionnant peut-il prendre beaucoup plus de temps que vous aviez prévu d'y consacrer ?
+63. Avez-vous du mal à choisir une activité de détente et finissez-vous parfois par ne rien faire de réellement reposant ?
+64. Avez-vous du mal à vous détendre lorsque des tâches non réalisées restent présentes dans votre esprit ?
+65. Les obligations repoussées empiètent-elles régulièrement sur votre temps libre ?
+66. En voiture ou à vélo, votre attention est-elle parfois captée par quelque chose qui n'est pas pertinent pour votre sécurité immédiate ?
+67. Avez-vous déjà vécu une situation dangereuse parce que vous étiez pressé, distrait ou impatient ?
+68. Oubliez-vous parfois une consigne de sécurité lorsque vous êtes absorbé par l'objectif principal d'une tâche ?
+69. Des objets importants comme clés, papiers ou moyens de paiement sont-ils régulièrement égarés au mauvais moment ?
+70. Préparer un déplacement demande-t-il beaucoup d'effort pour éviter les oublis ?
+71. Oubliez-vous parfois un médicament, un traitement ou une consigne de santé que vous vouliez suivre ?
+72. Reportez-vous des rendez-vous de santé parce que leur organisation administrative vous décourage ?
+73. Une activité physique régulière est-elle difficile à maintenir même lorsque vous souhaitez en avoir une ?
+74. Des démarches administratives simples deviennent-elles parfois très stressantes après avoir été repoussées ?
+75. Avez-vous déjà égaré un document officiel et dû consacrer beaucoup de temps à le retrouver ou le remplacer ?
+76. Les formulaires comportant plusieurs étapes ont-ils tendance à rester inachevés ?
+77. Avez-vous besoin d'aide pour gérer certaines démarches que vous pourriez techniquement comprendre seul ?
+78. Passez-vous régulièrement du temps à réparer les conséquences d'un oubli ou d'un retard évitable ?
+79. Avez-vous parfois le sentiment de fonctionner en permanence en mode rattrapage ?
+80. Vos stratégies pour rester organisé consomment-elles une quantité importante d'énergie mentale ?
+81. Avez-vous réduit vos ambitions dans certains domaines pour éviter une surcharge organisationnelle ?
+82. Avez-vous déjà laissé passer une opportunité parce que les démarches nécessaires semblaient trop difficiles à lancer ?
+83. Vous engagez-vous parfois dans plus de projets que vous ne pouvez raisonnablement en terminer ?
+84. Une accumulation d'obligations peut-elle conduire à une période d'épuisement ou d'évitement généralisé ?
+85. Avez-vous besoin de périodes de récupération après avoir maintenu longtemps un haut niveau de contrôle et d'organisation ?
+86. Vos difficultés de constance ont-elles un effet négatif sur l'image que vous avez de vos capacités ?
+87. Globalement, l'effort nécessaire pour gérer votre quotidien vous paraît-il supérieur à ce que les autres voient de l'extérieur ?
+
+THEME 3 : ENFANCE ET ADOLESCENCE (30 questions)
+
+88. Avant 12 ans, oubliiez-vous souvent vos affaires scolaires ?
+89. Perdiez-vous fréquemment des objets nécessaires à vos activités ?
+90. Oubliiez-vous des consignes peu après les avoir entendues ?
+91. Fallait-il vous rappeler plusieurs fois de commencer une tâche ?
+92. Fallait-il rester près de vous pour que vous terminiez vos devoirs ?
+93. Étiez-vous souvent décrit comme rêveur ou dans la lune ?
+94. Décrochiez-vous pendant les explications même en essayant d'écouter ?
+95. Faisiez-vous des erreurs d'inattention malgré une bonne compréhension ?
+96. Aviez-vous du mal à terminer les exercices longs ou répétitifs ?
+97. Évitiez-vous les devoirs demandant un effort mental prolongé ?
+98. Votre cartable, casier, bureau ou chambre étaient-ils régulièrement désorganisés ?
+99. Oubliiez-vous régulièrement les devoirs, signatures, dates ou événements scolaires ?
+100. Étiez-vous facilement distrait par les bruits ou mouvements autour de vous ?
+101. Passiez-vous rapidement d'une activité à une autre sans terminer ?
+102. Vos résultats variaient-ils fortement selon votre intérêt pour la matière ?
+103. Remuiez-vous fréquemment les mains, jambes ou objets lorsque vous étiez assis ?
+104. Vous leviez-vous lorsqu'on attendait de vous que vous restiez assis ?
+105. Aviez-vous besoin de courir, bouger ou grimper davantage que les autres enfants de votre âge ?
+106. Étiez-vous souvent décrit comme très énergique ou impossible à arrêter ?
+107. Parliez-vous beaucoup dans des situations où il fallait se contenir ?
+108. Répondiez-vous avant la fin des questions ?
+109. Interrompiez-vous régulièrement les conversations ou activités des autres ?
+110. Aviez-vous du mal à attendre votre tour ?
+111. Agissiez-vous fréquemment avant de réfléchir aux conséquences ?
+112. Ces difficultés étaient-elles visibles à l'école ?
+113. Ces difficultés étaient-elles visibles à la maison ?
+114. Ces difficultés étaient-elles visibles pendant les loisirs, sports ou activités de groupe ?
+115. Ces difficultés ont-elles continué pendant l'adolescence ?
+116. Ont-elles provoqué des conflits, sanctions, échecs ou remarques répétées ?
+117. Un proche, un ancien bulletin ou un autre document pourrait-il confirmer au moins une partie de ces difficultés ?
+
+THEME 4 : CHRONICITE ET MULTI-CONTEXTES (15 questions)
+
+118. Vos difficultés actuelles ressemblent-elles à celles que vous rencontriez plus jeune ?
+119. Les symptômes ont-ils été présents de manière relativement continue plutôt que par épisodes isolés ?
+120. Vos difficultés existaient-elles avant vos premiers épisodes importants d'anxiété ou de dépression ?
+121. Retrouve-t-on ces difficultés dans votre vie personnelle ?
+122. Retrouve-t-on ces difficultés au travail ou dans les études ?
+123. Retrouve-t-on ces difficultés dans vos relations sociales ?
+124. Retrouve-t-on ces difficultés dans la gestion administrative ou financière ?
+125. Retrouve-t-on ces difficultés pendant vos loisirs ou projets personnels ?
+126. Une forte structure extérieure réduit-elle nettement vos symptômes ?
+127. L'absence de structure extérieure les aggrave-t-elle nettement ?
+128. Vos difficultés persistent-elles même lorsque vous êtes motivé à bien faire ?
+129. Vos difficultés persistent-elles pendant les périodes où votre humeur est stable ?
+130. Plusieurs personnes vous ont-elles fait, à différentes périodes de votre vie, des remarques semblables ?
+131. Avez-vous changé vos habitudes ou votre environnement pour éviter que ces difficultés soient visibles ?
+132. Les mêmes difficultés réapparaissent-elles après des changements majeurs de contexte de vie ?
+
+THEME 5 : FONCTIONS EXECUTIVES (25 questions)
+
+133. Avez-vous du mal à commencer une tâche même lorsqu'elle est importante et clairement définie ?
+134. L'initiation devient-elle beaucoup plus facile lorsqu'une autre personne travaille à côté de vous ?
+135. Attendez-vous souvent une pression extérieure avant de commencer ?
+136. Une tâche sans échéance peut-elle rester en attente pendant des semaines ?
+137. Avez-vous du mal à transformer un objectif général en premières actions concrètes ?
+138. Avez-vous du mal à déterminer l'ordre logique des étapes d'un projet ?
+139. Sous-estimez-vous le nombre d'étapes nécessaires à une tâche ?
+140. Commencez-vous plusieurs projets en parallèle sans les terminer ?
+141. Avez-vous du mal à choisir une priorité lorsque plusieurs tâches sont possibles ?
+142. Passez-vous parfois beaucoup de temps à organiser le travail sans réellement le commencer ?
+143. Oubliez-vous rapidement une information si vous ne la notez pas immédiatement ?
+144. Perdez-vous le fil d'une tâche après une interruption brève ?
+145. Avez-vous du mal à retenir une consigne composée de plusieurs étapes ?
+146. Oubliez-vous ce que vous vouliez faire en changeant de pièce ou d'application ?
+147. Devez-vous régulièrement relire ce que vous venez de lire parce que l'information n'est pas restée en mémoire ?
+148. Vos objets, documents ou fichiers deviennent-ils rapidement désorganisés sans entretien constant ?
+149. Avez-vous du mal à maintenir un système de classement sur la durée ?
+150. Accumulez-vous de petites tâches administratives jusqu'à ce qu'elles deviennent urgentes ?
+151. Avez-vous du mal à passer d'une activité plaisante à une activité nécessaire ?
+152. Une interruption non prévue peut-elle dérégler une grande partie de votre programme ?
+153. Avez-vous du mal à arrêter une action impulsive une fois qu'elle est lancée ?
+154. Parlez-vous ou agissez-vous parfois avant d'avoir évalué la situation ?
+155. Omettez-vous des vérifications finales même lorsque vous savez qu'elles seraient utiles ?
+156. Votre niveau d'autonomie chute-t-il fortement lorsque plusieurs tâches doivent être gérées simultanément ?
+157. Avez-vous besoin d'outils externes pour remplacer une partie de votre mémoire ou de votre organisation ?
+
+THEME 6 : TEMPS, ACTIVATION ET MOTIVATION (15 questions)
+
+158. Sous-estimez-vous souvent la durée réelle d'une tâche ?
+159. Surestimez-vous parfois ce que vous pourrez accomplir dans une journée ?
+160. Perdez-vous fréquemment la notion du temps pendant une activité ?
+161. Une échéance future vous semble-t-elle abstraite jusqu'à ce qu'elle devienne proche ?
+162. Travaillez-vous beaucoup plus efficacement lorsqu'une urgence apparaît ?
+163. Procrastinez-vous même sur des tâches que vous souhaitez sincèrement accomplir ?
+164. Avez-vous du mal à démarrer une tâche lorsqu'elle ne procure aucune récompense immédiate ?
+165. La nouveauté vous motive-t-elle fortement au début d'un projet ?
+166. Cette motivation chute-t-elle lorsque la nouveauté disparaît ?
+167. Une tâche intéressante peut-elle prendre la place d'une tâche objectivement plus importante ?
+168. Avez-vous besoin de créer artificiellement une échéance, un défi ou une récompense pour agir ?
+169. Êtes-vous régulièrement en retard malgré votre intention d'être ponctuel ?
+170. Compensez-vous parfois cette difficulté en arrivant excessivement tôt ?
+171. Avez-vous du mal à ressentir le temps disponible entre deux événements ?
+172. Une journée peu structurée se termine-t-elle parfois avec beaucoup moins de choses accomplies que prévu ?
+
+THEME 7 : HYPERFOCUS ET VARIABILITE ATTENTIONNELLE (10 questions)
+
+173. Pouvez-vous rester absorbé pendant des heures par un sujet qui vous passionne ?
+174. Pendant ces périodes, perdez-vous la notion du temps ?
+175. Pendant ces périodes, ignorez-vous involontairement la faim, la soif ou la fatigue ?
+176. Entendez-vous parfois qu'on vous parle sans réussir à détacher votre attention de l'activité en cours ?
+177. Est-il difficile d'interrompre volontairement une activité captivante ?
+178. Votre concentration varie-t-elle énormément selon votre intérêt pour la tâche ?
+179. La nouveauté améliore-t-elle temporairement votre concentration ?
+180. Le défi ou la compétition améliorent-ils temporairement votre concentration ?
+181. Pouvez-vous être très performant sur une tâche complexe intéressante et bloqué sur une tâche simple répétitive ?
+182. Votre entourage interprète-t-il parfois cette variabilité comme un manque volontaire d'effort ?
+
+THEME 8 : IMPULSIVITE ADULTE (10 questions)
+
+183. Faites-vous parfois des achats avant d'avoir réellement réfléchi à leur utilité ou à leur coût ?
+184. Envoyez-vous parfois des messages ou réponses que vous regrettez ensuite ?
+185. Prenez-vous parfois une décision importante sous l'effet d'une envie immédiate ?
+186. Interrompez-vous une personne de peur d'oublier ce que vous voulez dire ?
+187. Avez-vous du mal à patienter lorsqu'une situation avance lentement ?
+188. Changez-vous parfois brusquement de plan sur une impulsion ?
+189. Vous engagez-vous parfois dans un nouveau projet avant d'avoir évalué votre temps disponible ?
+190. Recherchez-vous parfois une stimulation immédiate lorsque vous vous ennuyez ?
+191. Prenez-vous davantage de risques lorsque vous êtes impatient ou sous-stimulé ?
+192. Regrettez-vous régulièrement des actions effectuées trop rapidement ?
+
+THEME 9 : REGULATION EMOTIONNELLE (12 questions)
+
+193. Une petite frustration peut-elle provoquer une émotion très intense ?
+194. Vos émotions montent-elles parfois plus vite que vous ne pouvez les réguler ?
+195. Avez-vous du mal à redescendre après une contrariété ?
+196. Les interruptions imprévues vous irritent-elles fortement lorsque vous êtes concentré ?
+197. Réagissez-vous parfois vivement avant d'avoir le temps de réfléchir ?
+198. Votre impatience augmente-t-elle lorsque vous êtes fatigué ?
+199. Votre tolérance à la frustration diminue-t-elle lorsqu'une tâche est ennuyeuse ou répétitive ?
+200. Avez-vous parfois besoin de vous isoler pour retrouver votre calme ?
+201. Une critique peut-elle occuper votre esprit beaucoup plus longtemps que vous ne le souhaiteriez ?
+202. Avez-vous du mal à poursuivre une tâche après un échec ou une remarque négative ?
+203. Vos émotions influencent-elles fortement votre capacité immédiate à vous concentrer ?
+204. Regrettez-vous parfois l'intensité de votre réaction une fois l'émotion retombée ?
+
+THEME 10 : COMPENSATION ET STRATEGIES (10 questions)
+
+205. Utilisez-vous plusieurs alarmes ou rappels pour une même obligation ?
+206. Notez-vous immédiatement les informations par peur de les oublier ?
+207. Vérifiez-vous plusieurs fois vos affaires avant de partir ?
+208. Arrivez-vous volontairement très en avance afin de neutraliser votre risque de retard ?
+209. Placez-vous volontairement des objets dans des endroits visibles pour ne pas les oublier ?
+210. Dépendez-vous d'une autre personne pour une partie de votre organisation ?
+211. Évitez-vous certaines responsabilités parce que leur gestion vous paraît trop difficile ?
+212. Votre organisation extérieure masque-t-elle un effort mental permanent ?
+213. Vos stratégies de compensation vous fatiguent-elles ?
+214. Sans téléphone, agenda, listes ou routines, vos oublis augmenteraient-ils fortement ?
+
+THEME 11 : SOMMEIL ET RYTHME CIRCADIEN (10 questions)
+
+215. Avez-vous régulièrement du mal à vous endormir à l'heure souhaitée ?
+216. Votre rythme naturel tend-il à se décaler vers des heures tardives ?
+217. Avez-vous du mal à arrêter une activité pour aller dormir ?
+218. Utilisez-vous fréquemment votre téléphone, ordinateur ou une autre stimulation au-delà de l'heure prévue de coucher ?
+219. Vous réveillez-vous souvent sans sensation de récupération suffisante ?
+220. Vos difficultés attentionnelles s'aggravent-elles nettement après une mauvaise nuit ?
+221. Restent-elles néanmoins présentes après plusieurs nuits satisfaisantes ?
+222. Ronflez-vous fortement ou a-t-on déjà observé des pauses respiratoires pendant votre sommeil ?
+223. Ressentez-vous des sensations désagréables dans les jambes qui vous obligent à les bouger au repos ?
+224. Votre sommeil irrégulier entraîne-t-il des retards, absences ou difficultés de fonctionnement en journée ?
+
+THEME 12 : DIAGNOSTICS DIFFERENTIELS ET CONTEXTE (20 questions)
+
+225. Vos difficultés attentionnelles existaient-elles avant tout épisode dépressif important ?
+226. Vos difficultés persistent-elles lorsque vous ne vous sentez pas déprimé ?
+227. Vos problèmes de concentration apparaissent-ils principalement lors de fortes périodes d'anxiété ?
+228. L'inquiétude ou les ruminations expliquent-elles une grande partie de vos moments d'inattention ?
+229. Avez-vous des périodes distinctes de plusieurs jours avec un besoin de sommeil anormalement réduit et une énergie inhabituellement élevée ?
+230. Pendant de telles périodes, votre confiance, débit de parole ou prise de risque augmentent-ils de manière inhabituelle ?
+231. Vos difficultés ont-elles commencé brutalement après un événement traumatique ?
+232. Êtes-vous fréquemment absorbé par des souvenirs, flashbacks ou un état d'alerte qui perturbe votre attention ?
+233. Des obsessions ou compulsions consomment-elles une part importante de votre temps et de votre attention ?
+234. Vos difficultés sociales ou sensorielles évoquent-elles également un possible trouble du spectre de l'autisme ?
+235. Avez-vous des difficultés spécifiques de lecture, écriture ou calcul pouvant expliquer certaines difficultés scolaires ?
+236. Une consommation régulière de cannabis influence-t-elle votre mémoire ou votre motivation ?
+237. Une consommation d'alcool influence-t-elle fréquemment votre attention ou votre impulsivité ?
+238. Utilisez-vous d'autres substances susceptibles de modifier votre attention, sommeil ou niveau d'activité ?
+239. Un médicament actuel ou récent a-t-il coïncidé avec l'apparition ou l'aggravation des symptômes ?
+240. Une maladie, douleur chronique ou fatigue importante explique-t-elle une partie de vos difficultés ?
+241. Une anomalie thyroïdienne, carence, trouble neurologique ou autre affection médicale a-t-elle été évoquée par un professionnel ?
+242. Vos difficultés sont-elles limitées à une seule situation ou une seule relation ?
+243. Disparaissent-elles presque entièrement lorsque le stress, l'anxiété ou le manque de sommeil disparaissent ?
+244. Existe-t-il selon vous une autre explication plus simple et plus globale de vos symptômes actuels ?
+
+THEME 13 : ELEMENTS OBJECTIFS ET QUALITE DES PREUVES (6 questions)
+
+245. Disposez-vous de bulletins scolaires mentionnant inattention, bavardage, agitation, oublis ou travail irrégulier ?
+246. Une personne vous ayant connu enfant peut-elle décrire spontanément des difficultés similaires avant 12 ans ?
+247. Une personne qui vous connaît actuellement observe-t-elle des difficultés similaires dans votre vie adulte ?
+248. Pouvez-vous identifier des conséquences concrètes et répétées de ces difficultés dans au moins deux domaines de vie ?
+249. Pouvez-vous donner des exemples précis et datés montrant que ces difficultés existaient avant l'âge adulte ?
+250. Les informations provenant de vos souvenirs, de proches et de documents disponibles racontent-elles globalement la même histoire ?
+
+
+######################################################################
+TEST TSA 100
+######################################################################
+
+THEME 1 : RECIPROCITE SOCIO-EMOTIONNELLE (12 questions)
+
+1. Avez-vous du mal à savoir spontanément quand prendre la parole dans une conversation ?
+2. Les conversations informelles vous demandent-elles un effort conscient important ?
+3. Avez-vous du mal à savoir quelles informations personnelles sont appropriées à partager selon la situation ?
+4. Avez-vous tendance à parler longuement d'un sujet qui vous intéresse sans remarquer immédiatement que l'autre décroche ?
+5. Trouvez-vous difficile de maintenir une conversation lorsque le sujet ne vous intéresse pas ?
+6. Devez-vous réfléchir consciemment à la manière de montrer de l'intérêt pour ce que l'autre raconte ?
+7. Avez-vous parfois du mal à identifier ce qu'une personne attend de vous émotionnellement ?
+8. Les échanges sociaux spontanés vous paraissent-ils moins intuitifs que les échanges structurés autour d'un sujet précis ?
+9. Avez-vous besoin de préparer mentalement certaines conversations avant qu'elles aient lieu ?
+10. Après une conversation, repassez-vous parfois l'échange pour vérifier si vous avez répondu correctement ?
+11. Avez-vous du mal à maintenir naturellement un échange de petites conversations sans objectif précis ?
+12. Les interactions sociales prolongées vous épuisent-elles même lorsqu'elles se passent bien ?
+
+THEME 2 : COMMUNICATION NON VERBALE (8 questions)
+
+13. Avez-vous du mal à maintenir un contact visuel qui vous semble naturel ?
+14. Le contact visuel peut-il détourner votre attention de ce que la personne dit ?
+15. Devez-vous parfois penser consciemment à votre expression faciale ?
+16. Avez-vous du mal à interpréter certaines expressions faciales subtiles ?
+17. Avez-vous du mal à comprendre le sens d'un ton de voix ambigu ?
+18. Votre propre ton de voix est-il parfois perçu comme inhabituel, plat, intense ou inadapté à votre intention ?
+19. Avez-vous du mal à coordonner naturellement regard, gestes, posture et parole pendant une interaction ?
+20. Les autres interprètent-ils parfois incorrectement votre expression ou votre langage corporel ?
+
+THEME 3 : COMPREHENSION SOCIALE ET RELATIONS (10 questions)
+
+21. Avez-vous du mal à comprendre les règles sociales lorsqu'elles ne sont pas explicitement formulées ?
+22. Le sarcasme ou le second degré vous échappent-ils parfois lorsque le contexte est ambigu ?
+23. Prenez-vous parfois une formulation littérale avant d'en comprendre l'intention implicite ?
+24. Avez-vous du mal à savoir si quelqu'un plaisante, flirte, se moque ou parle sérieusement ?
+25. Avez-vous dû apprendre certaines règles sociales par observation plutôt que les comprendre intuitivement ?
+26. Avez-vous du mal à maintenir des amitiés malgré l'envie d'en avoir ?
+27. Préférez-vous souvent les interactions à deux aux groupes ?
+28. Dans un groupe, avez-vous du mal à savoir quand et comment rejoindre la conversation ?
+29. Les conflits sociaux surviennent-ils parfois parce que votre intention a été mal comprise ?
+30. Avez-vous souvent l'impression qu'il existe un manuel social que les autres semblent connaître naturellement ?
+
+THEME 4 : COMPORTEMENTS REPETITIFS (8 questions)
+
+31. Répétez-vous certains mouvements lorsque vous êtes stressé, concentré ou enthousiaste ?
+32. Manipulez-vous régulièrement un objet, vos doigts, vos cheveux ou un vêtement de manière répétitive ?
+33. Vous balancez-vous, tapotez-vous ou bougez-vous rythmiquement pour vous apaiser ?
+34. Répétez-vous parfois des mots, phrases, sons ou extraits entendus parce qu'ils sont agréables ou régulateurs ?
+35. Certains gestes répétitifs vous aident-ils à réfléchir ou à gérer vos émotions ?
+36. Cachez-vous certains de ces comportements en présence d'autres personnes ?
+37. Ressentez-vous une tension ou un inconfort lorsqu'on vous empêche d'effectuer un mouvement régulateur habituel ?
+38. Avez-vous développé des formes très discrètes de mouvements répétitifs pour qu'ils passent inaperçus ?
+
+THEME 5 : ROUTINES ET BESOIN DE STABILITE (10 questions)
+
+39. Les changements de programme inattendus vous perturbent-ils fortement ?
+40. Préférez-vous savoir précisément à l'avance comment une activité va se dérouler ?
+41. Avez-vous des routines dont la modification vous crée un inconfort important ?
+42. Préférez-vous souvent emprunter les mêmes itinéraires ou utiliser les mêmes méthodes ?
+43. Un changement de dernière minute peut-il vous demander beaucoup de temps pour vous réadapter ?
+44. Avez-vous besoin de terminer mentalement une activité avant de pouvoir passer sereinement à autre chose ?
+45. Les situations imprévisibles sont-elles plus fatigantes que les situations clairement organisées ?
+46. Mangez-vous, utilisez-vous ou choisissez-vous fréquemment les mêmes choses par besoin de familiarité ?
+47. Avez-vous du mal lorsque quelqu'un modifie l'organisation de vos objets ou de votre environnement ?
+48. Le fait de connaître précisément les règles d'une situation vous rassure-t-il beaucoup ?
+
+THEME 6 : INTERETS SPECIFIQUES ET INTENSITE (8 questions)
+
+49. Certains sujets occupent-ils une place exceptionnellement importante dans votre vie ?
+50. Pouvez-vous accumuler énormément d'informations sur un sujet précis qui vous passionne ?
+51. Parlez-vous parfois de vos intérêts avec une intensité supérieure à celle attendue par votre entourage ?
+52. Vos intérêts peuvent-ils occuper une grande partie de votre temps libre pendant de longues périodes ?
+53. Ressentez-vous un fort plaisir à classer, organiser ou approfondir les informations liées à un intérêt ?
+54. Revenez-vous régulièrement aux mêmes thèmes, univers ou activités pendant des années ?
+55. Un intérêt peut-il devenir une source majeure de calme, d'identité ou de récupération ?
+56. Êtes-vous frustré lorsque vous devez interrompre un intérêt au moment où vous êtes profondément absorbé ?
+
+THEME 7 : SENSORIALITE HYPER ET HYPO (12 questions)
+
+57. Certains bruits ordinaires vous paraissent-ils physiquement pénibles ou impossibles à ignorer ?
+58. Avez-vous du mal à filtrer plusieurs conversations ou sons simultanés ?
+59. Certaines lumières, néons ou stimulations visuelles vous fatiguent-elles fortement ?
+60. Certaines textures de vêtements ou matières sont-elles difficilement supportables ?
+61. Êtes-vous particulièrement sensible à certaines odeurs ?
+62. Certaines textures ou consistances alimentaires limitent-elles ce que vous pouvez manger ?
+63. Certaines formes de contact physique vous provoquent-elles un inconfort disproportionné ?
+64. Recherchez-vous volontairement certaines sensations tactiles, pressions, mouvements ou sons ?
+65. Avez-vous parfois une faible perception de la faim, de la soif, du froid, de la chaleur ou de la douleur ?
+66. Les environnements sensoriellement chargés peuvent-ils vous empêcher de réfléchir correctement ?
+67. Avez-vous besoin de vous isoler après une forte surcharge sensorielle ?
+68. Utilisez-vous volontairement casque, bouchons, lunettes, vêtements particuliers ou autres adaptations sensorielles ?
+
+THEME 8 : ENFANCE ET DEVELOPPEMENT (10 questions)
+
+69. Enfant, aviez-vous déjà des difficultés à comprendre certaines règles sociales implicites ?
+70. Préféreriez-vous souvent jouer seul ou avec très peu d'enfants ?
+71. Aviez-vous des intérêts particulièrement intenses ou spécifiques ?
+72. Aviez-vous des routines ou réactions importantes aux changements ?
+73. Étiez-vous particulièrement sensible à certains bruits, textures, aliments ou vêtements ?
+74. Aviez-vous des manières répétitives de bouger, jouer, parler ou organiser les objets ?
+75. Les jeux sociaux ou jeux de groupe étaient-ils plus difficiles à comprendre que les activités structurées ?
+76. Vous sentiez-vous différent des autres enfants sans forcément comprendre pourquoi ?
+77. Ces particularités étaient-elles visibles dans plusieurs contextes avant l'adolescence ?
+78. Un proche ou des documents anciens pourraient-ils confirmer certaines de ces particularités ?
+
+THEME 9 : CAMOUFLAGE ET COMPENSATION (8 questions)
+
+79. Observez-vous les autres pour apprendre comment vous comporter socialement ?
+80. Préparez-vous à l'avance des phrases ou réponses pour certaines situations sociales ?
+81. Imitez-vous consciemment le ton, les gestes ou expressions des autres ?
+82. Forcez-vous parfois le contact visuel malgré l'inconfort ?
+83. Cachez-vous certains mouvements, intérêts ou réactions sensorielles pour paraître plus conventionnel ?
+84. Avez-vous l'impression de jouer un rôle dans certaines situations sociales ?
+85. Une interaction réussie extérieurement peut-elle malgré tout vous laisser épuisé ?
+86. Êtes-vous nettement plus naturel ou relâché lorsque vous êtes seul ou avec une personne très sûre ?
+
+THEME 10 : RETENTISSEMENT FONCTIONNEL (6 questions)
+
+87. Vos difficultés sociales ont-elles un impact concret sur vos relations ?
+88. Les changements ou imprévus perturbent-ils votre fonctionnement quotidien ?
+89. Les difficultés sensorielles limitent-elles certains lieux, activités ou emplois ?
+90. Le camouflage social vous coûte-t-il beaucoup d'énergie ?
+91. Avez-vous besoin d'adaptations particulières pour fonctionner durablement dans les études ou au travail ?
+92. L'ensemble de ces particularités réduit-il votre qualité de vie ou augmente-t-il votre épuisement ?
+
+THEME 11 : DIFFERENTIELS ET CHEVAUCHEMENTS (8 questions)
+
+93. Vos difficultés sociales viennent-elles surtout d'une peur du jugement malgré une bonne compréhension intuitive des codes sociaux ?
+94. Vos routines sont-elles principalement destinées à neutraliser une peur ou une obsession précise ?
+95. Vos difficultés sociales ont-elles commencé seulement après un événement traumatique ou une période psychiatrique particulière ?
+96. Vos difficultés de conversation viennent-elles surtout d'inattention ou d'impulsivité plutôt que d'une difficulté à décoder l'échange ?
+97. Vos sensibilités sensorielles sont-elles anciennes et présentes depuis l'enfance ?
+98. Vos particularités restent-elles présentes lorsque votre anxiété est faible et votre humeur stable ?
+99. Les traits décrits existent-ils dans plusieurs environnements plutôt que dans une seule situation sociale ?
+100. Existe-t-il une autre condition connue qui expliquerait mieux l'ensemble de ces particularités ?
+
+
+######################################################################
+TEST TSA 250
+######################################################################
+
+THEME 1 : RECIPROCITE SOCIALE ET EMOTIONNELLE (25 questions)
+
+1. Avez-vous du mal à savoir spontanément quand prendre la parole dans une conversation ?
+2. Les conversations sans objectif précis vous demandent-elles un effort important ?
+3. Préférez-vous les conversations centrées sur un sujet précis aux petites conversations sociales ?
+4. Avez-vous du mal à relancer naturellement une conversation ?
+5. Avez-vous du mal à savoir quand une conversation est terminée ?
+6. Parlez-vous parfois longuement sans remarquer immédiatement que votre interlocuteur souhaite intervenir ?
+7. Avez-vous du mal à rester engagé lorsque le sujet de conversation ne vous intéresse pas ?
+8. Devez-vous réfléchir consciemment aux questions à poser pour montrer votre intérêt ?
+9. Avez-vous du mal à équilibrer spontanément le temps de parole entre vous et l'autre personne ?
+10. Partagez-vous parfois beaucoup d'informations factuelles lorsqu'une réponse plus brève était attendue ?
+11. Avez-vous du mal à savoir quelles informations personnelles sont appropriées à partager ?
+12. Les salutations, remerciements ou autres rituels sociaux vous semblent-ils parfois artificiels ?
+13. Avez-vous besoin de préparer mentalement certaines conversations ?
+14. Répétez-vous mentalement des conversations à venir ?
+15. Analysez-vous après coup ce que vous avez dit pour déterminer si c'était approprié ?
+16. Avez-vous parfois du mal à identifier ce qu'une personne attend de vous sur le plan émotionnel ?
+17. Avez-vous du mal à trouver spontanément quoi dire lorsqu'une personne est triste ou bouleversée ?
+18. Pouvez-vous ressentir fortement l'émotion d'une personne tout en ne sachant pas comment y répondre socialement ?
+19. Les interactions de groupe sont-elles beaucoup plus difficiles que les interactions à deux ?
+20. Avez-vous du mal à suivre plusieurs fils de conversation simultanément ?
+21. Vous sentez-vous parfois comme un observateur plutôt qu'un participant naturel d'une interaction ?
+22. Les interactions spontanées sont-elles plus difficiles que celles dont les rôles sont clairement définis ?
+23. Avez-vous besoin de temps pour formuler une réponse dans certaines interactions émotionnelles ?
+24. Les interactions sociales prolongées vous fatiguent-elles même lorsqu'elles sont agréables ?
+25. Avez-vous régulièrement besoin de solitude après avoir beaucoup interagi socialement ?
+
+THEME 2 : COMMUNICATION NON VERBALE (15 questions)
+
+26. Le contact visuel vous demande-t-il un effort conscient ?
+27. Le contact visuel peut-il diminuer votre capacité à écouter ou réfléchir ?
+28. Regardez-vous parfois volontairement ailleurs pour mieux comprendre ce que quelqu'un dit ?
+29. Devez-vous penser consciemment à regarder une personne à certains moments ?
+30. Devez-vous parfois contrôler volontairement votre expression faciale ?
+31. Votre visage est-il parfois perçu comme exprimant une émotion différente de celle que vous ressentez ?
+32. Avez-vous du mal à reconnaître certaines expressions faciales subtiles ou ambiguës ?
+33. Avez-vous du mal à utiliser naturellement les gestes pendant que vous parlez ?
+34. Avez-vous du mal à interpréter certains gestes sociaux peu explicites ?
+35. Votre posture est-elle parfois perçue comme inhabituelle ou trop rigide ?
+36. Votre ton de voix est-il parfois considéré comme trop plat, intense ou formel ?
+37. Avez-vous du mal à reconnaître qu'une personne est agacée uniquement à partir de son ton ?
+38. Avez-vous du mal à coordonner simultanément paroles, regard, ton et expression ?
+39. Les conventions de distance physique entre personnes vous demandent-elles parfois une réflexion consciente ?
+40. Êtes-vous régulièrement surpris par l'interprétation que les autres font de votre langage corporel ?
+
+THEME 3 : RELATIONS, DECODAGE SOCIAL ET PRAGMATIQUE (25 questions)
+
+41. Avez-vous du mal à comprendre une règle sociale si personne ne l'a explicitement expliquée ?
+42. Avez-vous appris certaines règles sociales en observant et copiant les autres ?
+43. Les intentions indirectes sont-elles plus difficiles à comprendre que les demandes explicites ?
+44. Le sarcasme vous échappe-t-il parfois lorsque le ton ou le contexte ne sont pas évidents ?
+45. Prenez-vous parfois une phrase au sens littéral avant d'en comprendre le sous-entendu ?
+46. Avez-vous du mal avec certaines expressions figurées nouvelles ?
+47. Avez-vous du mal à savoir si quelqu'un plaisante ou parle sérieusement ?
+48. Avez-vous du mal à reconnaître qu'une personne flirte avec vous ?
+49. Avez-vous du mal à reconnaître qu'une personne vous manipule ou se moque subtilement de vous ?
+50. Avez-vous du mal à comprendre pourquoi une formulation factuellement correcte peut être socialement mal reçue ?
+51. Préférez-vous que les gens disent directement ce qu'ils pensent ou souhaitent ?
+52. Les messages ambigus ou sous-entendus vous stressent-ils parce que plusieurs interprétations sont possibles ?
+53. Avez-vous du mal à savoir comment vous comporter dans un nouveau groupe ?
+54. Observez-vous d'abord les autres avant de participer à une situation sociale inconnue ?
+55. Avez-vous du mal à entrer dans une conversation de groupe déjà commencée ?
+56. Avez-vous du mal à quitter poliment une conversation sans préparation ?
+57. Vous êtes-vous déjà aperçu longtemps après coup qu'une situation sociale signifiait autre chose que ce que vous aviez compris ?
+58. Avez-vous peu d'amis malgré le désir d'entretenir des relations ?
+59. Vos amitiés reposent-elles souvent sur un intérêt ou une activité commune précise ?
+60. Avez-vous du mal à entretenir une relation lorsqu'il n'existe plus de contexte commun régulier ?
+61. Oubliez-vous parfois qu'une relation nécessite des contacts réguliers même si vous tenez beaucoup à la personne ?
+62. Les groupes sociaux avec hiérarchies implicites vous paraissent-ils difficiles à comprendre ?
+63. Avez-vous souvent été décrit comme trop direct, naïf, distant ou inhabituellement formel ?
+64. Les malentendus sociaux sont-ils fréquents malgré de bonnes intentions de votre part ?
+65. Avez-vous souvent l'impression de devoir traduire mentalement le comportement social des autres ?
+
+THEME 4 : COMPORTEMENTS REPETITIFS ET AUTO-REGULATION (15 questions)
+
+66. Remuez-vous fréquemment les mains, doigts ou pieds de manière répétitive ?
+67. Manipulez-vous régulièrement un objet pour vous concentrer ou vous calmer ?
+68. Vous balancez-vous ou effectuez-vous d'autres mouvements rythmiques lorsque vous êtes seul ?
+69. Marchez-vous parfois de façon répétitive lorsque vous réfléchissez ou êtes excité ?
+70. Répétez-vous certains gestes parce que la sensation produite est agréable ?
+71. Répétez-vous parfois des mots, phrases ou sons entendus auparavant ?
+72. Utilisez-vous certaines phrases de manière répétitive dans des contextes similaires ?
+73. Aimez-vous répéter certains sons, mots ou séquences pour leur rythme ou leur sensation ?
+74. Certains mouvements répétitifs apparaissent-ils davantage lorsque vous êtes stressé ?
+75. Certains mouvements apparaissent-ils davantage lorsque vous êtes enthousiaste ou heureux ?
+76. Ces comportements vous aident-ils à réguler votre niveau d'activation ou vos émotions ?
+77. Cachez-vous certains de ces comportements en public ?
+78. Avez-vous remplacé avec l'âge des mouvements visibles par des mouvements plus discrets ?
+79. Être empêché de réaliser un comportement régulateur peut-il augmenter votre inconfort ?
+80. Vous sentez-vous plus libre d'effectuer ces comportements lorsque vous êtes seul ou en sécurité ?
+
+THEME 5 : ROUTINES, STABILITE ET CHANGEMENT (20 questions)
+
+81. Les changements de programme inattendus vous perturbent-ils fortement ?
+82. Préférez-vous connaître les détails d'une activité suffisamment à l'avance ?
+83. Un changement de dernière minute peut-il vous empêcher temporairement de réfléchir clairement ?
+84. Avez-vous besoin de temps pour vous adapter mentalement à un nouveau plan ?
+85. Avez-vous des routines quotidiennes qui vous procurent un sentiment important de stabilité ?
+86. Une modification imposée de ces routines crée-t-elle un inconfort disproportionné ?
+87. Préférez-vous utiliser les mêmes itinéraires lorsque cela est possible ?
+88. Préférez-vous souvent les mêmes places, objets, marques ou méthodes ?
+89. Avez-vous une manière précise d'effectuer certaines tâches ?
+90. Êtes-vous contrarié lorsque quelqu'un réalise une tâche familière d'une manière très différente de la vôtre ?
+91. L'ordre de certains objets est-il particulièrement important pour vous ?
+92. Êtes-vous perturbé si quelqu'un déplace vos affaires sans vous prévenir ?
+93. Les événements annulés au dernier moment peuvent-ils provoquer une détresse importante même si l'événement n'était pas particulièrement important ?
+94. Avez-vous du mal à passer d'une activité à une autre sans transition ?
+95. Avez-vous besoin de finir mentalement une action avant de commencer la suivante ?
+96. Les voyages ou journées inhabituelles nécessitent-ils beaucoup de préparation ?
+97. Les environnements dont les règles sont floues vous fatiguent-ils davantage ?
+98. Le fait de connaître précisément le déroulement d'une situation réduit-il fortement votre stress ?
+99. Mangez-vous souvent les mêmes aliments ou repas par confort de familiarité ?
+100. Recherchez-vous activement la prévisibilité même lorsque vous pourriez objectivement vous adapter au changement ?
+
+THEME 6 : INTERETS SPECIFIQUES, PROFONDEUR ET MONOTROPISME (15 questions)
+
+101. Certains sujets peuvent-ils capter une proportion très importante de votre attention ?
+102. Accumulez-vous beaucoup d'informations détaillées sur certains sujets ?
+103. Prenez-vous plaisir à approfondir un sujet bien au-delà de ce qui est nécessaire en pratique ?
+104. Pouvez-vous parler très longtemps d'un intérêt lorsque quelqu'un vous en donne l'occasion ?
+105. Avez-vous du mal à remarquer que votre interlocuteur n'est plus intéressé par le sujet ?
+106. Certains intérêts durent-ils plusieurs années ou reviennent-ils régulièrement ?
+107. Certains intérêts structurent-ils une partie importante de votre temps libre ?
+108. Vos intérêts vous procurent-ils une forte sensation de calme ou de récupération ?
+109. Vos intérêts participent-ils fortement à votre identité ?
+110. Êtes-vous très motivé pour partager des informations liées à vos intérêts avec les autres ?
+111. Avez-vous du mal à interrompre une activité liée à un intérêt lorsque vous êtes profondément absorbé ?
+112. Une interruption de cet intérêt peut-elle provoquer une frustration importante ?
+113. Avez-vous tendance à relier spontanément de nombreux sujets de conversation à vos intérêts principaux ?
+114. Votre expertise sur certains domaines contraste-t-elle avec des difficultés sur des tâches quotidiennes beaucoup plus simples ?
+115. Pouvez-vous concentrer votre attention très profondément sur peu de choses plutôt que légèrement sur beaucoup de choses ?
+
+THEME 7 : SENSORIALITE, HYPERREACTIVITE ET HYPOREACTIVITE (25 questions)
+
+116. Certains sons ordinaires vous paraissent-ils douloureux ou extrêmement agressifs ?
+117. Des sons répétitifs faibles peuvent-ils devenir impossibles à ignorer ?
+118. Avez-vous du mal à comprendre une conversation lorsqu'il existe plusieurs sources sonores simultanées ?
+119. Utilisez-vous des bouchons ou un casque pour contrôler votre environnement sonore ?
+120. Certaines lumières fortes ou certains néons vous gênent-ils fortement ?
+121. Êtes-vous perturbé par le scintillement que d'autres personnes semblent ne pas remarquer ?
+122. Les environnements visuellement très chargés vous fatiguent-ils rapidement ?
+123. Certaines textures de vêtements sont-elles très difficiles à supporter ?
+124. Les coutures, étiquettes ou matières de certains vêtements vous gênent-elles beaucoup ?
+125. Certaines formes de toucher léger vous dérangent-elles davantage qu'une pression forte ?
+126. Recherchez-vous au contraire certaines pressions, poids ou contacts physiques ?
+127. Certaines odeurs ordinaires vous paraissent-elles extrêmement fortes ?
+128. Remarquez-vous parfois des odeurs avant les autres personnes ?
+129. Certaines saveurs sont-elles particulièrement intenses pour vous ?
+130. Les textures alimentaires limitent-elles davantage votre alimentation que le goût lui-même ?
+131. Mélanger certaines textures alimentaires vous est-il difficile ?
+132. Êtes-vous particulièrement sensible au chaud ou au froid ?
+133. Vous arrive-t-il au contraire de remarquer tardivement que vous avez trop chaud ou trop froid ?
+134. Remarquez-vous parfois tardivement la faim ou la soif ?
+135. Votre perception de la douleur vous paraît-elle parfois plus forte ou plus faible que celle des autres ?
+136. Recherchez-vous certaines sensations vestibulaires comme vous balancer, tourner ou bouger ?
+137. Les lieux combinant bruit, lumière, odeurs et foule peuvent-ils provoquer une surcharge ?
+138. Pendant une surcharge sensorielle, votre capacité à parler ou réfléchir diminue-t-elle ?
+139. Après une forte stimulation sensorielle, avez-vous besoin de calme ou d'isolement pour récupérer ?
+140. Organisez-vous certaines parties de votre vie afin d'éviter les environnements sensoriels difficiles ?
+
+THEME 8 : ENFANCE ET HISTOIRE DEVELOPPEMENTALE (25 questions)
+
+141. Avant l'adolescence, aviez-vous déjà du mal à comprendre certaines règles sociales implicites ?
+142. Enfant, observiez-vous les autres pour comprendre comment participer à un jeu ou une interaction ?
+143. Préféreriez-vous souvent jouer seul ?
+144. Préféreriez-vous jouer avec un seul autre enfant plutôt qu'avec un groupe ?
+145. Aviez-vous du mal à rejoindre spontanément les jeux des autres ?
+146. Les jeux collectifs non structurés vous paraissaient-ils difficiles ?
+147. Aviez-vous des intérêts particulièrement intenses par rapport aux enfants de votre âge ?
+148. Accumuliez-vous beaucoup d'informations ou d'objets liés à ces intérêts ?
+149. Parliez-vous fréquemment de ces intérêts même lorsque les autres enfants ne partageaient pas votre enthousiasme ?
+150. Aviez-vous des habitudes ou rituels dont la modification était difficile ?
+151. Réagissiez-vous fortement à certains changements de programme ?
+152. Aviez-vous besoin que certaines activités se déroulent toujours de la même manière ?
+153. Certains vêtements étaient-ils insupportables à cause de leur texture ?
+154. Certains bruits ordinaires vous gênaient-ils beaucoup ?
+155. Aviez-vous une alimentation très limitée en raison des textures, odeurs ou goûts ?
+156. Effectuiez-vous des mouvements répétitifs lorsque vous étiez excité, stressé ou concentré ?
+157. Répétiez-vous certains mots, sons, phrases ou scènes ?
+158. Organisiez-vous des objets de manière répétitive ou très précise ?
+159. Étiez-vous parfois considéré comme trop littéral, naïf ou direct ?
+160. Aviez-vous du mal à savoir lorsqu'un autre enfant se moquait de vous ?
+161. Vous sentiez-vous différent des autres enfants sans comprendre clairement pourquoi ?
+162. Avez-vous subi de l'isolement ou du harcèlement en partie à cause de différences sociales ?
+163. Ces particularités existaient-elles avant une éventuelle anxiété sociale importante ?
+164. Un proche ayant connu votre enfance pourrait-il confirmer certaines de ces caractéristiques ?
+165. Des bulletins, vidéos, dossiers ou souvenirs familiaux apportent-ils des éléments concordants ?
+
+THEME 9 : CAMOUFLAGE, COMPENSATION ET ASSIMILATION (20 questions)
+
+166. Observez-vous attentivement les autres pour déterminer le comportement social attendu ?
+167. Copiez-vous certains gestes, expressions ou manières de parler ?
+168. Préparez-vous à l'avance des phrases pour des situations sociales prévisibles ?
+169. Répétez-vous mentalement une conversation avant qu'elle ait lieu ?
+170. Utilisez-vous des réponses sociales apprises même lorsqu'elles ne vous viennent pas spontanément ?
+171. Forcez-vous parfois un contact visuel afin de paraître plus conventionnel ?
+172. Pensez-vous consciemment à sourire ou modifier votre expression faciale ?
+173. Contrôlez-vous consciemment votre posture pendant certaines interactions ?
+174. Modifiez-vous votre ton ou votre vocabulaire pour ressembler davantage au groupe ?
+175. Cachez-vous certains mouvements répétitifs en public ?
+176. Cachez-vous l'intensité de certains intérêts ?
+177. Supportez-vous certaines stimulations sensorielles sans montrer votre inconfort ?
+178. Faites-vous semblant d'avoir compris une règle sociale alors que vous l'analysez encore ?
+179. Riez-vous parfois parce que les autres rient sans avoir immédiatement compris pourquoi ?
+180. Avez-vous construit des règles mentales précises pour gérer les situations sociales ?
+181. Avez-vous plusieurs manières de vous comporter selon les groupes auxquels vous appartenez ?
+182. Avez-vous parfois l'impression de jouer un personnage social ?
+183. Craignez-vous qu'en vous relâchant, les autres vous trouvent étrange ?
+184. Une journée socialement réussie peut-elle malgré tout vous épuiser fortement ?
+185. Avez-vous besoin de longues périodes seul pour récupérer après avoir beaucoup masqué vos réactions naturelles ?
+
+THEME 10 : RETENTISSEMENT ET BESOINS DE SOUTIEN (15 questions)
+
+186. Les difficultés de communication ont-elles un impact concret sur vos relations ?
+187. Les malentendus sociaux ont-ils déjà provoqué des conflits importants ?
+188. Avez-vous perdu ou évité des relations parce que leur gestion sociale était trop difficile ?
+189. Le travail en groupe vous coûte-t-il beaucoup plus d'énergie que le travail individuel ?
+190. Les attentes sociales du travail ou des études limitent-elles vos performances ?
+191. Les changements imprévus peuvent-ils désorganiser fortement votre journée ?
+192. Les difficultés sensorielles limitent-elles les lieux où vous pouvez rester confortablement ?
+193. Évitez-vous certaines activités à cause de leur environnement sensoriel ?
+194. Avez-vous besoin de routines pour maintenir un fonctionnement stable ?
+195. Le camouflage vous demande-t-il une énergie importante ?
+196. Avez-vous déjà traversé un épuisement prolongé après une période de fortes exigences sociales ou sensorielles ?
+197. Avez-vous besoin d'adaptations particulières au travail ou dans les études ?
+198. Vos besoins sont-ils parfois sous-estimés parce que vos difficultés sont peu visibles extérieurement ?
+199. L'effort nécessaire pour paraître adapté dépasse-t-il parfois l'effort nécessaire pour accomplir la tâche elle-même ?
+200. L'ensemble de ces particularités réduit-il significativement votre qualité de vie ou votre autonomie dans certains domaines ?
+
+THEME 11 : DIFFERENTIELS ET COMORBIDITES (25 questions)
+
+201. Vos difficultés sociales viennent-elles surtout d'une peur d'être jugé malgré une compréhension intuitive des codes sociaux ?
+202. Lorsque votre anxiété sociale diminue, les difficultés de décodage social restent-elles présentes ?
+203. Vos difficultés sociales existaient-elles avant l'apparition d'une anxiété importante ?
+204. Vos routines servent-elles principalement à empêcher qu'une catastrophe redoutée se produise ?
+205. Ressentez-vous des pensées intrusives indésirables que certains rituels cherchent à neutraliser ?
+206. Vos routines sont-elles plutôt recherchées pour leur prévisibilité que pour neutraliser une obsession ?
+207. Vos difficultés sociales ont-elles commencé seulement après un événement traumatique ?
+208. L'hypervigilance liée à un traumatisme explique-t-elle une grande partie de votre inconfort social ou sensoriel ?
+209. Vos difficultés à suivre une conversation viennent-elles principalement d'une distraction ou d'une impulsivité typique du TDAH ?
+210. Présentez-vous également des difficultés anciennes d'attention, organisation ou impulsivité compatibles avec un TDAH ?
+211. Vos intérêts intenses sont-ils stables et structurants plutôt que simplement nouveaux et stimulants ?
+212. Votre besoin de routine persiste-t-il même lorsque votre attention et votre organisation fonctionnent bien ?
+213. Avez-vous connu des épisodes distincts d'humeur anormalement élevée ou irritable avec forte augmentation d'énergie ?
+214. Vos particularités sociales sont-elles présentes en dehors de ces épisodes d'humeur ?
+215. Un état dépressif explique-t-il actuellement une grande partie de votre retrait social ?
+216. Vos différences sociales étaient-elles présentes avant vos épisodes dépressifs ?
+217. Avez-vous des difficultés importantes de langage ou d'apprentissage ayant influencé votre développement social ?
+218. Avez-vous un trouble de l'audition ou de la vision susceptible d'expliquer certaines difficultés de communication ?
+219. Une condition neurologique connue influence-t-elle votre communication ou votre sensorialité ?
+220. Des substances ou médicaments modifient-ils fortement vos expériences sensorielles ou sociales ?
+221. Vos difficultés sont-elles présentes dans plusieurs types de relations et environnements ?
+222. Les caractéristiques décrites forment-elles un profil relativement stable depuis le développement précoce ?
+223. Existe-t-il une autre condition psychiatrique connue qui explique mieux la majorité de ces caractéristiques ?
+224. Plusieurs conditions semblent-elles contribuer simultanément à votre profil plutôt qu'une seule explication ?
+225. Les traits décrits restent-ils présents lorsque votre sommeil, votre humeur et votre niveau de stress sont satisfaisants ?
+
+THEME 12 : INTEROCEPTION, ALEXITHYMIE ET FONCTIONS ASSOCIEES (15 questions)
+
+226. Avez-vous parfois du mal à identifier précisément l'émotion que vous ressentez ?
+227. Savez-vous parfois que quelque chose ne va pas sans réussir à nommer l'émotion correspondante ?
+228. Avez-vous besoin de temps pour comprendre pourquoi une situation vous a affecté ?
+229. Les sensations physiques et les émotions sont-elles parfois difficiles à distinguer ?
+230. Remarquez-vous parfois tardivement que vous avez faim ?
+231. Remarquez-vous parfois tardivement que vous avez soif ?
+232. Remarquez-vous parfois tardivement que vous avez besoin d'aller aux toilettes ?
+233. Remarquez-vous parfois votre fatigue seulement lorsqu'elle devient très importante ?
+234. Avez-vous du mal à reconnaître progressivement une surcharge avant d'atteindre votre limite ?
+235. Une émotion intense peut-elle rendre momentanément la parole plus difficile ?
+236. Une surcharge peut-elle réduire votre capacité à prendre des décisions ou organiser vos pensées ?
+237. Avez-vous besoin d'un environnement calme pour comprendre ce que vous ressentez ?
+238. Avez-vous du mal à passer rapidement d'un centre d'intérêt ou d'une tâche à un autre ?
+239. Votre attention peut-elle devenir très étroitement focalisée au point d'exclure le reste de votre environnement ?
+240. Avez-vous besoin d'un temps de récupération important après une surcharge sociale, cognitive ou sensorielle ?
+
+THEME 13 : CHRONICITE, CONTEXTES ET QUALITE DES PREUVES (10 questions)
+
+241. Pouvez-vous identifier des caractéristiques similaires à différentes périodes de votre vie ?
+242. Ces caractéristiques apparaissent-elles à la maison comme dans les contextes sociaux, scolaires ou professionnels ?
+243. Leur intensité varie-t-elle selon l'environnement sans qu'elles disparaissent complètement ?
+244. Une personne vous ayant connu enfant peut-elle fournir des exemples compatibles avec vos souvenirs ?
+245. Une personne qui vous connaît aujourd'hui observe-t-elle certaines de ces caractéristiques ?
+246. Des documents anciens apportent-ils des indices compatibles avec votre histoire développementale ?
+247. Pouvez-vous donner des exemples concrets de retentissement dans plusieurs domaines de vie ?
+248. Les stratégies de compensation expliquent-elles pourquoi certaines difficultés sont moins visibles aujourd'hui ?
+249. Les informations venant de votre vécu, de proches et de documents sont-elles globalement concordantes ?
+250. Le profil décrit est-il mieux compris comme ancien et développemental que comme un changement récent de votre personnalité ou fonctionnement ?

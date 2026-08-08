@@ -78,7 +78,7 @@ ajoutée au dépôt public avant accord et réception de la version autorisée.
 
 ## Conséquence pour le MegaTest V2
 
-Le fichier `mega_tests_TDAH_TSA_original_OSS_v2.txt` remplace le fichier de
+Le fichier `sources/mega-tests-v2.txt` remplace le fichier de
 travail précédent comme source canonique. Les anciens blocs ASRS-18 et WFIRS-S
 ont été remplacés par des formulations originales du projet.
 

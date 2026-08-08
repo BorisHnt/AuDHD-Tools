@@ -3,13 +3,17 @@ import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promi
 import { execFileSync } from "node:child_process";
 import { basename, join, resolve } from "node:path";
 import { tmpdir } from "node:os";
+import { conceptFor, coveragePolicy, dimensionFor, resultGroups, roleForDimension } from "./question-taxonomy.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const defaults = {
-  tests: resolve(root, "../../Docs Psy/mega_tests_TDAH_TSA_original_OSS_v2.txt"),
-  tdah: resolve(root, "Files/Documents/manuel_des_vagues_TDAH.odt"),
-  psychological: resolve(root, "../../Docs Psy/manuel_de_navigation_des_vagues_psychologiques.odt")
+  tests: resolve(root, "sources/mega-tests-v2.txt"),
+  tdah: resolve(root, "sources/manuel-vagues-tdah.odt"),
+  psychological: resolve(root, "sources/manuel-vagues-psychologiques.odt")
 };
+const dimensionsFile = JSON.parse(await readFile(resolve(root, "data/model/taxonomy-v1/dimensions.json"), "utf8"));
+const dimensions = dimensionsFile.dimensions;
+const dimensionMap = new Map(dimensions.map((dimension) => [dimension.id, dimension]));
 
 const args = Object.fromEntries(
   process.argv.slice(2).map((argument) => {
@@ -55,6 +59,7 @@ const responseScaleFor = (text) =>
 
 const parseTests = (text) => {
   const itemBank = new Map();
+  const conceptBank = new Map();
   const testManifests = [];
   let currentTest = null;
   let currentTheme = null;
@@ -98,17 +103,24 @@ const parseTests = (text) => {
     const identity = hash(`${currentTest.family}\u0000${questionText}`).slice(0, 14);
     const itemId = `${currentTest.family}-item-${identity}`;
     if (!itemBank.has(itemId)) {
-      const role = currentTheme.role;
+      const dimensionId = dimensionFor({ family: currentTest.family, themeTitle: currentTheme.titleFr, text: questionText });
+      const dimension = dimensionMap.get(dimensionId);
+      if (!dimension) throw new Error(`Dimension inconnue pour ${itemId}: ${dimensionId}`);
+      const concept = conceptFor(dimensionId, questionText, dimension.labelFr);
+      conceptBank.set(concept.id, concept);
+      const role = roleForDimension(dimensionId);
+      const scoringType = role === "differential" || role === "medical-context" ? "flag" : "direct";
       itemBank.set(itemId, {
         itemId,
         family: currentTest.family,
         textFr: questionText,
-        conceptId: `${currentTheme.id}.concept.${identity}`,
-        dimensionId: currentTheme.id,
+        conceptId: concept.id,
+        dimensionId,
+        contributions: scoringType === "flag" ? [] : [{ dimensionId, aggregation: "primary" }],
         role,
-        period: /avant 12 ans|enfance|enfant/i.test(questionText) ? "childhood" : "current-or-lifetime",
+        period: dimensionId.includes(".trajectory.childhood") || /avant 12 ans|enfance|enfant/i.test(questionText) ? "childhood" : "current-or-lifetime",
         responseScale: responseScaleFor(questionText),
-        scoring: role === "differential"
+        scoring: scoringType === "flag"
           ? { type: "flag", triggerAt: 3, addsDiagnosticPoints: false }
           : { type: "direct", minimum: 0, maximum: 4, validatedThreshold: null },
         source: {
@@ -117,7 +129,7 @@ const parseTests = (text) => {
           licenseStatus: "not-applicable",
           canonicalSourceId: "mega-tests-original-oss-v2"
         },
-        reviewStatus: "generated-theme-mapping-requires-clinical-review"
+        reviewStatus: "generated-concept-mapping-requires-clinical-review"
       });
     }
     currentTest.instances.push({
@@ -135,7 +147,7 @@ const parseTests = (text) => {
   }
 
   return {
-    schemaVersion: "1.0.0-draft",
+    schemaVersion: "1.1.0-draft",
     source: {
       fileName: basename(sources.tests),
       sha256: hash(text),
@@ -163,6 +175,10 @@ const parseTests = (text) => {
         ]
       }
     ],
+    resultGroups,
+    coveragePolicy,
+    dimensions,
+    concepts: [...conceptBank.values()],
     items: [...itemBank.values()],
     tests: testManifests
   };
@@ -181,6 +197,18 @@ const convertOdtToText = async (filePath, tempRoot) => {
     stdio: "ignore"
   });
   return readFile(join(tempRoot, basename(filePath, ".odt") + ".txt"), "utf8");
+};
+
+const parsePublicReferences = (text) => {
+  const appendixStart = text.indexOf("SOURCES PUBLIQUES");
+  if (appendixStart < 0) return [];
+  const appendix = text.slice(appendixStart);
+  return appendix.split(/\r?\n/).flatMap((line) => {
+    const match = line.trim().match(/^(S\d{2})\s+(.+?)\s+(https?:\/\/\S+)$/);
+    if (!match) return [];
+    const [, id, descriptionFr, url] = match;
+    return [{ id, descriptionFr: descriptionFr.trim(), url: url.replace(/[.)]+$/, "") }];
+  });
 };
 
 const parseWaveCollection = (text, collection) => {
@@ -250,6 +278,7 @@ const parseWaveCollection = (text, collection) => {
   return {
     ...publicCollection,
     source: { fileName: basename(sourcePath), sha256: hash(text) },
+    references: parsePublicReferences(text),
     modules: parsedModules
   };
 };

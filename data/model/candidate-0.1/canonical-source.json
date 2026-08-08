@@ -2,7 +2,7 @@
   "schemaVersion": "0.1.0",
   "sourceId": "mega-tests-original-oss-v2",
   "fileName": "mega_tests_TDAH_TSA_original_OSS_v2.txt",
-  "location": "external-source-provided-by-project-owner",
+  "location": "sources/mega-tests-v2.txt",
   "sha256": "bbbc7d6eb8148eb080f31d5a404910b89ab344ec0ad72c421785ebf1a787ae30",
   "verifiedAt": "2026-08-07",
   "status": "canonical",

@@ -130,8 +130,8 @@ const testsView = () => `
         <p>${test.size} questions · ${test.themes.length} thèmes</p>
         <p class="fine-print">Durée libre, aucune réponse obligatoire.</p>
         <div class="button-row">
-          ${existing ? `<a class="button primary" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(existing.id)}`)}">Reprendre</a>` : `<button class="button primary" data-action="start-test" data-test-id="${test.id}">Commencer</button>`}
-          <button class="button ghost" data-action="start-test" data-test-id="${test.id}">Nouveau</button>
+          ${existing ? `<a class="button primary" href="${siteUrl(`tests/questionnaire.html?session=${encodeURIComponent(existing.id)}`)}" aria-label="Reprendre ${escapeHtml(test.titleFr)}">Reprendre</a>` : `<button class="button primary" data-action="start-test" data-test-id="${test.id}" aria-label="Commencer ${escapeHtml(test.titleFr)}">Commencer</button>`}
+          <button class="button ghost" data-action="start-test" data-test-id="${test.id}" aria-label="Créer une nouvelle session ${escapeHtml(test.titleFr)}">Nouveau</button>
         </div>
       </article>`;
 }).join("")}
@@ -158,7 +158,7 @@ const testRunnerView = (sessionId) => {
     return `
     <section class="test-runner">
       <div class="runner-topline"><a href="${siteUrl("tests/")}">← Quitter et reprendre plus tard</a><span>${answered}/${test.size} traitées</span></div>
-      <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="${test.size}" aria-valuenow="${cursor + 1}"><span style="width:${((cursor + 1) / test.size) * 100}%"></span></div>
+      <div class="progress" role="progressbar" aria-label="Progression dans ${escapeHtml(test.titleFr)}" aria-valuetext="Question ${cursor + 1} sur ${test.size}" aria-valuemin="1" aria-valuemax="${test.size}" aria-valuenow="${cursor + 1}"><span style="width:${((cursor + 1) / test.size) * 100}%"></span></div>
       <p class="eyebrow">${escapeHtml(test.titleFr)} · question ${cursor + 1} sur ${test.size}</p>
       <p class="theme-label">${escapeHtml(theme?.titleFr || "")}</p>
       <h1 class="question">${escapeHtml(item.textFr)}</h1>
@@ -185,7 +185,34 @@ const resultsView = (sessionId) => {
     const test = testsData?.tests.find((candidate) => candidate.id === session.testId);
     if (!test)
         return notFoundView("Ce questionnaire est introuvable.");
-    const { results, flags, counts } = scoreTest(session, test, testsData);
+    const { results, flags, counts, coveragePolicy } = scoreTest(session, test, testsData);
+    const groupDescriptions = {
+        index: "Indices issus des concepts explorés par vos réponses.",
+        impact: "Retentissement déclaré dans la vie quotidienne, présenté séparément des caractéristiques centrales.",
+        associated: "Caractéristiques associées : elles décrivent le contexte sans renforcer un indice central.",
+        context: "Éléments d’interprétation à mettre en regard du profil ; ils ne constituent pas une probabilité diagnostique."
+    };
+    const renderDimensionResult = (result) => {
+        const coverage = result.applicableConcepts
+            ? `${result.answeredConcepts}/${result.applicableConcepts} concepts applicables`
+            : "Aucun concept applicable";
+        const state = {
+            "not-explored": "Non explorée dans cette version",
+            "flags-only": "Points à discuter uniquement — aucun indice",
+            "not-applicable": "Non applicable",
+            insufficient: "Données insuffisantes"
+        }[result.status];
+        return `<article class="result-row result-${result.status}">
+          <div><h3>${escapeHtml(result.titleFr)}</h3><p>Couverture conceptuelle : ${coverage}</p></div>
+          ${result.status === "sufficient"
+            ? `<div class="score" aria-label="Indice descriptif ${(result.normalized * 4).toFixed(1)} sur 4"><div class="score-track" aria-hidden="true"><span style="width:${result.normalized * 100}%"></span></div><strong>${(result.normalized * 4).toFixed(1)} / 4</strong></div>`
+            : `<span class="result-state">${state}</span>`}
+        </article>`;
+    };
+    const groups = (testsData?.resultGroups || [])
+        .map((group) => ({ ...group, results: results.filter((result) => result.group === group.id) }))
+        .filter((group) => group.results.length)
+        .sort((left, right) => left.order - right.order);
     return `
     <section class="page-heading">
       <p class="eyebrow">Synthèse descriptive</p>
@@ -199,12 +226,13 @@ const resultsView = (sessionId) => {
       <div><strong>${counts["not-applicable"]}</strong><span>non applicables</span></div>
       <div><strong>${test.size - Object.keys(session.answers).length + counts.skipped}</strong><span>sans réponse</span></div>
     </section>
-    <section class="results-list" aria-label="Indices par thème">
-      ${results.map((result) => `<article class="result-row">
-        <div><h2>${escapeHtml(result.titleFr)}</h2><p>Couverture informative : ${result.answered}/${result.applicable} questions applicables</p></div>
-        ${result.normalized === null ? `<span class="insufficient">Données insuffisantes</span>` : `<div class="score"><div class="score-track"><span style="width:${result.normalized * 100}%"></span></div><strong>${(result.normalized * 4).toFixed(1)} / 4</strong></div>`}
-      </article>`).join("")}
-    </section>
+    <div class="notice calm coverage-notice"><strong>Affichage prudent :</strong> ${escapeHtml(coveragePolicy.descriptionFr)}</div>
+    <div class="result-groups" aria-label="Profil descriptif par catégories">
+      ${groups.map((group) => `<section class="result-group result-group-${group.presentation}" aria-labelledby="result-group-${group.id}">
+        <header><p class="result-group-kind">${group.presentation === "index" ? "Indice descriptif" : "Éclairage séparé"}</p><h2 id="result-group-${group.id}">${escapeHtml(group.labelFr)}</h2><p>${escapeHtml(groupDescriptions[group.presentation] || groupDescriptions.context)}</p></header>
+        <div class="results-list">${group.results.map(renderDimensionResult).join("")}</div>
+      </section>`).join("")}
+    </div>
     ${flags.length ? `<section class="flags"><h2>Points à explorer avec un professionnel</h2><p>Ces réponses ne produisent aucun point TDAH ou TSA.</p><ul>${flags.map((flag) => `<li>${escapeHtml(flag.textFr)} — <strong>${escapeHtml(flag.answer)}</strong></li>`).join("")}</ul></section>` : ""}
   `;
 };
@@ -246,7 +274,7 @@ const wavesView = () => {
     ${groups.map((group) => `<section class="wave-group" id="wave-group-${group.id}"><h2>${group.label}</h2><div class="module-grid">
       ${modules.filter((entry) => entry.category === group.id).map(({ collection, module }) => `<article class="module-card" data-wave-card data-search="${escapeHtml(`${module.titleFr} ${collection.titleFr}`.toLowerCase())}">
         <p class="tag">${escapeHtml(collection.titleFr)}</p><h3>${escapeHtml(module.titleFr)}</h3><p>5 fiches : comprendre, avant, pendant, après et prévenir.</p>
-        <div class="button-row"><a class="button primary" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=during`)}">Gérer maintenant</a><a class="button ghost" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}`)}">Voir les 5 fiches</a></div>
+        <div class="button-row"><a class="button primary" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=during&mode=crisis`)}">Gérer maintenant</a><a class="button ghost" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}`)}">Voir les 5 fiches</a></div>
       </article>`).join("")}
     </div></section>`).join("")}
   `;
@@ -281,9 +309,38 @@ const renderWaveLine = (page, line, lineIndex, episode) => {
         return `<h3 class="content-heading">${escapeHtml(line)}</h3>`;
     if (/^(AVANT TOUT|SIGNAL DE SÉCURITÉ|DÉCLENCHEUR DU PLAN)/.test(line))
         return `<p class="safety-line">${escapeHtml(line)}</p>`;
-    if (/^(Repères publics|PASSAGE À L’ÉTAPE SUIVANTE|CONCLUSION DU MODULE)/.test(line))
+    if (/^Repères publics/.test(line))
+        return `<p class="fine-print content-note">Les sources publiques utilisées pour cette fiche sont détaillées ci-dessous.</p>`;
+    if (/^(PASSAGE À L’ÉTAPE SUIVANTE|CONCLUSION DU MODULE)/.test(line))
         return `<p class="fine-print content-note">${escapeHtml(line)}</p>`;
     return `<p>${escapeHtml(line)}</p>`;
+};
+const pageReferences = (page, collection) => {
+    const ids = [...new Set(page.contentLines.flatMap((line) => line.match(/S\d{2}/g) || []))];
+    return ids.flatMap((id) => {
+        const reference = collection.references?.find((candidate) => candidate.id === id);
+        return reference ? [reference] : [];
+    });
+};
+const crisisModeView = (collection, module, page, episode) => {
+    const protocol = page.contentLines.flatMap((line) => {
+        const cells = line.split("\t").map((cell) => cell.trim()).filter(Boolean);
+        return /^\d+$/.test(cells[0]) && cells.length >= 3
+            ? [{ number: cells[0], action: cells[1], instruction: cells.slice(2).join(" — ") }]
+            : [];
+    }).slice(0, 5);
+    const fullUrl = `fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=during${episode ? `&episode=${encodeURIComponent(episode.id)}` : ""}`;
+    return `<section class="crisis-mode" aria-labelledby="crisis-title">
+      <p class="eyebrow">Mode crise · ${escapeHtml(collection.titleFr)}</p>
+      <h1 id="crisis-title">${escapeHtml(module.titleFr)}</h1>
+      <p class="crisis-intro">Une ligne à la fois. Faites seulement l’action qui est devant vous.</p>
+      <a class="button danger crisis-danger" href="${siteUrl("securite/")}">Danger, intention, perte de contrôle ou symptôme inquiétant</a>
+      <ol class="crisis-protocol">
+        ${protocol.map((step) => `<li><span>${escapeHtml(step.number)}</span><div><strong>${escapeHtml(step.action)}</strong><p>${escapeHtml(step.instruction)}</p></div></li>`).join("")}
+      </ol>
+      <div class="button-row"><a class="button primary" href="${siteUrl(fullUrl)}">Afficher et remplir le protocole complet</a><a class="button ghost" href="${siteUrl("fiches/")}">Changer de vague</a></div>
+      <p class="fine-print">Ce mode d’auto-aide ne remplace pas une aide humaine ou urgente.</p>
+    </section>`;
 };
 const waveModuleView = (collectionId, moduleId, query) => {
     const { collection, module } = findWave(collectionId, moduleId);
@@ -295,7 +352,10 @@ const waveModuleView = (collectionId, moduleId, query) => {
     const page = module.pages.find((candidate) => candidate.phase === phase) || module.pages[0];
     if (!page)
         return notFoundView("Cette fiche est introuvable.");
+    if (query.get("mode") === "crisis")
+        return crisisModeView(collection, module, page, episode);
     const filledPageIds = episode ? Object.entries(episode.answers).filter(([, fields]) => Object.values(fields).some((value) => value !== "" && value !== false)).map(([id]) => id) : [];
+    const references = pageReferences(page, collection);
     return `
     <section class="page-heading module-heading">
       <p class="eyebrow">${escapeHtml(collection.titleFr)} · module ${module.number}</p>
@@ -303,6 +363,7 @@ const waveModuleView = (collectionId, moduleId, query) => {
       <div class="button-row">
         ${episode ? `<span class="session-badge">Épisode du ${escapeHtml(formatDate(episode.startedAt))}</span>` : `<button class="button primary" data-action="new-wave-episode" data-collection-id="${collection.id}" data-module-id="${module.id}" data-phase="${page.phase}">Commencer un épisode</button>`}
         ${episode ? `<button class="button ghost" data-action="new-wave-episode" data-collection-id="${collection.id}" data-module-id="${module.id}" data-phase="${page.phase}">Nouvel épisode</button>` : ""}
+        <a class="button primary" href="${siteUrl(`fiches/module.html?collection=${encodeURIComponent(collection.id)}&module=${encodeURIComponent(module.id)}&phase=during&mode=crisis${episode ? `&episode=${encodeURIComponent(episode.id)}` : ""}`)}">Mode crise</a>
         <a class="button danger ghost" href="${siteUrl("securite/")}">Plan de sécurité</a>
       </div>
     </section>
@@ -313,6 +374,7 @@ const waveModuleView = (collectionId, moduleId, query) => {
       <div class="sheet-heading"><p class="eyebrow">Fiche ${page.number} sur 5</p><h2>${escapeHtml(page.phaseLabelFr)}</h2></div>
       ${!episode && page.phase !== "understand" ? `<div class="notice warning">Commencez un épisode pour remplir et sauvegarder cette fiche.</div>` : ""}
       <div class="sheet-content">${page.contentLines.map((line, index) => renderWaveLine(page, line, index, episode)).join("")}</div>
+      ${references.length ? `<details class="source-panel"><summary>Sources publiques de cette fiche (${references.length})</summary><ul>${references.map((reference) => `<li><a href="${escapeHtml(reference.url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml(reference.id)}</strong> — ${escapeHtml(reference.descriptionFr)}</a></li>`).join("")}</ul></details>` : ""}
       ${episode ? `<label class="wave-field notes"><span>Notes personnelles pour cette fiche</span><textarea rows="4" data-wave-field data-episode-id="${episode.id}" data-page-id="${page.id}" data-field-id="notes">${escapeHtml(episode.answers[page.id]?.notes || "")}</textarea></label>` : ""}
     </section>
     ${episode ? `<section class="export-panel"><div><h2>Exporter cet épisode</h2><p>Choisissez les fiches à inclure dans le PDF.</p></div><div class="export-pages">${module.pages.map((candidate) => `<label><input type="checkbox" name="wave-export-page" value="${candidate.id}" ${filledPageIds.includes(candidate.id) || candidate.id === page.id ? "checked" : ""}/> ${escapeHtml(candidate.phaseLabelFr)}</label>`).join("")}</div><button class="button primary" data-action="export-wave-pdf" data-episode-id="${episode.id}">Générer le PDF</button></section>` : ""}
