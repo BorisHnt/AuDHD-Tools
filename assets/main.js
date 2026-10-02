@@ -9,8 +9,8 @@ if (!app)
     throw new Error("Conteneur d’application introuvable.");
 const pageId = document.body.dataset.page || "home";
 localStorage.setItem("audhd-tools:language", language);
-const base = new URL(document.body.dataset.root || "./", document.baseURI).href;
-const assetsBase = new URL(document.body.dataset.assetsRoot || document.body.dataset.root || "./", document.baseURI).href;
+const assetsBase = new URL("../", import.meta.url).href;
+const base = new URL(`${language}/`, assetsBase).href;
 const siteUrl = (path = "") => new URL(path.replace(/^\/+/, ""), base).href;
 const loadJson = async (path) => {
     const response = await fetch(new URL(path, assetsBase));
