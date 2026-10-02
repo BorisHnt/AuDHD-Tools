@@ -1,20 +1,16 @@
-const CACHE_NAME = "audhd-tools-shell-v7";
+const CACHE_NAME = "audhd-tools-shell-v8";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./tests/",
-  "./tests/questionnaire.html",
-  "./tests/resultats.html",
-  "./fiches/",
-  "./fiches/module.html",
-  "./documents/",
-  "./reglages/",
-  "./confidentialite/",
-  "./securite/",
+  "./fr/", "./fr/tests/", "./fr/tests/questionnaire.html", "./fr/tests/resultats.html",
+  "./fr/fiches/", "./fr/fiches/module.html", "./fr/documents/", "./fr/reglages/", "./fr/confidentialite/", "./fr/securite/",
+  "./en/", "./en/tests/", "./en/tests/questionnaire.html", "./en/tests/resultats.html",
+  "./en/fiches/", "./en/fiches/module.html", "./en/documents/", "./en/reglages/", "./en/confidentialite/", "./en/securite/",
   "./manifest.webmanifest",
   "./icon.svg",
   "./assets/styles.css",
   "./assets/main.js",
+  "./assets/i18n.js",
   "./assets/pdf.js",
   "./assets/result-guidance.js",
   "./assets/portable.js",
@@ -24,7 +20,10 @@ const APP_SHELL = [
   "./assets/fonts/LiberationSans-Regular.ttf",
   "./assets/fonts/LiberationSans-Bold.ttf",
   "./site-data/tests.json",
-  "./site-data/waves.json"
+  "./site-data/waves.json",
+  "./site-data/en/tests.json",
+  "./site-data/en/waves.json",
+  "./site-data/en/ui.json"
 ];
 
 self.addEventListener("install", (event) => {

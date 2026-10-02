@@ -1,7 +1,7 @@
 # AuDHD Tools
 
-Site statique francophone d’auto-observation pour les personnes concernées par
-le TDAH, le TSA ou l’AuDHD.
+Site statique bilingue (français et anglais) d’auto-observation pour les
+personnes concernées par le TDAH, le TSA ou l’AuDHD.
 
 ## Technologie
 
@@ -14,17 +14,16 @@ Le site publié est entièrement en Vanilla :
 - aucune compilation, aucun framework et aucune dépendance npm ;
 - jsPDF est embarqué localement dans `assets/vendor` pour les exports PDF.
 
-Les principales URL sont :
+La racine `/` choisit la langue enregistrée ou celle du navigateur. Les pages
+existent sous `/fr/` et `/en/` :
 
-- `/` : accueil ;
-- `/tests/` : questionnaires ;
-- `/tests/questionnaire.html` : remplissage d’un questionnaire ;
-- `/tests/resultats.html` : synthèse et PDF ;
-- `/fiches/` : sommaire des 30 modules ;
-- `/fiches/module.html` : cinq fiches d’un module ;
-- `/documents/` : tests et fiches locales exportables en PDF ;
-- `/reglages/` : accessibilité et fichiers `.AuDHD` ;
-- `/confidentialite/` et `/securite/`.
+- `/fr/` et `/en/` : accueils localisés ;
+- `/{lang}/tests/` : questionnaires ;
+- `/{lang}/tests/questionnaire.html` : remplissage d’un questionnaire ;
+- `/{lang}/tests/resultats.html` : synthèse et PDF ;
+- `/{lang}/fiches/` et `/{lang}/fiches/module.html` : modules et fiches ;
+- `/{lang}/documents/`, `/{lang}/reglages/`, `/{lang}/confidentialite/` et
+  `/{lang}/securite/`.
 
 ## Fonctionnalités
 
@@ -90,6 +89,17 @@ Les chemins peuvent être remplacés avec :
 - `AUDHD_TESTS_SOURCE` ;
 - `AUDHD_TDAH_WAVES_SOURCE` ;
 - `AUDHD_PSYCH_WAVES_SOURCE`.
+
+Les enveloppes HTML bilingues sont régénérées avec :
+
+```bash
+node scripts/generate-localized-pages.mjs
+```
+
+Les traductions anglaises versionnées se trouvent dans `site-data/en/`. Les
+scripts `translate-content.mjs` et `translate-interface.mjs` permettent de
+recréer une première traduction à l’aide de Google Translate ; une relecture
+humaine spécialisée reste recommandée après toute régénération.
 
 ## Validation des données
 

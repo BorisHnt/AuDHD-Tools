@@ -3,13 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./assets/styles.css" />
     <title>Page introuvable — AuDHD Tools</title>
+    <script>
+      (() => {
+        const localized = window.location.pathname.match(/^(.*)\/(fr|en)(?:\/|$)/);
+        if (localized) return window.location.replace(`${localized[1]}/${localized[2]}/`);
+        const saved = localStorage.getItem("audhd-tools:language");
+        const language = saved === "en" || saved === "fr" ? saved : navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+        const parts = window.location.pathname.split("/").filter(Boolean);
+        const base = parts.length > 1 ? `/${parts[0]}` : "";
+        window.location.replace(`${base}/${language}/`);
+      })();
+    </script>
   </head>
-  <body data-page="not-found" data-root="./">
-    <a class="skip-link" href="#main-content">Aller au contenu</a>
-    <div id="app" aria-live="polite"></div>
-    <script type="module" src="./assets/main.js"></script>
+  <body>
+    <p>Redirection… / Redirecting…</p>
   </body>
 </html>

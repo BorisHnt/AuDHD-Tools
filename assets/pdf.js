@@ -1,5 +1,6 @@
 import { answerLabel, scoreTest } from "./scoring.js";
 import { dimensionDescription, groupGuidance, methodSummary, resultStateLabels } from "./result-guidance.js";
+import { locale, localizePdfDocument } from "./i18n.js";
 
 const colors = {
     ink: [28, 35, 51], muted: [87, 101, 121], blue: [54, 89, 162], blueSoft: [235, 240, 250],
@@ -40,7 +41,7 @@ const createPdf = async () => {
         throw new Error("Le générateur PDF n’est pas chargé sur cette page.");
     const doc = new jsPDF({ unit: "mm", format: "a4", putOnlyUsedFonts: true, compress: true });
     await registerFonts(doc);
-    return doc;
+    return localizePdfDocument(doc);
 };
 const safeSlug = (value) => value
     .normalize("NFD")
@@ -200,7 +201,7 @@ const exportTestReport = async (session, test, data, complete) => {
     const scored = scoreTest(session, test, data);
     const { results, flags, counts, coveragePolicy } = scored;
     const treated = counts.value + counts.unknown + counts["not-applicable"];
-    writer.write(`Session commencée le ${new Date(session.startedAt).toLocaleString("fr-FR")} · exportée le ${new Date().toLocaleString("fr-FR")} · ${treated}/${test.size} questions traitées.`, { size: 8.5, color: colors.muted, gap: 4 });
+    writer.write(`Session commencée le ${new Date(session.startedAt).toLocaleString(locale)} · exportée le ${new Date().toLocaleString(locale)} · ${treated}/${test.size} questions traitées.`, { size: 8.5, color: colors.muted, gap: 4 });
     writer.callout("Outil d’auto-évaluation descriptif. Ce document ne constitue pas un diagnostic médical et ne présente aucune probabilité diagnostique validée.", "warning");
     writer.heading("Profil descriptif", "blue");
     const pageOneGroups = data.resultGroups
@@ -300,7 +301,8 @@ export const exportTestSummaryPdf = (session, test, data) => exportTestReport(se
 export const exportTestPdf = (session, test, data) => exportTestReport(session, test, data, true);
 
 const waveSectionPattern = /^(Cycle typique|Déclencheurs fréquents|Manifestations possibles|Mes signes|Vulnérabilités|Feu tricolore|Mes règles|Protocole immédiat|Menu de régulation|À suspendre|Critères de sortie|Ligne du temps|Questions d’analyse|Réparation|Cinq piliers|Entraînement hebdomadaire|Indicateurs personnels|Mon plan|Quand demander)/i;
-const waveFieldKey = (lineIndex, optionIndex, label) => `${lineIndex}-${optionIndex}:${label.slice(0, 42)}`;
+const waveFieldKey = (lineIndex, optionIndex) => `${lineIndex}-${optionIndex}`;
+const waveFieldValue = (values, key) => values[key] ?? Object.entries(values).find(([candidate]) => candidate.startsWith(`${key}:`))?.[1];
 const extractWaveEntries = (episode, module) => module.pages.map((page) => {
     const values = episode.answers[page.id] || {};
     const entries = [];
@@ -314,7 +316,7 @@ const extractWaveEntries = (episode, module) => module.pages.map((page) => {
         if (trimmed.includes("[ ]")) {
             const options = trimmed.split("[ ]").map((part) => part.trim()).filter(Boolean);
             options.forEach((label, optionIndex) => {
-                if (values[waveFieldKey(lineIndex, optionIndex, label)] === true)
+                if (waveFieldValue(values, waveFieldKey(lineIndex, optionIndex)) === true)
                     entries.push({ type: "choice", section, label, value: "Oui" });
             });
             return;
@@ -323,7 +325,7 @@ const extractWaveEntries = (episode, module) => module.pages.map((page) => {
         if (!isField)
             return;
         const label = /\.{4,}/.test(trimmed) ? trimmed.replace(/\.{4,}/g, "").replace(/\s+/g, " ").trim() || "Réponse" : trimmed;
-        const value = values[waveFieldKey(lineIndex, 0, label)];
+        const value = waveFieldValue(values, waveFieldKey(lineIndex, 0));
         if (value !== undefined && String(value).trim())
             entries.push({ type: "text", section, label, value: String(value).trim() });
     });
@@ -358,7 +360,7 @@ export const exportWaveCrisisCard = async (episode, collection, module) => {
     setText(17, true, colors.paper);
     doc.text(doc.splitTextToSize(module.titleFr, width - 10).slice(0, 2), margin, 20);
     setText(8, false, colors.muted);
-    doc.text(`Épisode du ${new Date(episode.startedAt).toLocaleString("fr-FR")} · carte générée le ${new Date().toLocaleString("fr-FR")}`, margin, 45);
+    doc.text(`Épisode du ${new Date(episode.startedAt).toLocaleString(locale)} · carte générée le ${new Date().toLocaleString(locale)}`, margin, 45);
     let y = 54;
     const sectionTitle = (text) => {
         setText(9, true, colors.teal);
@@ -426,7 +428,7 @@ export const exportWaveEpisodeReport = async (episode, collection, module) => {
     const extracted = extractWaveEntries(episode, module);
     const filled = extracted.filter((group) => group.entries.length);
     const entryCount = filled.reduce((sum, group) => sum + group.entries.length, 0);
-    writer.write(`Épisode commencé le ${new Date(episode.startedAt).toLocaleString("fr-FR")} · dernière modification le ${new Date(episode.updatedAt).toLocaleString("fr-FR")} · export le ${new Date().toLocaleString("fr-FR")}.`, { size: 8.5, color: colors.muted, gap: 4 });
+    writer.write(`Épisode commencé le ${new Date(episode.startedAt).toLocaleString(locale)} · dernière modification le ${new Date(episode.updatedAt).toLocaleString(locale)} · export le ${new Date().toLocaleString(locale)}.`, { size: 8.5, color: colors.muted, gap: 4 });
     writer.callout("Ce rapport reprend uniquement les informations personnelles renseignées. Les champs vides et les consignes génériques sont volontairement masqués.", "info");
     writer.heading("Résumé de l’épisode", "blue");
     writer.write(`${filled.length} phase${filled.length > 1 ? "s" : ""} documentée${filled.length > 1 ? "s" : ""} · ${entryCount} information${entryCount > 1 ? "s" : ""} personnelle${entryCount > 1 ? "s" : ""}.`, { bold: true });
@@ -499,7 +501,7 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
         setText(8.5, true, colors.paper);
         doc.text(phaseLabel, pageWidth - margin, 12, { align: "right" });
         setText(7.5, false, colors.muted);
-        doc.text(`Épisode : ${new Date(episode.startedAt).toLocaleString("fr-FR")}  ·  Export : ${exportedAt.toLocaleString("fr-FR")}`, margin, 42);
+        doc.text(`Épisode : ${new Date(episode.startedAt).toLocaleString(locale)}  ·  Export : ${exportedAt.toLocaleString(locale)}`, margin, 42);
         y = 49;
     };
     const continueSheet = () => {
@@ -577,8 +579,8 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
         ensureSpace(rowHeight + 1);
         options.forEach((label, optionIndex) => {
             const x = margin + (optionIndex % 2) * (columnWidth + gap);
-            const fieldId = `${lineIndex}-${optionIndex}:${label.slice(0, 42)}`;
-            const checked = values[fieldId] === true;
+            const fieldId = waveFieldKey(lineIndex, optionIndex);
+            const checked = waveFieldValue(values, fieldId) === true;
             doc.setLineWidth(0.45);
             doc.setDrawColor(...(checked ? colors.teal : colors.muted));
             doc.setFillColor(...(checked ? colors.teal : colors.paper));
@@ -595,8 +597,8 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
         y += rowHeight + 0.8;
     };
     const answerField = (label, lineIndex, values) => {
-        const fieldId = `${lineIndex}-0:${label.slice(0, 42)}`;
-        const answer = values[fieldId];
+        const fieldId = waveFieldKey(lineIndex, 0);
+        const answer = waveFieldValue(values, fieldId);
         const labelLines = split(label, contentWidth, 8.4, true);
         const empty = answer === undefined || answer === "";
         if (empty) {

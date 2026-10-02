@@ -3,17 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Outils privés d’auto-observation pour les personnes concernées par le TDAH, le TSA ou l’AuDHD." />
     <meta name="theme-color" content="#f7f7f2" />
-    <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./assets/styles.css" />
     <title>AuDHD Tools</title>
+    <script>
+      (() => {
+        const saved = localStorage.getItem("audhd-tools:language");
+        const language = saved === "en" || saved === "fr" ? saved : navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+        window.location.replace(`./${language}/`);
+      })();
+    </script>
   </head>
-  <body data-page="home" data-root="./">
-    <a class="skip-link" href="#main-content">Aller au contenu</a>
-    <div id="app" aria-live="polite"></div>
-    <noscript>Ce site a besoin de JavaScript pour les formulaires interactifs et la génération locale des PDF.</noscript>
-    <script type="module" src="./assets/main.js"></script>
+  <body>
+    <main class="empty-state">
+      <h1>AuDHD Tools</h1>
+      <p><a class="button primary" href="./fr/">Français</a> <a class="button secondary" href="./en/">English</a></p>
+    </main>
   </body>
 </html>

@@ -3,14 +3,17 @@ import { createPortableFile, downloadText, readPortableFile } from "./portable.j
 import { dimensionDescription, groupGuidance, methodSummary, resultStateLabels } from "./result-guidance.js";
 import { scoreTest } from "./scoring.js";
 import { clearAllLocalData, createTestSession, createWaveEpisode, getState, getStorageConsent, getTestSession, getWaveEpisode, isPersistent, replaceState, setStorageConsent, updatePreferences, updateTestSession, updateWaveField } from "./store.js";
+import { counterpartUrl, language, locale, setTranslations, tr, translatePage } from "./i18n.js";
 const app = document.querySelector("#app");
 if (!app)
     throw new Error("Conteneur d’application introuvable.");
 const pageId = document.body.dataset.page || "home";
+localStorage.setItem("audhd-tools:language", language);
 const base = new URL(document.body.dataset.root || "./", document.baseURI).href;
+const assetsBase = new URL(document.body.dataset.assetsRoot || document.body.dataset.root || "./", document.baseURI).href;
 const siteUrl = (path = "") => new URL(path.replace(/^\/+/, ""), base).href;
 const loadJson = async (path) => {
-    const response = await fetch(new URL(path, base));
+    const response = await fetch(new URL(path, assetsBase));
     if (!response.ok)
         throw new Error(`Chargement impossible (${response.status}) : ${path}`);
     return response.json();
@@ -20,13 +23,23 @@ const needsTests = ["tests", "test", "results", "documents"].includes(pageId)
     || (pageId === "home" && stateAtLoad.testSessions.length > 0);
 const needsWaves = ["waves", "wave-module", "documents"].includes(pageId);
 let loadError = null;
-const [testsData, wavesData] = await Promise.all([
-    needsTests ? loadJson("site-data/tests.json") : null,
-    needsWaves ? loadJson("site-data/waves.json") : null
+const [testsData, wavesData, uiTranslations] = await Promise.all([
+    needsTests ? loadJson(language === "en" ? "site-data/en/tests.json" : "site-data/tests.json") : null,
+    needsWaves ? loadJson(language === "en" ? "site-data/en/waves.json" : "site-data/waves.json") : null,
+    language === "en" ? loadJson("site-data/en/ui.json") : {}
 ]).catch((error) => {
     loadError = error;
-    return [null, null];
+    return [null, null, {}];
 });
+setTranslations(uiTranslations);
+if (language === "en") {
+    const nativeAlert = window.alert.bind(window);
+    const nativeConfirm = window.confirm.bind(window);
+    const nativePrompt = window.prompt.bind(window);
+    window.alert = (message) => nativeAlert(tr(String(message)));
+    window.confirm = (message) => nativeConfirm(tr(String(message)));
+    window.prompt = (message, defaultValue) => nativePrompt(tr(String(message)), defaultValue);
+}
 const itemMap = new Map(testsData?.items.map((item) => [item.itemId, item]) || []);
 const scaleMap = new Map(testsData?.responseScales.map((scale) => [scale.id, scale]) || []);
 const escapeHtml = (value) => String(value ?? "")
@@ -35,7 +48,7 @@ const escapeHtml = (value) => String(value ?? "")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
-const formatDate = (value) => new Date(value).toLocaleString("fr-FR", {
+const formatDate = (value) => new Date(value).toLocaleString(locale, {
     dateStyle: "medium",
     timeStyle: "short"
 });
@@ -65,6 +78,7 @@ const layout = (content) => `
       <a href="${siteUrl("documents/")}">Mes documents</a>
       <a href="${siteUrl("reglages/")}" aria-label="Réglages">Réglages</a>
     </nav>
+    <label class="language-picker"><span class="sr-only">Langue</span><select id="language-select" aria-label="Langue"><option value="fr" ${language === "fr" ? "selected" : ""}>Français</option><option value="en" ${language === "en" ? "selected" : ""}>English</option></select></label>
   </header>
   <main id="main-content" tabindex="-1">${content}</main>
   <footer>
@@ -250,13 +264,13 @@ const resultsView = (sessionId) => {
 };
 const waveCategory = (title) => {
     const value = title.toLowerCase();
-    if (/attachement|jalous|limérence|rejet|relation|honte|culpabil|impost|colère|auto-dévalorisation/.test(value))
+    if (/attachement|jalous|limérence|rejet|relation|honte|culpabil|impost|colère|auto-dévalorisation|attachment|jealous|limerence|rejection|relation|shame|guilt|deception|impostor|anger|self-devaluation|self-punishment/.test(value))
         return "relations";
-    if (/rumination|intrusive|certitude|angoisse|panique|nocturne|insomnie/.test(value))
+    if (/rumination|intrusive|certitude|angoisse|panique|nocturne|insomnie|certainty|anxiety|panic|night|insomnia/.test(value))
         return "thoughts";
-    if (/frustration|ennui|tâche|exécutif|impulsion|hyperfocus|temps|retard/.test(value))
+    if (/frustration|ennui|tâche|exécutif|impulsion|hyperfocus|temps|retard|boredom|task|executive|impulse|temporal|delay/.test(value))
         return "action";
-    if (/autistique|épuisement|burn-out|dépressive/.test(value))
+    if (/autistique|épuisement|burn-out|dépressive|autistic|exhaustion|burnout|depressive/.test(value))
         return "overload";
     return "mixed";
 };
@@ -298,24 +312,25 @@ const findWave = (collectionId, moduleId) => {
 const filledWavePageIds = (episode) => Object.entries(episode.answers)
     .filter(([, fields]) => Object.values(fields).some((value) => value !== "" && value !== false))
     .map(([id]) => id);
-const waveFieldId = (lineIndex, optionIndex, label) => `${lineIndex}-${optionIndex}:${label.slice(0, 42)}`;
+const waveFieldId = (lineIndex, optionIndex) => `${lineIndex}-${optionIndex}`;
+const waveFieldValue = (values, fieldId) => values[fieldId] ?? Object.entries(values).find(([key]) => key.startsWith(`${fieldId}:`))?.[1];
 const renderWaveLine = (page, line, lineIndex, episode) => {
     const values = episode?.answers[page.id] || {};
     if (line.includes("[ ]")) {
         const options = line.split("[ ]").map((part) => part.trim()).filter(Boolean);
         return `<div class="check-grid">${options.map((label, optionIndex) => {
-            const fieldId = waveFieldId(lineIndex, optionIndex, label);
-            return `<label class="check-option"><input type="checkbox" data-wave-field data-episode-id="${episode?.id || ""}" data-page-id="${page.id}" data-field-id="${escapeHtml(fieldId)}" ${values[fieldId] === true ? "checked" : ""} ${episode ? "" : "disabled"}/><span>${escapeHtml(label)}</span></label>`;
+            const fieldId = waveFieldId(lineIndex, optionIndex);
+            return `<label class="check-option"><input type="checkbox" data-wave-field data-episode-id="${episode?.id || ""}" data-page-id="${page.id}" data-field-id="${escapeHtml(fieldId)}" ${waveFieldValue(values, fieldId) === true ? "checked" : ""} ${episode ? "" : "disabled"}/><span>${escapeHtml(label)}</span></label>`;
         }).join("")}</div>`;
     }
     if (/\.{4,}/.test(line)) {
         const label = line.replace(/\.{4,}/g, "").replace(/\s+/g, " ").trim() || "Réponse";
-        const fieldId = waveFieldId(lineIndex, 0, label);
-        return `<label class="wave-field"><span>${escapeHtml(label)}</span><textarea rows="2" data-wave-field data-episode-id="${episode?.id || ""}" data-page-id="${page.id}" data-field-id="${escapeHtml(fieldId)}" ${episode ? "" : "disabled"}>${escapeHtml(values[fieldId] || "")}</textarea></label>`;
+        const fieldId = waveFieldId(lineIndex, 0);
+        return `<label class="wave-field"><span>${escapeHtml(label)}</span><textarea rows="2" data-wave-field data-episode-id="${episode?.id || ""}" data-page-id="${page.id}" data-field-id="${escapeHtml(fieldId)}" ${episode ? "" : "disabled"}>${escapeHtml(waveFieldValue(values, fieldId) || "")}</textarea></label>`;
     }
     if ((page.phase === "after" || page.phase === "before") && line.trim().endsWith("?")) {
-        const fieldId = waveFieldId(lineIndex, 0, line);
-        return `<label class="wave-field"><span>${escapeHtml(line)}</span><textarea rows="2" data-wave-field data-episode-id="${episode?.id || ""}" data-page-id="${page.id}" data-field-id="${escapeHtml(fieldId)}" ${episode ? "" : "disabled"}>${escapeHtml(values[fieldId] || "")}</textarea></label>`;
+        const fieldId = waveFieldId(lineIndex, 0);
+        return `<label class="wave-field"><span>${escapeHtml(line)}</span><textarea rows="2" data-wave-field data-episode-id="${episode?.id || ""}" data-page-id="${page.id}" data-field-id="${escapeHtml(fieldId)}" ${episode ? "" : "disabled"}>${escapeHtml(waveFieldValue(values, fieldId) || "")}</textarea></label>`;
     }
     const cells = line.split("\t").map((cell) => cell.trim()).filter(Boolean);
     if (cells.length > 1)
@@ -507,6 +522,7 @@ const render = () => {
     else
         content = notFoundView();
     app.innerHTML = layout(content);
+    translatePage(app);
 };
 document.addEventListener("click", async (event) => {
     const target = event.target.closest("[data-action]");
@@ -615,7 +631,7 @@ document.addEventListener("click", async (event) => {
 document.addEventListener("input", (event) => {
     const target = event.target;
     if (target.id === "wave-search") {
-        const query = target.value.trim().toLocaleLowerCase("fr");
+        const query = target.value.trim().toLocaleLowerCase(locale);
         let visible = 0;
         document.querySelectorAll("[data-wave-card]").forEach((card) => {
             const matches = !query || card.dataset.search?.includes(query);
@@ -633,6 +649,11 @@ document.addEventListener("input", (event) => {
 });
 document.addEventListener("change", async (event) => {
     const target = event.target;
+    if (target.id === "language-select") {
+        localStorage.setItem("audhd-tools:language", target.value);
+        window.location.href = counterpartUrl(target.value);
+        return;
+    }
     if (target.id === "protect-export") {
         const fields = document.querySelector("#password-fields");
         if (fields)
@@ -676,5 +697,5 @@ document.addEventListener("change", async (event) => {
 });
 render();
 if ("serviceWorker" in navigator && /^https?:$/.test(window.location.protocol)) {
-    window.addEventListener("load", () => navigator.serviceWorker.register(`${base}sw.js`));
+    window.addEventListener("load", () => navigator.serviceWorker.register(`${assetsBase}sw.js`));
 }

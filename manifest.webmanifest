@@ -1,8 +1,7 @@
 {
   "name": "AuDHD Tools",
   "short_name": "AuDHD Tools",
-  "description": "Outils privés d’auto-observation TDAH, TSA et AuDHD.",
-  "lang": "fr",
+  "description": "Outils privés d’auto-observation / Private ADHD, autism and AuDHD self-observation tools.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f7f7f2",
