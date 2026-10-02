@@ -1,6 +1,6 @@
 import { answerLabel, scoreTest } from "./scoring.js";
 import { dimensionDescription, groupGuidance, methodSummary, resultStateLabels } from "./result-guidance.js";
-import { locale, localizePdfDocument } from "./i18n.js";
+import { language, locale, localizePdfDocument } from "./i18n.js";
 
 const colors = {
     ink: [28, 35, 51], muted: [87, 101, 121], blue: [54, 89, 162], blueSoft: [235, 240, 250],
@@ -295,7 +295,8 @@ const exportTestReport = async (session, test, data, complete) => {
     }
     writer.finalize(`${test.titleFr} · AuDHD Tools · rapport descriptif`);
     writer.doc.setProperties({ title: `${test.titleFr} — ${complete ? "rapport complet" : "rapport synthétique"}`, subject: "Auto-évaluation descriptive", author: "AuDHD Tools", creator: "AuDHD Tools" });
-    writer.doc.save(`${safeSlug(test.titleFr)}_${complete ? "complet" : "synthese"}_${timestamp(new Date(session.startedAt))}.pdf`);
+    const reportKind = language === "en" ? (complete ? "full" : "summary") : (complete ? "complet" : "synthese");
+    writer.doc.save(`${safeSlug(test.titleFr)}_${reportKind}_${timestamp(new Date(session.startedAt))}.pdf`);
 };
 export const exportTestSummaryPdf = (session, test, data) => exportTestReport(session, test, data, false);
 export const exportTestPdf = (session, test, data) => exportTestReport(session, test, data, true);
@@ -420,7 +421,7 @@ export const exportWaveCrisisCard = async (episode, collection, module) => {
     setText(10, true, colors.ink);
     doc.text("15 ou 112 · 3114 · rejoindre une aide humaine et ne pas rester isolé", margin + 5, safetyY + 13);
     doc.setProperties({ title: `${module.titleFr} — carte de crise`, subject: "Carte personnelle de crise", author: "AuDHD Tools", creator: "AuDHD Tools" });
-    doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_carte-crise_${timestamp(new Date(episode.startedAt))}.pdf`);
+    doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_${language === "en" ? "crisis-card" : "carte-crise"}_${timestamp(new Date(episode.startedAt))}.pdf`);
 };
 
 export const exportWaveEpisodeReport = async (episode, collection, module) => {
@@ -462,7 +463,7 @@ export const exportWaveEpisodeReport = async (episode, collection, module) => {
     writer.callout("En cas de danger immédiat ou de perte de contrôle : 15 ou 112. En France, le 3114 répond gratuitement 24 h/24 pour la prévention du suicide.", "danger");
     writer.finalize(`${module.titleFr} · ${collection.titleFr} · rapport d’épisode`);
     writer.doc.setProperties({ title: `${module.titleFr} — rapport d’épisode`, subject: "Rapport personnel d’auto-observation", author: "AuDHD Tools", creator: "AuDHD Tools" });
-    writer.doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_rapport-episode_${timestamp(new Date(episode.startedAt))}.pdf`);
+    writer.doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_${language === "en" ? "episode-report" : "rapport-episode"}_${timestamp(new Date(episode.startedAt))}.pdf`);
 };
 
 export const exportWavePdf = async (episode, collection, module, selectedPageIds) => {
@@ -732,5 +733,5 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
         author: "AuDHD Tools",
         creator: "AuDHD Tools"
     });
-    doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_fiches-imprimables_${timestamp(new Date(episode.startedAt))}.pdf`);
+    doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_${language === "en" ? "printable-worksheets" : "fiches-imprimables"}_${timestamp(new Date(episode.startedAt))}.pdf`);
 };

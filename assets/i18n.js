@@ -2,7 +2,11 @@ export const language = document.body.dataset.lang === "en" ? "en" : "fr";
 export const locale = language === "en" ? "en-GB" : "fr-FR";
 
 let dictionary = {};
-export const setTranslations = (translations = {}) => { dictionary = translations; };
+let dictionaryLower = {};
+export const setTranslations = (translations = {}) => {
+  dictionary = translations;
+  dictionaryLower = Object.fromEntries(Object.entries(translations).map(([key, value]) => [key.toLocaleLowerCase("fr"), value]));
+};
 
 const builtinEnglish = {
   "Accueil AuDHD Tools": "AuDHD Tools home",
@@ -31,6 +35,9 @@ const builtinEnglish = {
   "Voir la synthèse": "View summary",
   "Je ne sais pas": "I don’t know",
   "Non applicable": "Not applicable",
+  "non applicables": "not applicable",
+  "Affichage prudent :": "Cautious display:",
+  "Aucun concept applicable": "No applicable concepts",
   "Affichage": "Display",
   "Normale": "Normal",
   "Grande": "Large",
@@ -47,7 +54,9 @@ const builtinEnglish = {
   "Fichiers sensibles": "Sensitive files",
   "Persistance actuelle :": "Current storage:",
   "sauvegarde locale autorisée": "local storage enabled",
+  "sauvegarde locale autorisée.": "local storage enabled.",
   "session temporaire limitée à cet onglet": "temporary session limited to this tab",
+  "session temporaire limitée à cet onglet.": "temporary session limited to this tab.",
   "Sécurité prioritaire": "Safety first",
   "Dire": "Tell someone",
   "S’éloigner": "Move away",
@@ -65,6 +74,7 @@ const builtinEnglish = {
   "Profil descriptif": "Descriptive profile",
   "Rapport d’épisode": "Episode report",
   "Fiches imprimables": "Printable worksheets",
+  "Fiches remplies": "Completed worksheets",
   "Choisir une fiche": "Choose a worksheet",
   "Gérer maintenant": "Manage it now",
   "Voir les 5 fiches": "View all 5 worksheets",
@@ -77,12 +87,59 @@ const builtinEnglish = {
   "Nouvel épisode": "New episode",
   "Commencer un épisode": "Start an episode",
   "Réponse": "Answer",
-  "Réglages": "Settings"
+  "Réglages": "Settings",
+  "Passée pour l’instant": "Skipped for now",
+  "Aucun état actuel renseigné dans la fiche Pendant la vague.": "No current status has been entered in the During the wave worksheet.",
+  "15 ou 112 · 3114 · rejoindre une aide humaine et ne pas rester isolé": "15 or 112 · 3114 · reach a trusted person and do not remain alone",
+  "Sélectionnez au moins une fiche.": "Select at least one worksheet.",
+  "Aucune fiche remplie à exporter.": "There are no completed worksheets to export.",
+  "Ce fichier est protégé. Saisissez son mot de passe :": "This file is protected. Enter its password:",
+  "Import impossible.": "Could not import the file."
 };
+const builtinEnglishLower = Object.fromEntries(Object.entries(builtinEnglish).map(([key, value]) => [key.toLocaleLowerCase("fr"), value]));
+
+const translateEmbeddedFrench = (text) => [
+  [/Rapport complet \+ réponses/gi, "Full report + answers"],
+  [/Rapport synthétique/gi, "Summary report"],
+  [/Rapport d’épisode/gi, "Episode report"],
+  [/rapport descriptif/gi, "descriptive report"],
+  [/Session commencée le/gi, "Session started on"],
+  [/Épisode commencé le/gi, "Episode started on"],
+  [/dernière modification le/gi, "last updated on"],
+  [/exportée le/gi, "exported on"],
+  [/export le/gi, "exported on"],
+  [/carte générée le/gi, "card generated on"],
+  [/questions traitées/gi, "questions answered"],
+  [/Réponses calculables/gi, "Scorable answers"],
+  [/Je ne sais pas/gi, "I don’t know"],
+  [/Non applicables/gi, "Not applicable"],
+  [/Sans réponse/gi, "Unanswered"],
+  [/Contexte/gi, "Context"],
+  [/Traitement contextuel/gi, "Contextual processing"],
+  [/réponses analysées/gi, "answers analysed"],
+  [/Réponse\s*:/gi, "Answer:"],
+  [/à discuter/gi, "to discuss"],
+  [/cette version contient moins de/gi, "this version contains fewer than"],
+  [/concepts distincts/gi, "distinct concepts"],
+  [/Non explorée dans cette version/gi, "Not explored in this version"],
+  [/Fiche (\d+)\/5/gi, "Worksheet $1/5"],
+  [/Épisode\s*:/gi, "Episode:"],
+  [/Notes personnelles/gi, "Personal notes"],
+  [/Sources publiques/gi, "Public sources"],
+  [/phase documentée/gi, "documented phase"],
+  [/phases documentées/gi, "documented phases"],
+  [/informations personnelles/gi, "personal details"],
+  [/information personnelle/gi, "personal detail"],
+  [/\bsuite\b/gi, (match) => match === match.toLocaleUpperCase("fr") ? "CONTINUED" : "continued"],
+  [/ÉTAT ET REPÈRES RENSEIGNÉS/gi, "RECORDED STATUS AND MARKERS"],
+  [/MAINTENANT — UNE ACTION À LA FOIS/gi, "NOW — ONE ACTION AT A TIME"],
+  [/MES REPÈRES OU OUTILS CHOISIS/gi, "MY SELECTED MARKERS OR TOOLS"]
+].reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), text);
 
 const dynamicEnglish = (text) => {
   const rules = [
     [/^Commencer (.+)$/, "Start $1"],
+    [/^Reprendre la fiche du (.+)$/, "Resume the worksheet from $1"],
     [/^Reprendre (.+)$/, "Resume $1"],
     [/^Créer une nouvelle session (.+)$/, "Create a new $1 session"],
     [/^Progression dans (.+)$/, "$1 progress"],
@@ -92,6 +149,10 @@ const dynamicEnglish = (text) => {
     [/^(.+) · question (\d+) sur (\d+)$/, "$1 · question $2 of $3"],
     [/^Question (\d+) sur (\d+)$/, "Question $1 of $2"],
     [/^(\d+) réponses analysées · (\d+) éléments? à discuter$/, "$1 answers analysed · $2 item(s) to discuss"],
+    [/^Non calculé dans (.+) : moins de (\d+) concepts distincts$/, "Not calculated in $1: fewer than $2 distinct concepts"],
+    [/^Traitement contextuel : (\d+)\/(\d+) réponses analysées · (\d+) éléments? à discuter$/, "Contextual processing: $1/$2 answers analysed · $3 item(s) to discuss"],
+    [/^Couverture conceptuelle : Aucun concept applicable$/, "Concept coverage: no applicable concepts"],
+    [/^Couverture conceptuelle : (.+)$/, "Concept coverage: $1"],
     [/^(\d+)\/(\d+) concepts applicables$/, "$1/$2 applicable concepts"],
     [/^Voir le détail des concepts \((\d+)\)$/, "View concept details ($1)"],
     [/^(\d+)\/(\d+) formulations?$/, "$1/$2 wordings"],
@@ -101,6 +162,10 @@ const dynamicEnglish = (text) => {
     [/^Fiche (\d+) sur 5$/, "Worksheet $1 of 5"],
     [/^Sources publiques de cette fiche \((\d+)\)$/, "Public sources for this worksheet ($1)"],
     [/^(\d+) questions traitées · commencé le (.+)$/, "$1 questions answered · started $2"],
+    [/^(\d+)\/(\d+) questions traitées · commencé le (.+)$/, "$1/$2 questions answered · started $3"],
+    [/^Générer le rapport synthétique (.+) du (.+)$/, "Generate the $1 summary report from $2"],
+    [/^Générer le rapport complet (.+) du (.+)$/, "Generate the $1 full report from $2"],
+    [/^Réponse : (.+)$/, "Answer: $1"],
     [/^(\d+) fiches? remplies? · (.+)$/, "$1 completed worksheet(s) · $2"]
   ];
   for (const [pattern, replacement] of rules)
@@ -111,7 +176,12 @@ const dynamicEnglish = (text) => {
 export const tr = (value) => {
   if (language !== "en" || typeof value !== "string") return value;
   const text = value.replace(/\s+/g, " ").trim();
-  return builtinEnglish[text] || dictionary[text] || dynamicEnglish(text);
+  const exact = builtinEnglish[text] || dictionary[text];
+  if (exact) return exact;
+  const lower = text.toLocaleLowerCase("fr");
+  const insensitive = builtinEnglishLower[lower] || dictionaryLower[lower];
+  if (insensitive) return text === text.toLocaleUpperCase("fr") ? insensitive.toLocaleUpperCase("en") : insensitive;
+  return translateEmbeddedFrench(dynamicEnglish(text));
 };
 
 const translateTextNode = (node) => {
