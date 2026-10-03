@@ -1,6 +1,6 @@
 # AuDHD Tools
 
-Site statique bilingue (français et anglais) d’auto-observation pour les
+Site statique multilingue (français, anglais et russe en bêta) d’auto-observation pour les
 personnes concernées par le TDAH, le TSA ou l’AuDHD.
 
 ## Technologie
@@ -15,9 +15,9 @@ Le site publié est entièrement en Vanilla :
 - jsPDF est embarqué localement dans `assets/vendor` pour les exports PDF.
 
 La racine `/` choisit la langue enregistrée ou celle du navigateur. Les pages
-existent sous `/fr/` et `/en/` :
+existent sous `/fr/`, `/en/` et `/ru/` :
 
-- `/fr/` et `/en/` : accueils localisés ;
+- `/fr/`, `/en/` et `/ru/` : accueils localisés ;
 - `/{lang}/tests/` : questionnaires ;
 - `/{lang}/tests/questionnaire.html` : remplissage d’un questionnaire ;
 - `/{lang}/tests/resultats.html` : synthèse et PDF ;
@@ -90,16 +90,25 @@ Les chemins peuvent être remplacés avec :
 - `AUDHD_TDAH_WAVES_SOURCE` ;
 - `AUDHD_PSYCH_WAVES_SOURCE`.
 
-Les enveloppes HTML bilingues sont régénérées avec :
+Les enveloppes HTML localisées sont régénérées avec :
 
 ```bash
 node scripts/generate-localized-pages.mjs
 ```
 
-Les traductions anglaises versionnées se trouvent dans `site-data/en/`. Les
+Les traductions anglaises et russes versionnées se trouvent dans
+`site-data/en/` et `site-data/ru/`. Les
 scripts `translate-content.mjs` et `translate-interface.mjs` permettent de
 recréer une première traduction à l’aide de Google Translate ; une relecture
 humaine spécialisée reste recommandée après toute régénération.
+
+```bash
+node scripts/translate-content.mjs en
+node scripts/translate-interface.mjs en
+node scripts/translate-content.mjs ru
+node scripts/translate-interface.mjs ru
+node scripts/annotate-wave-structure.mjs
+```
 
 ## Validation des données
 

@@ -6,10 +6,11 @@
     <title>Page introuvable — AuDHD Tools</title>
     <script>
       (() => {
-        const localized = window.location.pathname.match(/^(.*)\/(fr|en)(?:\/|$)/);
+        const localized = window.location.pathname.match(/^(.*)\/(fr|en|ru)(?:\/|$)/);
         if (localized) return window.location.replace(`${localized[1]}/${localized[2]}/`);
         const saved = localStorage.getItem("audhd-tools:language");
-        const language = saved === "en" || saved === "fr" ? saved : navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+        const browserLanguage = navigator.language.toLowerCase();
+        const language = ["fr", "en", "ru"].includes(saved) ? saved : browserLanguage.startsWith("fr") ? "fr" : browserLanguage.startsWith("ru") ? "ru" : "en";
         const parts = window.location.pathname.split("/").filter(Boolean);
         const base = parts.length > 1 ? `/${parts[0]}` : "";
         window.location.replace(`${base}/${language}/`);

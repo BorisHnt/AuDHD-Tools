@@ -24,15 +24,15 @@ const needsTests = ["tests", "test", "results", "documents"].includes(pageId)
 const needsWaves = ["waves", "wave-module", "documents"].includes(pageId);
 let loadError = null;
 const [testsData, wavesData, uiTranslations] = await Promise.all([
-    needsTests ? loadJson(language === "en" ? "site-data/en/tests.json" : "site-data/tests.json") : null,
-    needsWaves ? loadJson(language === "en" ? "site-data/en/waves.json" : "site-data/waves.json") : null,
-    language === "en" ? loadJson("site-data/en/ui.json") : {}
+    needsTests ? loadJson(language === "fr" ? "site-data/tests.json" : `site-data/${language}/tests.json`) : null,
+    needsWaves ? loadJson(language === "fr" ? "site-data/waves.json" : `site-data/${language}/waves.json`) : null,
+    language === "fr" ? {} : loadJson(`site-data/${language}/ui.json`)
 ]).catch((error) => {
     loadError = error;
     return [null, null, {}];
 });
 setTranslations(uiTranslations);
-if (language === "en") {
+if (language !== "fr") {
     const nativeAlert = window.alert.bind(window);
     const nativeConfirm = window.confirm.bind(window);
     const nativePrompt = window.prompt.bind(window);
@@ -78,7 +78,7 @@ const layout = (content) => `
       <a href="${siteUrl("documents/")}">Mes documents</a>
       <a href="${siteUrl("reglages/")}" aria-label="Réglages">Réglages</a>
     </nav>
-    <label class="language-picker"><span class="sr-only">Langue</span><select id="language-select" aria-label="Langue"><option value="fr" ${language === "fr" ? "selected" : ""}>Français</option><option value="en" ${language === "en" ? "selected" : ""}>English</option></select></label>
+    <label class="language-picker"><span class="sr-only">Langue</span><select id="language-select" aria-label="Langue"><option value="fr" ${language === "fr" ? "selected" : ""}>Français</option><option value="en" ${language === "en" ? "selected" : ""}>English</option><option value="ru" ${language === "ru" ? "selected" : ""}>Русский (Beta)</option></select></label>
   </header>
   <main id="main-content" tabindex="-1">${content}</main>
   <footer>
@@ -262,18 +262,23 @@ const resultsView = (sessionId) => {
     <details class="method-panel"><summary>Méthode de calcul et informations à transmettre</summary><p>${escapeHtml(methodSummary)}</p><p><strong>Questionnaire :</strong> ${escapeHtml(test.titleFr)} · <strong>début :</strong> ${escapeHtml(formatDate(session.startedAt))} · <strong>traitées :</strong> ${treated}/${test.size}.</p><p>Pour une consultation, le PDF complet ajoute toutes les questions, les réponses brutes et les points à explorer. Il reste utile d’apporter des exemples précis, des éléments de l’enfance et, si possible, le regard d’un proche ou des documents anciens.</p></details>
   `;
 };
-const waveCategory = (title) => {
-    const value = title.toLowerCase();
-    if (/attachement|jalous|limérence|rejet|relation|honte|culpabil|impost|colère|auto-dévalorisation|attachment|jealous|limerence|rejection|relation|shame|guilt|deception|impostor|anger|self-devaluation|self-punishment/.test(value))
-        return "relations";
-    if (/rumination|intrusive|certitude|angoisse|panique|nocturne|insomnie|certainty|anxiety|panic|night|insomnia/.test(value))
-        return "thoughts";
-    if (/frustration|ennui|tâche|exécutif|impulsion|hyperfocus|temps|retard|boredom|task|executive|impulse|temporal|delay/.test(value))
-        return "action";
-    if (/autistique|épuisement|burn-out|dépressive|autistic|exhaustion|burnout|depressive/.test(value))
-        return "overload";
-    return "mixed";
-};
+const waveCategories = new Map([
+    ["tdah-waves-module-00", "mixed"], ["tdah-waves-module-01", "action"], ["tdah-waves-module-02", "relations"],
+    ["tdah-waves-module-03", "relations"], ["tdah-waves-module-04", "action"], ["tdah-waves-module-05", "action"],
+    ["tdah-waves-module-06", "action"], ["tdah-waves-module-07", "action"], ["tdah-waves-module-08", "action"],
+    ["tdah-waves-module-09", "thoughts"], ["psychological-waves-module-00", "mixed"],
+    ["psychological-waves-module-01", "relations"], ["psychological-waves-module-02", "relations"],
+    ["psychological-waves-module-03", "relations"], ["psychological-waves-module-04", "thoughts"],
+    ["psychological-waves-module-05", "thoughts"], ["psychological-waves-module-06", "thoughts"],
+    ["psychological-waves-module-07", "thoughts"], ["psychological-waves-module-08", "relations"],
+    ["psychological-waves-module-09", "relations"], ["psychological-waves-module-10", "relations"],
+    ["psychological-waves-module-11", "relations"], ["psychological-waves-module-12", "overload"],
+    ["psychological-waves-module-13", "overload"], ["psychological-waves-module-14", "action"],
+    ["psychological-waves-module-15", "action"], ["psychological-waves-module-16", "overload"],
+    ["psychological-waves-module-17", "relations"], ["psychological-waves-module-18", "relations"],
+    ["psychological-waves-module-19", "thoughts"]
+]);
+const waveCategory = (module) => waveCategories.get(module.id) || "mixed";
 const wavesView = () => {
     const groups = [
         { id: "mixed", label: "Je ne sais pas / vagues mixtes" },
@@ -282,7 +287,7 @@ const wavesView = () => {
         { id: "thoughts", label: "Pensées et anxiété" },
         { id: "overload", label: "Surcharge et épuisement" }
     ];
-    const modules = wavesData?.collections.flatMap((collection) => collection.modules.map((module) => ({ collection, module, category: waveCategory(module.titleFr) }))) || [];
+    const modules = wavesData?.collections.flatMap((collection) => collection.modules.map((module) => ({ collection, module, category: waveCategory(module) }))) || [];
     return `
     <section class="page-heading waves-heading">
       <p class="eyebrow">30 modules · 150 fiches</p>
@@ -316,6 +321,7 @@ const waveFieldId = (lineIndex, optionIndex) => `${lineIndex}-${optionIndex}`;
 const waveFieldValue = (values, fieldId) => values[fieldId] ?? Object.entries(values).find(([key]) => key.startsWith(`${fieldId}:`))?.[1];
 const renderWaveLine = (page, line, lineIndex, episode) => {
     const values = episode?.answers[page.id] || {};
+    const lineKind = page.lineKinds?.[lineIndex];
     if (line.includes("[ ]")) {
         const options = line.split("[ ]").map((part) => part.trim()).filter(Boolean);
         return `<div class="check-grid">${options.map((label, optionIndex) => {
@@ -335,13 +341,13 @@ const renderWaveLine = (page, line, lineIndex, episode) => {
     const cells = line.split("\t").map((cell) => cell.trim()).filter(Boolean);
     if (cells.length > 1)
         return `<div class="content-row">${cells.map((cell) => `<span>${escapeHtml(cell)}</span>`).join("")}</div>`;
-    if (/^(Protocole immédiat|Menu de régulation|À suspendre|Critères de sortie|Questions d’analyse|Ligne du temps|Réparation|Mes signes|Vulnérabilités|Feu tricolore|Mon plan|Quand demander|Cycle typique|Déclencheurs fréquents|Manifestations possibles|Cinq piliers)/i.test(line))
+    if (lineKind === "heading" || lineKind === "protocol-heading" || /^(Protocole immédiat|Menu de régulation|À suspendre|Critères de sortie|Questions d’analyse|Ligne du temps|Réparation|Mes signes|Vulnérabilités|Feu tricolore|Mon plan|Quand demander|Cycle typique|Déclencheurs fréquents|Manifestations possibles|Cinq piliers)/i.test(line))
         return `<h3 class="content-heading">${escapeHtml(line)}</h3>`;
-    if (/^(AVANT TOUT|SIGNAL DE SÉCURITÉ|DÉCLENCHEUR DU PLAN)/.test(line))
+    if (lineKind === "safety" || /^(AVANT TOUT|SIGNAL DE SÉCURITÉ|DÉCLENCHEUR DU PLAN)/.test(line))
         return `<p class="safety-line">${escapeHtml(line)}</p>`;
-    if (/^Repères publics/.test(line))
+    if (lineKind === "references" || /^Repères publics/.test(line))
         return `<p class="fine-print content-note">Les sources publiques utilisées pour cette fiche sont détaillées ci-dessous.</p>`;
-    if (/^(PASSAGE À L’ÉTAPE SUIVANTE|CONCLUSION DU MODULE)/.test(line))
+    if (lineKind === "note" || /^(PASSAGE À L’ÉTAPE SUIVANTE|CONCLUSION DU MODULE)/.test(line))
         return `<p class="fine-print content-note">${escapeHtml(line)}</p>`;
     return `<p>${escapeHtml(line)}</p>`;
 };
@@ -410,12 +416,15 @@ const waveModuleView = (collectionId, moduleId, query) => {
     ${episode ? `<section class="export-panel"><div><h2>Exporter cet épisode</h2><p>Trois documents pour trois usages différents.</p></div><div class="export-format-actions"><button class="button danger ghost" data-action="export-wave-crisis-card" data-episode-id="${episode.id}">Carte de crise · 1 page</button><button class="button primary" data-action="export-wave-report" data-episode-id="${episode.id}">Rapport de l’épisode</button></div><details class="printable-export"><summary>Fiches complètes imprimables</summary><p class="fine-print">Inclut les consignes et laisse des lignes pour les champs vides.</p><div class="export-pages">${module.pages.map((candidate) => `<label><input type="checkbox" name="wave-export-page" value="${candidate.id}" ${filledPageIds.includes(candidate.id) || candidate.id === page.id ? "checked" : ""}/> ${escapeHtml(candidate.phaseLabelFr)}</label>`).join("")}</div><button class="button secondary" data-action="export-wave-pdf" data-episode-id="${episode.id}">Générer les fiches sélectionnées</button></details></section>` : ""}
   `;
 };
+const safetyEmergencyButtons = () => language === "ru"
+    ? `<a class="button danger" href="tel:112">Позвонить 112</a><a class="button secondary" href="tel:103">Позвонить 103</a><a class="button ghost" href="tel:+74959895050">Психологическая помощь МЧС</a>`
+    : `<a class="button danger" href="tel:112">Appeler le 112</a><a class="button secondary" href="tel:3114">Appeler le 3114</a>`;
 const safetyView = () => `
   <section class="safety-page">
     <p class="eyebrow">Sécurité prioritaire</p><h1>Si la vague devient dangereuse</h1>
     <div class="notice danger"><strong>En cas de danger immédiat :</strong> ne restez pas uniquement dans l’auto-aide. Éloignez-vous des moyens et personnes exposées, rejoignez un lieu sûr et contactez une aide humaine ou les services d’urgence.</div>
     <ol class="safety-steps"><li><strong>Dire</strong><span>« Je ne me sens pas en sécurité seul. J’ai besoin que tu restes ou que tu m’aides à contacter les urgences. »</span></li><li><strong>S’éloigner</strong><span>Mettre de la distance avec les moyens, substances, clés et lieux dangereux.</span></li><li><strong>Contacter</strong><span>En France : 15 ou 112 en danger immédiat ; 3114 pour la prévention du suicide ; 114 pour l’urgence accessible.</span></li><li><strong>Rejoindre</strong><span>Une personne, un lieu de soin ou un espace sûr. Ne pas rester isolé si le danger est immédiat.</span></li><li><strong>Transmettre</strong><span>Dire clairement pensée, envie, intention, plan, moyens, substances, symptômes et localisation.</span></li></ol>
-    <div class="button-row"><a class="button danger" href="tel:112">Appeler le 112</a><a class="button secondary" href="tel:3114">Appeler le 3114</a><a class="button ghost" href="${siteUrl("fiches/")}">Retour aux modules</a></div>
+    <div class="button-row">${safetyEmergencyButtons()}<a class="button ghost" href="${siteUrl("fiches/")}">Retour aux modules</a></div>
     <p class="fine-print">Ces coordonnées concernent la France. Ailleurs, utilisez les services d’urgence de votre pays.</p>
   </section>
 `;

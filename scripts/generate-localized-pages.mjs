@@ -21,15 +21,29 @@ const englishTitles = {
   settings: "Settings — AuDHD Tools", privacy: "Privacy — AuDHD Tools",
   safety: "Safety — AuDHD Tools"
 };
+const russianTitles = {
+  tests: "Опросники — AuDHD Tools", test: "Опросник — AuDHD Tools",
+  results: "Результаты — AuDHD Tools", waves: "Интерактивные листы — AuDHD Tools",
+  "wave-module": "Рабочий лист — AuDHD Tools", documents: "Мои документы — AuDHD Tools",
+  settings: "Настройки — AuDHD Tools", privacy: "Конфиденциальность — AuDHD Tools",
+  safety: "Безопасность — AuDHD Tools"
+};
 
-for (const lang of ["fr", "en"]) {
+for (const lang of ["fr", "en", "ru"]) {
   for (const [path, page, frenchTitle, pdf] of pages) {
     const nested = path.includes("/");
     const assetRoot = nested ? "../../" : "../";
     const siteRoot = nested ? "../" : "./";
     const description = lang === "fr"
       ? "Outils privés d’auto-observation pour les personnes concernées par le TDAH, le TSA ou l’AuDHD."
-      : "Private self-observation tools for people with ADHD, autism or AuDHD.";
+      : lang === "en" ? "Private self-observation tools for people with ADHD, autism or AuDHD."
+      : "Приватные инструменты самонаблюдения для людей с СДВГ, аутизмом или AuDHD.";
+    const title = lang === "fr" ? frenchTitle : lang === "en" ? englishTitles[page] || "AuDHD Tools" : russianTitles[page] || "AuDHD Tools";
+    const skip = lang === "fr" ? "Aller au contenu" : lang === "en" ? "Skip to content" : "Перейти к содержимому";
+    const noScript = lang === "fr"
+      ? "Ce site a besoin de JavaScript pour les formulaires interactifs et la génération locale des PDF."
+      : lang === "en" ? "This site requires JavaScript for interactive forms and local PDF generation."
+      : "Для интерактивных форм и локального создания PDF этому сайту требуется JavaScript.";
     const html = `<!doctype html>
 <html lang="${lang}">
   <head>
@@ -40,12 +54,12 @@ for (const lang of ["fr", "en"]) {
     <link rel="manifest" href="${assetRoot}manifest.webmanifest" />
     <link rel="icon" href="${assetRoot}icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="${assetRoot}assets/styles.css" />
-    <title>${lang === "en" ? englishTitles[page] || "AuDHD Tools" : frenchTitle}</title>
+    <title>${title}</title>
   </head>
   <body data-page="${page}" data-lang="${lang}" data-root="${siteRoot}" data-assets-root="${assetRoot}">
-    <a class="skip-link" href="#main-content">${lang === "fr" ? "Aller au contenu" : "Skip to content"}</a>
+    <a class="skip-link" href="#main-content">${skip}</a>
     <div id="app" aria-live="polite"></div>
-    <noscript>${lang === "fr" ? "Ce site a besoin de JavaScript pour les formulaires interactifs et la génération locale des PDF." : "This site requires JavaScript for interactive forms and local PDF generation."}</noscript>
+    <noscript>${noScript}</noscript>
     ${pdf ? `<script src="${assetRoot}assets/vendor/jspdf.umd.min.js"></script>\n    ` : ""}<script type="module" src="${assetRoot}assets/main.js"></script>
   </body>
 </html>

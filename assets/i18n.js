@@ -1,5 +1,5 @@
-export const language = document.body.dataset.lang === "en" ? "en" : "fr";
-export const locale = language === "en" ? "en-GB" : "fr-FR";
+export const language = ["fr", "en", "ru"].includes(document.body.dataset.lang) ? document.body.dataset.lang : "fr";
+export const locale = language === "en" ? "en-GB" : language === "ru" ? "ru-RU" : "fr-FR";
 
 let dictionary = {};
 let dictionaryLower = {};
@@ -97,6 +97,14 @@ const builtinEnglish = {
   "Import impossible.": "Could not import the file."
 };
 const builtinEnglishLower = Object.fromEntries(Object.entries(builtinEnglish).map(([key, value]) => [key.toLocaleLowerCase("fr"), value]));
+const builtinRussian = {
+  "Français": "Français",
+  "English": "English",
+  "Русский (Beta)": "Русский (Beta)",
+  "TDAH": "СДВГ",
+  "TSA": "РАС"
+};
+const builtinRussianLower = Object.fromEntries(Object.entries(builtinRussian).map(([key, value]) => [key.toLocaleLowerCase("fr"), value]));
 
 const translateEmbeddedFrench = (text) => [
   [/Rapport complet \+ réponses/gi, "Full report + answers"],
@@ -136,6 +144,45 @@ const translateEmbeddedFrench = (text) => [
   [/MES REPÈRES OU OUTILS CHOISIS/gi, "MY SELECTED MARKERS OR TOOLS"]
 ].reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), text);
 
+const translateEmbeddedRussian = (text) => [
+  [/Rapport complet \+ réponses/gi, "Полный отчёт + ответы"],
+  [/Rapport synthétique/gi, "Краткий отчёт"],
+  [/Rapport d’épisode/gi, "Отчёт об эпизоде"],
+  [/rapport descriptif/gi, "описательный отчёт"],
+  [/Session commencée le/gi, "Сеанс начат"],
+  [/Épisode commencé le/gi, "Эпизод начат"],
+  [/dernière modification le/gi, "последнее изменение"],
+  [/exportée le/gi, "экспортировано"],
+  [/export le/gi, "экспортировано"],
+  [/carte générée le/gi, "карта создана"],
+  [/questions traitées/gi, "обработано вопросов"],
+  [/Réponses calculables/gi, "Ответы для расчёта"],
+  [/Je ne sais pas/gi, "Не знаю"],
+  [/Non applicables/gi, "Неприменимо"],
+  [/Sans réponse/gi, "Без ответа"],
+  [/Contexte/gi, "Контекст"],
+  [/Traitement contextuel/gi, "Контекстный анализ"],
+  [/réponses analysées/gi, "проанализировано ответов"],
+  [/Réponse\s*:/gi, "Ответ:"],
+  [/à discuter/gi, "для обсуждения"],
+  [/cette version contient moins de/gi, "в этой версии менее"],
+  [/concepts distincts/gi, "различных концепций"],
+  [/Non explorée dans cette version/gi, "Не исследуется в этой версии"],
+  [/Fiche (\d+)\/5/gi, "Рабочий лист $1/5"],
+  [/Épisode\s*:/gi, "Эпизод:"],
+  [/Notes personnelles/gi, "Личные заметки"],
+  [/Sources publiques/gi, "Открытые источники"],
+  [/Données insuffisantes/gi, "Недостаточно данных"],
+  [/CARTE DE CRISE/gi, "КРИЗИСНАЯ КАРТА"],
+  [/Export\s*:/gi, "Экспорт:"],
+  [/phases? documentées?/gi, "задокументированных этапов"],
+  [/informations? personnelles?/gi, "личных сведений"],
+  [/\bsuite\b/gi, (match) => match === match.toLocaleUpperCase("fr") ? "ПРОДОЛЖЕНИЕ" : "продолжение"],
+  [/ÉTAT ET REPÈRES RENSEIGNÉS/gi, "ЗАПИСАННЫЕ СОСТОЯНИЕ И ОРИЕНТИРЫ"],
+  [/MAINTENANT — UNE ACTION À LA FOIS/gi, "СЕЙЧАС — ПО ОДНОМУ ДЕЙСТВИЮ"],
+  [/MES REPÈRES OU OUTILS CHOISIS/gi, "МОИ ВЫБРАННЫЕ ОРИЕНТИРЫ ИЛИ ИНСТРУМЕНТЫ"]
+].reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), text);
+
 const dynamicEnglish = (text) => {
   const rules = [
     [/^Commencer (.+)$/, "Start $1"],
@@ -173,15 +220,60 @@ const dynamicEnglish = (text) => {
   return text;
 };
 
+const russianPlural = (value, one, few, many) => {
+  const number = Number(value);
+  if (number % 10 === 1 && number % 100 !== 11) return one;
+  if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) return few;
+  return many;
+};
+const dynamicRussian = (text) => {
+  const rules = [
+    [/^(\d+) phases? documentées? · (\d+) informations? personnelles?\.?$/, (_match, phases, details) => `${phases} ${russianPlural(phases, "задокументированный этап", "задокументированных этапа", "задокументированных этапов")} · ${details} ${russianPlural(details, "личное сведение", "личных сведения", "личных сведений")}.`],
+    [/^Commencer (.+)$/, "Начать: $1"],
+    [/^Reprendre la fiche du (.+)$/, "Продолжить рабочий лист от $1"],
+    [/^Reprendre (.+)$/, "Продолжить: $1"],
+    [/^Créer une nouvelle session (.+)$/, "Создать новый сеанс: $1"],
+    [/^Progression dans (.+)$/, "Ход заполнения: $1"],
+    [/^Indice descriptif (.+) sur 4$/, "Описательный индекс $1 из 4"],
+    [/^(\d+) questions · (\d+) thèmes$/, "$1 вопросов · $2 тем"],
+    [/^(\d+)\/(\d+) traitées$/, "Обработано: $1/$2"],
+    [/^(.+) · question (\d+) sur (\d+)$/, "$1 · вопрос $2 из $3"],
+    [/^Question (\d+) sur (\d+)$/, "Вопрос $1 из $2"],
+    [/^(\d+) réponses analysées · (\d+) éléments? à discuter$/, "Проанализировано ответов: $1 · для обсуждения: $2"],
+    [/^Non calculé dans (.+) : moins de (\d+) concepts distincts$/, "Не рассчитано в $1: менее $2 различных концепций"],
+    [/^Traitement contextuel : (\d+)\/(\d+) réponses analysées · (\d+) éléments? à discuter$/, "Контекстный анализ: $1/$2 ответов · для обсуждения: $3"],
+    [/^Couverture conceptuelle : Aucun concept applicable$/, "Охват концепций: применимых концепций нет"],
+    [/^Couverture conceptuelle : (.+)$/, "Охват концепций: $1"],
+    [/^(\d+)\/(\d+) concepts applicables$/, "$1/$2 применимых концепций"],
+    [/^Voir le détail des concepts \((\d+)\)$/, "Подробнее о концепциях ($1)"],
+    [/^(\d+)\/(\d+) formulations?$/, "$1/$2 формулировок"],
+    [/^Épisode du (.+)$/, "Эпизод от $1"],
+    [/^(.+) · module (\d+)$/, "$1 · модуль $2"],
+    [/^Fiche (\d+) sur 5$/, "Рабочий лист $1 из 5"],
+    [/^Sources publiques de cette fiche \((\d+)\)$/, "Открытые источники для этого листа ($1)"],
+    [/^(\d+) questions traitées · commencé le (.+)$/, "Обработано вопросов: $1 · начато $2"],
+    [/^(\d+)\/(\d+) questions traitées · commencé le (.+)$/, "Обработано вопросов: $1/$2 · начато $3"],
+    [/^Générer le rapport synthétique (.+) du (.+)$/, "Создать краткий отчёт $1 от $2"],
+    [/^Générer le rapport complet (.+) du (.+)$/, "Создать полный отчёт $1 от $2"],
+    [/^Réponse : (.+)$/, "Ответ: $1"],
+    [/^(\d+) fiches? remplies? · (.+)$/, "Заполнено листов: $1 · $2"]
+  ];
+  for (const [pattern, replacement] of rules)
+    if (pattern.test(text)) return text.replace(pattern, replacement);
+  return text;
+};
+
 export const tr = (value) => {
-  if (language !== "en" || typeof value !== "string") return value;
+  if (language === "fr" || typeof value !== "string") return value;
   const text = value.replace(/\s+/g, " ").trim();
-  const exact = builtinEnglish[text] || dictionary[text];
+  const builtin = language === "en" ? builtinEnglish : builtinRussian;
+  const builtinLower = language === "en" ? builtinEnglishLower : builtinRussianLower;
+  const exact = builtin[text] || dictionary[text];
   if (exact) return exact;
   const lower = text.toLocaleLowerCase("fr");
-  const insensitive = builtinEnglishLower[lower] || dictionaryLower[lower];
-  if (insensitive) return text === text.toLocaleUpperCase("fr") ? insensitive.toLocaleUpperCase("en") : insensitive;
-  return translateEmbeddedFrench(dynamicEnglish(text));
+  const insensitive = builtinLower[lower] || dictionaryLower[lower];
+  if (insensitive) return text === text.toLocaleUpperCase("fr") ? insensitive.toLocaleUpperCase(locale) : insensitive;
+  return language === "en" ? translateEmbeddedFrench(dynamicEnglish(text)) : translateEmbeddedRussian(dynamicRussian(text));
 };
 
 const translateTextNode = (node) => {
@@ -193,7 +285,7 @@ const translateTextNode = (node) => {
 };
 
 export const translatePage = (root) => {
-  if (language !== "en") return;
+  if (language === "fr") return;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -206,7 +298,7 @@ export const translatePage = (root) => {
 
 export const counterpartUrl = (targetLanguage) => {
   const url = new URL(window.location.href);
-  const pattern = language === "en" ? /\/en(?=\/|$)/ : /\/fr(?=\/|$)/;
+  const pattern = /\/(?:fr|en|ru)(?=\/|$)/;
   url.pathname = pattern.test(url.pathname)
     ? url.pathname.replace(pattern, `/${targetLanguage}`)
     : (() => {
@@ -218,7 +310,7 @@ export const counterpartUrl = (targetLanguage) => {
 };
 
 export const localizePdfDocument = (doc) => {
-  if (language !== "en") return doc;
+  if (language === "fr") return doc;
   const split = doc.splitTextToSize.bind(doc);
   doc.splitTextToSize = (text, ...args) => split(tr(String(text)), ...args);
   const write = doc.text.bind(doc);

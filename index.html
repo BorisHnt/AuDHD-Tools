@@ -10,7 +10,8 @@
     <script>
       (() => {
         const saved = localStorage.getItem("audhd-tools:language");
-        const language = saved === "en" || saved === "fr" ? saved : navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
+        const browserLanguage = navigator.language.toLowerCase();
+        const language = ["fr", "en", "ru"].includes(saved) ? saved : browserLanguage.startsWith("fr") ? "fr" : browserLanguage.startsWith("ru") ? "ru" : "en";
         window.location.replace(`./${language}/`);
       })();
     </script>
@@ -18,7 +19,7 @@
   <body>
     <main class="empty-state">
       <h1>AuDHD Tools</h1>
-      <p><a class="button primary" href="./fr/">Français</a> <a class="button secondary" href="./en/">English</a></p>
+      <p><a class="button primary" href="./fr/">Français</a> <a class="button secondary" href="./en/">English</a> <a class="button secondary" href="./ru/">Русский (Beta)</a></p>
     </main>
   </body>
 </html>

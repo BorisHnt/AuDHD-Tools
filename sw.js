@@ -1,4 +1,4 @@
-const CACHE_NAME = "audhd-tools-shell-v10";
+const CACHE_NAME = "audhd-tools-shell-v17";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,6 +6,8 @@ const APP_SHELL = [
   "./fr/fiches/", "./fr/fiches/module.html", "./fr/documents/", "./fr/reglages/", "./fr/confidentialite/", "./fr/securite/",
   "./en/", "./en/tests/", "./en/tests/questionnaire.html", "./en/tests/resultats.html",
   "./en/fiches/", "./en/fiches/module.html", "./en/documents/", "./en/reglages/", "./en/confidentialite/", "./en/securite/",
+  "./ru/", "./ru/tests/", "./ru/tests/questionnaire.html", "./ru/tests/resultats.html",
+  "./ru/fiches/", "./ru/fiches/module.html", "./ru/documents/", "./ru/reglages/", "./ru/confidentialite/", "./ru/securite/",
   "./manifest.webmanifest",
   "./icon.svg",
   "./assets/styles.css",
@@ -23,7 +25,10 @@ const APP_SHELL = [
   "./site-data/waves.json",
   "./site-data/en/tests.json",
   "./site-data/en/waves.json",
-  "./site-data/en/ui.json"
+  "./site-data/en/ui.json",
+  "./site-data/ru/tests.json",
+  "./site-data/ru/waves.json",
+  "./site-data/ru/ui.json"
 ];
 
 self.addEventListener("install", (event) => {

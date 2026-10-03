@@ -49,6 +49,7 @@ const safeSlug = (value) => value
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
+const exportSlug = (value, fallback) => language === "ru" ? fallback : (safeSlug(value) || fallback);
 const timestamp = (date = new Date()) => {
     const pad = (value) => String(value).padStart(2, "0");
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}_${pad(date.getHours())}-${pad(date.getMinutes())}`;
@@ -295,8 +296,8 @@ const exportTestReport = async (session, test, data, complete) => {
     }
     writer.finalize(`${test.titleFr} · AuDHD Tools · rapport descriptif`);
     writer.doc.setProperties({ title: `${test.titleFr} — ${complete ? "rapport complet" : "rapport synthétique"}`, subject: "Auto-évaluation descriptive", author: "AuDHD Tools", creator: "AuDHD Tools" });
-    const reportKind = language === "en" ? (complete ? "full" : "summary") : (complete ? "complet" : "synthese");
-    writer.doc.save(`${safeSlug(test.titleFr)}_${reportKind}_${timestamp(new Date(session.startedAt))}.pdf`);
+    const reportKind = language === "fr" ? (complete ? "complet" : "synthese") : (complete ? "full" : "summary");
+    writer.doc.save(`${exportSlug(test.titleFr, test.id)}_${reportKind}_${timestamp(new Date(session.startedAt))}.pdf`);
 };
 export const exportTestSummaryPdf = (session, test, data) => exportTestReport(session, test, data, false);
 export const exportTestPdf = (session, test, data) => exportTestReport(session, test, data, true);
@@ -310,7 +311,7 @@ const extractWaveEntries = (episode, module) => module.pages.map((page) => {
     let section = page.phaseLabelFr;
     page.contentLines.forEach((line, lineIndex) => {
         const trimmed = line.trim();
-        if (waveSectionPattern.test(trimmed)) {
+        if (["heading", "protocol-heading"].includes(page.lineKinds?.[lineIndex]) || waveSectionPattern.test(trimmed)) {
             section = trimmed;
             return;
         }
@@ -418,10 +419,10 @@ export const exportWaveCrisisCard = async (episode, collection, module) => {
     doc.roundedRect(margin, safetyY, width, 20, 2, 2, "FD");
     setText(10, true, colors.coral);
     doc.text("SI DANGER, INTENTION, PERTE DE CONTRÔLE OU SYMPTÔME INQUIÉTANT", margin + 5, safetyY + 6);
-    setText(10, true, colors.ink);
-    doc.text("15 ou 112 · 3114 · rejoindre une aide humaine et ne pas rester isolé", margin + 5, safetyY + 13);
+    setText(8.6, true, colors.ink);
+    doc.text(doc.splitTextToSize("15 ou 112 · 3114 · rejoindre une aide humaine et ne pas rester isolé", width - 10).slice(0, 2), margin + 5, safetyY + 12.5);
     doc.setProperties({ title: `${module.titleFr} — carte de crise`, subject: "Carte personnelle de crise", author: "AuDHD Tools", creator: "AuDHD Tools" });
-    doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_${language === "en" ? "crisis-card" : "carte-crise"}_${timestamp(new Date(episode.startedAt))}.pdf`);
+    doc.save(`${exportSlug(collection.titleFr, collection.id)}_${exportSlug(module.titleFr, module.id)}_${language === "fr" ? "carte-crise" : "crisis-card"}_${timestamp(new Date(episode.startedAt))}.pdf`);
 };
 
 export const exportWaveEpisodeReport = async (episode, collection, module) => {
@@ -463,7 +464,7 @@ export const exportWaveEpisodeReport = async (episode, collection, module) => {
     writer.callout("En cas de danger immédiat ou de perte de contrôle : 15 ou 112. En France, le 3114 répond gratuitement 24 h/24 pour la prévention du suicide.", "danger");
     writer.finalize(`${module.titleFr} · ${collection.titleFr} · rapport d’épisode`);
     writer.doc.setProperties({ title: `${module.titleFr} — rapport d’épisode`, subject: "Rapport personnel d’auto-observation", author: "AuDHD Tools", creator: "AuDHD Tools" });
-    writer.doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_${language === "en" ? "episode-report" : "rapport-episode"}_${timestamp(new Date(episode.startedAt))}.pdf`);
+    writer.doc.save(`${exportSlug(collection.titleFr, collection.id)}_${exportSlug(module.titleFr, module.id)}_${language === "fr" ? "rapport-episode" : "episode-report"}_${timestamp(new Date(episode.startedAt))}.pdf`);
 };
 
 export const exportWavePdf = async (episode, collection, module, selectedPageIds) => {
@@ -634,6 +635,7 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
         if (lineIndex === 0)
             return;
         const trimmed = line.trim();
+        const lineKind = sheet.lineKinds?.[lineIndex];
         if (!trimmed)
             return;
         if (trimmed.includes("[ ]")) {
@@ -650,23 +652,23 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
             answerField(trimmed, lineIndex, values);
             return;
         }
-        if (/^(AVANT TOUT|SIGNAL DE SÉCURITÉ)/.test(trimmed)) {
+        if (lineKind === "safety" || /^(AVANT TOUT|SIGNAL DE SÉCURITÉ)/.test(trimmed)) {
             callout(trimmed, "danger");
             return;
         }
-        if (/^À distinguer de/i.test(trimmed)) {
+        if (lineKind === "distinguish" || /^À distinguer de/i.test(trimmed)) {
             callout(trimmed, "warning");
             return;
         }
-        if (/^(PASSAGE À L’ÉTAPE SUIVANTE|CONCLUSION DU MODULE)/.test(trimmed)) {
+        if (lineKind === "note" || /^(PASSAGE À L’ÉTAPE SUIVANTE|CONCLUSION DU MODULE)/.test(trimmed)) {
             callout(trimmed, "info");
             return;
         }
-        if (/^DÉFINITION DE TRAVAIL/.test(trimmed)) {
-            callout(trimmed.replace(/^DÉFINITION DE TRAVAIL\s*/, ""), "info");
+        if (lineKind === "definition" || /^DÉFINITION DE TRAVAIL/.test(trimmed)) {
+            callout(lineKind === "definition" ? trimmed : trimmed.replace(/^DÉFINITION DE TRAVAIL\s*/, ""), "info");
             return;
         }
-        if (/^Repères publics/.test(trimmed)) {
+        if (lineKind === "references" || /^Repères publics/.test(trimmed)) {
             const ids = trimmed.match(/S\d{2}/g) || [];
             const references = ids.flatMap((id) => collection.references?.find((reference) => reference.id === id) || []);
             if (!references.length) {
@@ -682,8 +684,8 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
             });
             return;
         }
-        if (headingPattern.test(trimmed)) {
-            if (/^Protocole immédiat/i.test(trimmed))
+        if (lineKind === "heading" || lineKind === "protocol-heading" || headingPattern.test(trimmed)) {
+            if (lineKind === "protocol-heading" || /^Protocole immédiat/i.test(trimmed))
                 ensureSpace(95);
             else if (/^(Critères de sortie|SIGNAL DE SÉCURITÉ)/i.test(trimmed))
                 ensureSpace(55);
@@ -733,5 +735,5 @@ export const exportWavePdf = async (episode, collection, module, selectedPageIds
         author: "AuDHD Tools",
         creator: "AuDHD Tools"
     });
-    doc.save(`${safeSlug(collection.titleFr)}_${safeSlug(module.titleFr)}_${language === "en" ? "printable-worksheets" : "fiches-imprimables"}_${timestamp(new Date(episode.startedAt))}.pdf`);
+    doc.save(`${exportSlug(collection.titleFr, collection.id)}_${exportSlug(module.titleFr, module.id)}_${language === "fr" ? "fiches-imprimables" : "printable-worksheets"}_${timestamp(new Date(episode.startedAt))}.pdf`);
 };
